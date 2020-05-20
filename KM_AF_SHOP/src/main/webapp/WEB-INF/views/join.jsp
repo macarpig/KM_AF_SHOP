@@ -70,6 +70,12 @@
 						<span class="focus-input100" data-symbol="&#xf15a;"></span>
 					</div>
 					
+					<div class="wrap-input100 validate-input m-b-23" data-validate="ex.) 01000000000">
+						<span class="label-input100">연락처</span>
+						<input class="input100" type="email" name="userTel" placeholder="연락처를 입력해주세요.">
+						<span class="focus-input100" data-symbol="&#xf2be;"></span>
+					</div>
+					
 					<div class="wrap-input100 validate-input m-b-23" data-validate="우편번호를 입력해주세요.">
 						<span class="label-input100">우편번호</span>
 						<input class="input100" type="number" name="userZipcode" placeholder="우편번호를 입력해주세요.">
