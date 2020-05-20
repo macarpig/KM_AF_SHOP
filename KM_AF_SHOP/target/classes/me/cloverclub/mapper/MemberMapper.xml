@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="me.cloverclub.mapper.MemberMapper">
+	<!-- join -->
+	<insert id="join">
+		insert into member(userId, userPw, userName, userEmail, userTel, userZipcode, userAddr1, userAddr2, userAuth)
+		values(#{userId}, #{userPw}, #{userName}, #{userEmail}, #{userTel}, #{userZipcode}, #{userAddr1}, #{userAddr2}, 0)
+	</insert>
+	
 	<!-- login -->
 	
 </mapper>
