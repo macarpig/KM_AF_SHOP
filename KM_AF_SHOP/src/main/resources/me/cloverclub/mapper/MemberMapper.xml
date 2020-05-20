@@ -8,5 +8,10 @@
 	</insert>
 	
 	<!-- login -->
+	<select id="login" resultType="me.cloverclub.vo.MemberVO">
+		select userId, userPw, userName, userEmail, userTel, userZipcode, userAddr1, userAddr2, userAuth
+		from member
+		where userId = #{userId}
+	</select>
 	
 </mapper>
