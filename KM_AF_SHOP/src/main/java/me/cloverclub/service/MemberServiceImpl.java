@@ -18,18 +18,24 @@ public class MemberServiceImpl implements MemberService {
 	// login
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
+		log.info("MemberService login()");
+		
 		return mapper.login(vo);
 	}
 
 	// logout
 	@Override
 	public void logout(HttpSession session) throws Exception {
+		log.info("MemberService logout()");
+		
 		session.invalidate();
 	}
 	
 	// join
 	@Override
 	public void join(MemberVO vo) throws Exception {
+		log.info("MemberService join()");
+		
 		mapper.join(vo);
 	}
 }
