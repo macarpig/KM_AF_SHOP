@@ -20,7 +20,6 @@ import me.cloverclub.vo.MemberVO;
 @Log4j
 @AllArgsConstructor
 public class MemberController {
-	@Inject
 	private MemberService service;
 	
 	@Autowired

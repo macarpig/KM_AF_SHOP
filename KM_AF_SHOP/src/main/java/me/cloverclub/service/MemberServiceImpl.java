@@ -1,19 +1,24 @@
 package me.cloverclub.service;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import me.cloverclub.persistence.MemberDAO;
+import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+import me.cloverclub.mapper.MemberMapper;
 import me.cloverclub.vo.MemberVO;
 
+@Log4j
+@Service
+@AllArgsConstructor
 public class MemberServiceImpl implements MemberService {
-	@Inject
-	private MemberDAO dao;
+	private MemberMapper mapper;
 
 	// login
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
-		return dao.login(vo);
+		return mapper.login(vo);
 	}
 
 	// logout
@@ -25,6 +30,6 @@ public class MemberServiceImpl implements MemberService {
 	// join
 	@Override
 	public void join(MemberVO vo) throws Exception {
-		dao.join(vo);
+		mapper.join(vo);
 	}
 }
