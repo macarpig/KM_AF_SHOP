@@ -72,7 +72,7 @@
 							혹은
 						</span>
 
-						<a href="#" class="txt2">
+						<a href="/join" class="txt2">
 							회원 가입
 						</a>
 					</div>
