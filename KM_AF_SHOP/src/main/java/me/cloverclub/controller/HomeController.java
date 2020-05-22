@@ -15,5 +15,7 @@ public class HomeController {
 		log.info("getIndex()");
 		
 		return "index";
-	}	
+	}
+	
+	// git commit and push test
 }
