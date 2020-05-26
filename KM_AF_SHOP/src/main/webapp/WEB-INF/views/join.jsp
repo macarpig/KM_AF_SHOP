@@ -54,7 +54,7 @@
 					
 					<div class="wrap-input100 validate-input m-b-23" data-validate="비밀번호를 입력해주세요.">
 						<span class="label-input100">비밀번호 확인</span>
-						<input class="input100" type="password" name="userPw" placeholder="비밀번호를 한 번 더 입력해주세요.">
+						<input class="input100" type="password" name="userRePw" placeholder="비밀번호를 한 번 더 입력해주세요.">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
