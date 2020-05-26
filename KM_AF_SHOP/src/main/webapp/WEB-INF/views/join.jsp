@@ -72,7 +72,7 @@
 					
 					<div class="wrap-input100 validate-input m-b-23" data-validate="연락처를 입력해주세요.">
 						<span class="label-input100">연락처</span>
-						<input class="input100" type="email" name="userTel" placeholder="ex.) 01000000000">
+						<input class="input100" type="tel" name="userTel" placeholder="ex.) 01000000000">
 						<span class="focus-input100" data-symbol="&#xf2be;"></span>
 					</div>
 					
