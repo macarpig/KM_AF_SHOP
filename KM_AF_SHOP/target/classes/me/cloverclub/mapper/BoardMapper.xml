@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.cloverclub.mapper.BoardMapper">
+	
+	<select id="getNoticeList" resultType="me.cloverclub.vo.NoticeVO">
+		SELECT 
+			noticeId, noticeTitle, noticeContent, notiDate, notiView
+		FROM
+			notice
+	</select>
+	
+	<select id="getFaqList" resultType="me.cloverclub.vo.FaqVO">
+		SELECT 
+			faqId, faqQ, faqA
+		FROM
+			faq
+	</select>
+	
+	<select id="getNoticeListCnt" resultType="int">
+	SELECT
+		count(*) as NoticelistCnt
+	FROM
+		notice
+	</select>
+	
+	<select id="getFaqListCnt" resultType="int">
+	SELECT
+		count(*) as FaqlistCnt
+	FROM
+		faq
+	</select>
+	
+	<select id="getNoticeContent" resultType="me.cloverclub.vo.NoticeVO">
+	SELECT
+		noticeId, noticeTitle, noticeContent, notiDate, notiView
+	FROM
+		notice 
+	WHERE
+		noticeId = #{noticeId}
+	</select>
+	
+	<select id="getFaqContent" resultType="me.cloverclub.vo.FaqVO">
+	SELECT
+		faqId, faqQ, faqA
+	FROM
+		faq 
+	WHERE
+		faqId = #{faqId}
+	</select>
+	
+	<insert id="insertNotice" parameterType="me.cloverclub.vo.NoticeVO">
+	INSERT INTO 
+		notice (noticeTitle, noticeContent, notiDate, notiView)
+	VALUES (
+		#{noticeTitle}
+		, #{noticeContent}
+		, now()
+		, 0
+	)
+	</insert>
+	
+	<insert id="insertFaq" parameterType="me.cloverclub.vo.FaqVO">
+	INSERT INTO 
+		faq (faqQ, faqA)
+	VALUES (
+		#{faqQ}
+		, #{faqA}
+	)
+	</insert>
+	
+	<update id="updateNotice" parameterType="me.cloverclub.vo.NoticeVO">
+	UPDATE notice SET
+		noticeTitle = #{noticeTitle}
+		, noticeContent = #{noticeContent}
+		, notiDate = now()
+	WHERE
+	 noticeId = ${noticeId}
+	</update>
+	
+	<update id="updateFaq" parameterType="me.cloverclub.vo.FaqVO">
+	UPDATE faq SET
+		faqQ = #{faqQ}
+		, faqA = #{faqA}
+	WHERE
+	 faqId = ${faqId}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+	DELETE FROM notice
+	WHERE noticeId = #{noticeId}
+	</delete>
+	
+	<delete id="deleteFaq" parameterType="int">
+	DELETE FROM faq
+	WHERE faqId = #{faqId}
+	</delete>
+	
+	<update id="updateViewCnt" parameterType="me.cloverclub.vo.NoticeVO">
+	UPDATE notice SET
+		notiView = notiView+1
+	WHERE
+		noticeId = #{noticeId}
+	</update>
+</mapper>
