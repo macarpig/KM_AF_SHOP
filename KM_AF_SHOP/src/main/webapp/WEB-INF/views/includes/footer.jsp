@@ -6,7 +6,7 @@
 				 Connect with Scorilo
 			</p>
 			<ul class="social-iconsfooter">
-				<li><a href="tel:010-4872-9128"><i class="fa fa-phone"></i></a></li>
+				<li><a href="#"><i class="fa fa-phone"></i></a></li>
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>

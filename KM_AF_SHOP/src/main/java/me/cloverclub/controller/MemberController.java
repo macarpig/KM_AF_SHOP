@@ -40,6 +40,8 @@ public class MemberController {
 		
 		boolean loginMatch = passEncoder.matches(vo.getUserPw(), login.getUserPw());
 		
+		log.info("loginMatch: " + loginMatch);
+		
 		if(login != null && loginMatch) {
 			session.setAttribute("member", login);
 		}
@@ -47,6 +49,7 @@ public class MemberController {
 		else {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
+			
 			return "redirect:/login";
 		}
 		

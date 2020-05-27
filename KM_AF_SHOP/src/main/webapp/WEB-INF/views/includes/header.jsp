@@ -22,8 +22,8 @@
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="/">Home</a></li>
-				<li class="propClone"><a href="/shop?c=0&l=0">Shop</a></li>
+				<li class="propClone"><a href="index.html">Home</a></li>
+				<li class="propClone"><a href="shop.html">Shop</a></li>
 				<li class="propClone"><a href="product.html">Product</a></li>
 				<li class="propClone"><a href="checkout.html">Checkout</a></li>
 				<li class="propClone"><a href="contact.html">Contact</a></li>

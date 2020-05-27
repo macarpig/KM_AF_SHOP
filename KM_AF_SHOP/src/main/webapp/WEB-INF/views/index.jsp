@@ -79,7 +79,6 @@
 			</div>
 		</div>
 		<div class="row">
-		<c:forEach items="${showRecent}" var="showRecent">
 			<div class="col-md-4">
 				<div class="productbox">
 					<div class="fadeshop">
@@ -93,41 +92,19 @@
 								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 							</p>
 						</div>
-						<span class="maxproduct"><img src="${showRecent.gdsImg}" alt=""></span>
+						<span class="maxproduct"><img src="/resources/images/product1-1.jpg" alt=""></span>
 					</div>
 					<div class="product-details">
 						<a href="#">
-						<h1>${showRecent.gdsName}</h1>
+						<h1>Calypso Theme</h1>
 						</a>
 						<span class="price">
-						<span class="edd_price">${showRecent.gdsPrice}</span>
+						<span class="edd_price">$49.00</span>
 						</span>
 					</div>
 				</div>
 			</div>
-			</c:forEach>
-		</div>
-	</div>
-</div>
-</section>
-
-	<!-- HOTEST ITEMS =============================-->
-<section class="item content">
-	<div class="container">
-		<div class="underlined-title">
-			<div class="editContent">
-				<h1 class="text-center latestitems">HOTEST ITEMS</h1>
-			</div>
-			<div class="wow-hr type_short">
-				<span class="wow-hr-h">
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star"></i>
-				</span>
-			</div>
-		</div>
-		<div class="row">
-		<c:forEach items="${showHot}" var="showHot">
+			<!-- /.productbox -->
 			<div class="col-md-4">
 				<div class="productbox">
 					<div class="fadeshop">
@@ -141,19 +118,44 @@
 								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 							</p>
 						</div>
-						<span class="maxproduct"><img src="${showHot.gdsImg}" alt=""></span>
+						<span class="maxproduct"><img src="/resources/images/product2.jpg" alt=""></span>
 					</div>
 					<div class="product-details">
 						<a href="#">
-						<h1>${showHot.gdsName}</h1>
+						<h1>FastSell Theme</h1>
 						</a>
 						<span class="price">
-						<span class="edd_price">${showHot.gdsPrice}</span>
+						<span class="edd_price">$49.00</span>
 						</span>
 					</div>
 				</div>
 			</div>
-			</c:forEach>
+			<!-- /.productbox -->
+			<div class="col-md-4">
+				<div class="productbox">
+					<div class="fadeshop">
+						<div class="captionshop text-center" style="display: none;">
+							<h3>Item Name</h3>
+							<p>
+								 This is a short excerpt to generally describe what the item is about.
+							</p>
+							<p>
+								<a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
+								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
+							</p>
+						</div>
+						<span class="maxproduct"><img src="/resources/images/product2-3.jpg" alt=""></span>
+					</div>
+					<div class="product-details">
+						<a href="#">
+						<h1>Biscaya Theme</h1>
+						</a>
+						<span class="price">
+						<span class="edd_price">$49.00</span>
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -163,7 +165,7 @@
 <!-- BUTTON =============================-->
 <div class="item content">
 	<div class="container text-center">
-		<a href="/shop?c=0&l=0" class="homebrowseitems">Browse All Products
+		<a href="shop.html" class="homebrowseitems">Browse All Products
 		<div class="homebrowseitemsicon">
 			<i class="fa fa-star fa-spin"></i>
 		</div>
