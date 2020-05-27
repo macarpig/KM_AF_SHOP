@@ -11,5 +11,5 @@ public interface ShopService {
 	   
 	   public List<ShopVO> showHot() throws Exception;
 	   
-	   public List<ShopVO> list(int cateCode, int level) throws Exception;
+	   public List<ShopVO> list(int cateCode) throws Exception;
 }

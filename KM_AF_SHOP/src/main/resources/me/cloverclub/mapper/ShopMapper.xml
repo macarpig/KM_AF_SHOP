@@ -16,4 +16,12 @@
 	<select id="showHot" resultType="me.cloverclub.vo.ShopVO">
 		select gdsCode, gdsName, cateCode, gdsPrice, gdsDesc, gdsImg, gdsDate, gdsView from goods order by gdsView DESC limit 3
 	</select>
+	
+	<!-- select by category -->
+	<select id="list" resultType="me.cloverclub.vo.ShopVO">
+	select
+	gdsCode, gdsName, cateCode, gdsPrice, gdsDesc, gdsImg, gdsDate, gdsView
+	from goods      
+	where cateCode = #{cateCode}
+	</select>
 </mapper>

@@ -79,6 +79,7 @@
 			</div>
 		</div>
 		<div class="row">
+		<c:forEach items="${showRecent}" var="showRecent">
 			<div class="col-md-4">
 				<div class="productbox">
 					<div class="fadeshop">
@@ -92,70 +93,19 @@
 								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 							</p>
 						</div>
-						<span class="maxproduct"><img src="/resources/images/product1-1.jpg" alt=""></span>
+						<span class="maxproduct"><img src="${showRecent.gdsImg}" alt=""></span>
 					</div>
 					<div class="product-details">
 						<a href="#">
-						<h1>Calypso Theme</h1>
+						<h1>${showRecent.gdsName}</h1>
 						</a>
 						<span class="price">
-						<span class="edd_price">$49.00</span>
+						<span class="edd_price">${showRecent.gdsPrice}</span>
 						</span>
 					</div>
 				</div>
 			</div>
-			<!-- /.productbox -->
-			<div class="col-md-4">
-				<div class="productbox">
-					<div class="fadeshop">
-						<div class="captionshop text-center" style="display: none;">
-							<h3>Item Name</h3>
-							<p>
-								 This is a short excerpt to generally describe what the item is about.
-							</p>
-							<p>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
-							</p>
-						</div>
-						<span class="maxproduct"><img src="/resources/images/product2.jpg" alt=""></span>
-					</div>
-					<div class="product-details">
-						<a href="#">
-						<h1>FastSell Theme</h1>
-						</a>
-						<span class="price">
-						<span class="edd_price">$49.00</span>
-						</span>
-					</div>
-				</div>
-			</div>
-			<!-- /.productbox -->
-			<div class="col-md-4">
-				<div class="productbox">
-					<div class="fadeshop">
-						<div class="captionshop text-center" style="display: none;">
-							<h3>Item Name</h3>
-							<p>
-								 This is a short excerpt to generally describe what the item is about.
-							</p>
-							<p>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
-							</p>
-						</div>
-						<span class="maxproduct"><img src="/resources/images/product2-3.jpg" alt=""></span>
-					</div>
-					<div class="product-details">
-						<a href="#">
-						<h1>Biscaya Theme</h1>
-						</a>
-						<span class="price">
-						<span class="edd_price">$49.00</span>
-						</span>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>

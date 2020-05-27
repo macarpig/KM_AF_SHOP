@@ -45,7 +45,7 @@ public class HomeController {
 	      if(cateCode==0&level==0) {
 	    	  list = s_service.show();
 	      }else {
-	    	  list = s_service.list(cateCode, level);
+	    	  list = s_service.list(cateCode);
 	      }
 	      
 	      model.addAttribute("category", JSONArray.fromObject(category));

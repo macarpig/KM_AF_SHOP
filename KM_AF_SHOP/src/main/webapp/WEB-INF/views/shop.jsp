@@ -122,7 +122,7 @@ alert(cate1Div.html());
          <img src="${list.gdsImg}">
       </div>
       <div class="goodsName">
-         <a href="/controller/product?n=${list.gdsNum}">${list.gdsName}</a>
+         <a href="/controller/product?n=${list.gdsCode}">${list.gdsName}</a>
       </div>
    </li>
    </c:forEach>

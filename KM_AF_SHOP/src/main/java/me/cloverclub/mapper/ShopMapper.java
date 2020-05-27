@@ -17,9 +17,6 @@ public interface ShopMapper {
 	   public List<ShopVO> showHot() throws Exception;
 	   
 	   //카테고리 선택에 따라서 상품목록이 띄워짐 : 1차분류
-	   public List<ShopVO> list(int cateCode, int cateCodeRef) throws Exception;
-	   
-	   //카테고리 선택에 따라서 상품목록이 띄워짐 : 2차분류
 	   public List<ShopVO> list(int cateCode) throws Exception;
 
 }

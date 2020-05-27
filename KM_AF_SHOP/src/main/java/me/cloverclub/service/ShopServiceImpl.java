@@ -31,7 +31,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<ShopVO> list(int cateCode, int level) throws Exception {
-		return mapper.list(cateCode, level);
+	public List<ShopVO> list(int cateCode) throws Exception {
+		return mapper.list(cateCode);
 	}
 }
