@@ -9,8 +9,8 @@ import lombok.extern.log4j.Log4j;
 import me.cloverclub.mapper.MemberMapper;
 import me.cloverclub.vo.MemberVO;
 
-@Service
 @Log4j
+@Service
 @AllArgsConstructor
 public class MemberServiceImpl implements MemberService {
 	private MemberMapper mapper;

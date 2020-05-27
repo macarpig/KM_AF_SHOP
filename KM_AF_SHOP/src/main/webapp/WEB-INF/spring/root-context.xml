@@ -26,6 +26,5 @@
 	
 	<mybatis-spring:scan base-package="me.cloverclub.mapper"/>
 	
-	<context:component-scan base-package="me.cloverclub.service" />
-	<context:component-scan base-package="me.cloverclub.vo" />
+	<context:component-scan base-package="me.cloverclub.service"></context:component-scan>
 </beans>

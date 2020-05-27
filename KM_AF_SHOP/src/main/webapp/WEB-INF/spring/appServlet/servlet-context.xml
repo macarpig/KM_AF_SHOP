@@ -23,13 +23,6 @@
 	
 	<context:component-scan base-package="me.cloverclub.controller" />
 	
-	<!-- Interceptor configuration -->
-	<beans:bean id="AdminInterceptor" class="me.cloverclub.interceptor.AdminInterceptor"></beans:bean>
-	<interceptors>
-		<interceptor>
-			<mapping path="/admin/**" />
-			<beans:ref bean="AdminInterceptor" />
-		</interceptor>
-	</interceptors>
+	
 	
 </beans:beans>
