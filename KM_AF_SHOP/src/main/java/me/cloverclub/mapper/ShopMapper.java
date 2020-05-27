@@ -16,7 +16,7 @@ public interface ShopMapper {
 	   //조회순으로 3개만 상품을 띄움
 	   public List<ShopVO> showHot() throws Exception;
 	   
-	   //카테고리 선택에 따라서 상품목록이 띄워짐 : 1차분류
+	   //카테고리 선택에 따라서 상품목록이 띄워짐
 	   public List<ShopVO> list(int cateCode) throws Exception;
 
 }
