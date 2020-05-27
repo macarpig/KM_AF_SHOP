@@ -1,6 +1,9 @@
 package me.cloverclub.controller;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,23 +20,25 @@ import me.cloverclub.vo.NoticeVO;
 @Log4j
 public class BoardController {
 	
+	@Inject
 	private BoardService boardservice;
 	
 	//공지 목록 출력
 	@RequestMapping(value = "/getNoticeList", method= RequestMethod.GET)
 	public String getNoticeList(Model model) throws Exception {
-		log.info("noticeList()" + model);
-		
 		model.addAttribute("noticeList", boardservice.getNoticeList());
-		return "notice";	
+		
+		log.info("noticeList()" + model);	
+		return "notice";
+			
 	}
 	
 	//faq 목록 출력
 		@RequestMapping(value = "/getFaqList", method= RequestMethod.GET)
 		public String getFaqList(Model model) throws Exception {
-			log.info("faqList()" + model);
-			
+
 			model.addAttribute("faqList", boardservice.getFaqList());
+			log.info("faqList()" + model);
 			return "faq";	
 		}
 	

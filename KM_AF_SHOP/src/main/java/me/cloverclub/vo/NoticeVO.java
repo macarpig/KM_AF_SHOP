@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class NoticeVO {
 	private int noticeId;
-	private String noticeTitle;
-	private String noticeContent;
-	private String noticeDate;
-	private int noticeView;
+	private String notiTitle;
+	private String notiContent;
+	private String notiDate;
+	private int notiView;
 }
