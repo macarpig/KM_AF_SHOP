@@ -36,6 +36,7 @@ public class MemberController {
 		log.info("postLogin()" + vo);
 		
 		MemberVO login = service.login(vo);
+		log.info(login);
 		HttpSession session = req.getSession();
 		
 		boolean loginMatch = passEncoder.matches(vo.getUserPw(), login.getUserPw());
