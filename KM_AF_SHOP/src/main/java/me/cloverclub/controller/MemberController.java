@@ -36,10 +36,11 @@ public class MemberController {
 		log.info("postLogin()" + vo);
 		
 		MemberVO login = service.login(vo);
-		log.info(login);
 		HttpSession session = req.getSession();
 		
 		boolean loginMatch = passEncoder.matches(vo.getUserPw(), login.getUserPw());
+		
+		log.info("loginMatch: " + loginMatch);
 		
 		if(login != null && loginMatch) {
 			session.setAttribute("member", login);
@@ -48,6 +49,7 @@ public class MemberController {
 		else {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
+			
 			return "redirect:/login";
 		}
 		
