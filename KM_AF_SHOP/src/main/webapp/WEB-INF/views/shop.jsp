@@ -89,7 +89,10 @@ alert(cate1Div.html());
 </header>
 
 <body>
-   <div class="underlined-title">
+<!-- CONTENT =============================-->
+<section class="item content">
+<div class="container toparea">
+	<div class="underlined-title">
       <div class="editContent">
          <h1 class="text-center latestitems"></h1>
       </div>
@@ -127,8 +130,10 @@ alert(cate1Div.html());
    </li>
    </c:forEach>
    
-   <!-- 여기는 class이름을 참고해서 Items 부분을 변경해야 style 적용을 할 수 있어서 냅둠 -->
+   <!-- 상품들이 한 줄에 세 개씩 보여짐 -->
    <div class="row">
+   <c:forEach items="${list}" var="list">
+   <c:set var="i" value="1" />
       <div class="col-md-4">
          <div class="productbox">
             <div class="fadeshop">
@@ -142,153 +147,23 @@ alert(cate1Div.html());
                      <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
                   </p>
                </div>
-               <span class="maxproduct"><img src="images/product1-1.jpg" alt=""></span>
+               <span class="maxproduct"><img src="${list.gdsImg}" alt=""></span>
             </div>
             <div class="product-details">
-               <a href="#">
-               <h1>Calypso Theme</h1>
+               <a href="/controller/product?n=${list.gdsCode}">
+               <h1>${list.gdsName}</h1>
                </a>
                <span class="price">
-               <span class="edd_price">$49.00</span>
+               <span class="edd_price">${list.gdsPrice}</span>
                </span>
             </div>
          </div>
       </div>
-      <!-- /.productbox -->
-      <div class="col-md-4">
-         <div class="productbox">
-            <div class="fadeshop">
-               <div class="captionshop text-center" style="display: none;">
-                  <h3>Item Name</h3>
-                  <p>
-                      This is a short excerpt to generally describe what the item is about.
-                  </p>
-                  <p>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
-                  </p>
-               </div>
-               <span class="maxproduct"><img src="images/product2.jpg" alt=""></span>
-            </div>
-            <div class="product-details">
-               <a href="#">
-               <h1>FastSell Theme</h1>
-               </a>
-               <span class="price">
-               <span class="edd_price">$49.00</span>
-               </span>
-            </div>
-         </div>
-      </div>
-      <!-- /.productbox -->
-      <div class="col-md-4">
-         <div class="productbox">
-            <div class="fadeshop">
-               <div class="captionshop text-center" style="display: none;">
-                  <h3>Item Name</h3>
-                  <p>
-                      This is a short excerpt to generally describe what the item is about.
-                  </p>
-                  <p>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
-                  </p>
-               </div>
-               <span class="maxproduct"><img src="images/product2-3.jpg" alt=""></span>
-            </div>
-            <div class="product-details">
-               <a href="#">
-               <h1>Biscaya Theme</h1>
-               </a>
-               <span class="price">
-               <span class="edd_price">$49.00</span>
-               </span>
-            </div>
-         </div>
-      </div>
-      <!-- /.productbox -->
-   </div>
-   <div class="row">
-      <div class="col-md-4">
-         <div class="productbox">
-            <div class="fadeshop">
-               <div class="captionshop text-center" style="display: none;">
-                  <h3>Item Name</h3>
-                  <p>
-                      This is a short excerpt to generally describe what the item is about.
-                  </p>
-                  <p>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
-                  </p>
-               </div>
-               <span class="maxproduct"><img src="images/product1.jpg" alt=""></span>
-            </div>
-            <div class="product-details">
-               <a href="#">
-               <h1>Expertum Theme</h1>
-               </a>
-               <span class="price">
-               <span class="edd_price">$35.00</span>
-               </span>
-            </div>
-         </div>
-      </div>
-      <!-- /.productbox -->
-      <div class="col-md-4">
-         <div class="productbox">
-            <div class="fadeshop">
-               <div class="captionshop text-center" style="display: none;">
-                  <h3>Item Name</h3>
-                  <p>
-                      This is a short excerpt to generally describe what the item is about.
-                  </p>
-                  <p>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
-                  </p>
-               </div>
-               <span class="maxproduct"><img src="images/product2-2.jpg" alt=""></span>
-            </div>
-            <div class="product-details">
-               <a href="#">
-               <h1>Serenity Theme</h1>
-               </a>
-               <span class="price">
-               <span class="edd_price">$49.00</span>
-               </span>
-            </div>
-         </div>
-      </div>
-      <!-- /.productbox -->
-      <div class="col-md-4">
-         <div class="productbox">
-            <div class="fadeshop">
-               <div class="captionshop text-center" style="display: none;">
-                  <h3>Item Name</h3>
-                  <p>
-                      This is a short excerpt to generally describe what the item is about.
-                  </p>
-                  <p>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-                     <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
-                  </p>
-               </div>
-               <span class="maxproduct"><img src="images/product3.png" alt=""></span>
-            </div>
-            <div class="product-details">
-               <a href="#">
-               <h1>Hypnosa Theme</h1>
-               </a>
-               <span class="price">
-               <span class="edd_price">$35.00</span>
-               </span>
-            </div>
-         </div>
-      </div>
-      <!-- /.productbox -->
-   </div>
-</div>
+      <c:if test="${i eq 3}">
+    <c:out value="</div><div class="row">" />
+	</c:if>
+	<c:set var="i" value="${i + 1}"/>
+</c:forEach>
 </div>
 </section>
 

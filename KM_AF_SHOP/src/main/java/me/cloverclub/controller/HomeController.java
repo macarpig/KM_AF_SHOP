@@ -58,4 +58,11 @@ public class HomeController {
 	      return "product";
 	   }
 
+	@GetMapping("/itemView")
+	public String getItemView() {
+		log.info("getItemView()");
+		
+		return "itemView";
+	}
+	
 }
