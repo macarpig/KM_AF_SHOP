@@ -14,6 +14,7 @@ padding-bottom: 20px;
 }
 </style>
 <c:url var="getNoticeList" value="/notice"></c:url>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 	
 	$(document).on('click', '#btnWriteForm', function(e){
@@ -99,12 +100,10 @@ padding-bottom: 20px;
 		</tbody>
 
 	</table>
-		<c:if test="${sessionScope.userAuth == 1}">
 		<div>
 			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
 		</div>
-		</c:if>
 	</article>
-	<%@include file="./includes/footer.jsp" %>
+<%@include file="./includes/footer.jsp" %>
 </body>
 </html>

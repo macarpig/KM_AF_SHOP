@@ -50,10 +50,10 @@
 	
 	<insert id="insertNotice" parameterType="me.cloverclub.vo.NoticeVO">
 	INSERT INTO 
-		notice (noticeTitle, noticeContent, notiDate, notiView)
+		notice (notiTitle, notiContent, notiDate, notiView)
 	VALUES (
-		#{noticeTitle}
-		, #{noticeContent}
+		#{notiTitle}
+		, #{notiContent}
 		, now()
 		, 0
 	)
@@ -70,8 +70,8 @@
 	
 	<update id="updateNotice" parameterType="me.cloverclub.vo.NoticeVO">
 	UPDATE notice SET
-		noticeTitle = #{noticeTitle}
-		, noticeContent = #{noticeContent}
+		notiTitle = #{notiTitle}
+		, notiContent = #{notiContent}
 		, notiDate = now()
 	WHERE
 	 noticeId = ${noticeId}

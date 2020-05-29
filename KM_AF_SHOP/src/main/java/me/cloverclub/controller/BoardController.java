@@ -44,7 +44,7 @@ public class BoardController {
 	
 	//공지 폼 화면
 	@RequestMapping("/noticeForm")
-	public String boardForm(@ModelAttribute("noticeVO") NoticeVO notivo, Model model) {
+	public String boardForm(@ModelAttribute("NoticeVO") NoticeVO notivo, Model model) {
 		return "noticeForm";
 	}
 	
