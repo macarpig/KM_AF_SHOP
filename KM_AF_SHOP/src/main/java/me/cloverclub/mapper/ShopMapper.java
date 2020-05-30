@@ -19,4 +19,6 @@ public interface ShopMapper {
 	   //카테고리 선택에 따라서 상품목록이 띄워짐
 	   public List<ShopVO> list(int cateCode) throws Exception;
 
+	   //상품 선택 후 띄워질 상품에 대한 것들
+	   public ShopVO product(int gdsCode) throws Exception;
 }

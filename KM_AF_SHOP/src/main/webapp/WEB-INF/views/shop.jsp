@@ -9,6 +9,7 @@
    String cLevel = request.getParameter("l"); %>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
+
 var jsonData = JSON.parse('${category}');
 
 var cate1Arr = new Array();
@@ -40,7 +41,7 @@ $(document).ready(function(){
 var cate1Div = $("div.category1");
 
 for(var i = 0; i < cate1Arr.length; i++){
-  cate1Div.append('<a href=\"/controller/shop?c='+cate1Arr[i].cateCode+'&l=1\">'+cate1Arr[i].cateName+'</a>');
+  cate1Div.append('<a href=\"/shop?c='+cate1Arr[i].cateCode+'&l=1\">'+cate1Arr[i].cateName+'</a>');
 }
 
 for(var i = 0; i < jsonData.length; i++){
@@ -57,7 +58,7 @@ for(var i = 0; i < jsonData.length; i++){
 var cate2Div = $('div.category2');
 
 for(var i = 0; i < cate2Arr.length; i++){
-   cate2Div.append("<a href='/controller/shop?c="+cate2Arr[i].cateCode+"&l=2'>"+cate2Arr[i].cateName+"</a>");
+   cate2Div.append("<a href='/shop?c="+cate2Arr[i].cateCode+"&l=2'>"+cate2Arr[i].cateName+"</a>");
 }
 
 var cateH1 = $("h1.latestitems");
@@ -108,7 +109,7 @@ alert(cate1Div.html());
    <!-- Category (JSON 사용. 왜? 상위카테고리랑 하위 카테고리랑 분류하는 계산이 필요하니까!) -->
    <div class="row">   
    <div class="c12 text-center filtertagscats">
-   <a href="/controller/shop?c=0&l=0">All</a>
+   <a href="/shop?c=0&l=0">All</a>
    <div class="category1" id="category1"></div>
    </div></div>
    
@@ -125,7 +126,7 @@ alert(cate1Div.html());
          <img src="${list.gdsImg}">
       </div>
       <div class="goodsName">
-         <a href="/controller/product?n=${list.gdsCode}">${list.gdsName}</a>
+         <a href="/product?n=${list.gdsCode}">${list.gdsName}</a>
       </div>
    </li>
    </c:forEach>
@@ -150,7 +151,7 @@ alert(cate1Div.html());
                <span class="maxproduct"><img src="${list.gdsImg}" alt=""></span>
             </div>
             <div class="product-details">
-               <a href="/controller/product?n=${list.gdsCode}">
+               <a href="/product?n=${list.gdsCode}">
                <h1>${list.gdsName}</h1>
                </a>
                <span class="price">

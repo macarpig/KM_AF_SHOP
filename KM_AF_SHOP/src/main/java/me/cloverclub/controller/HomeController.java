@@ -53,16 +53,8 @@ public class HomeController {
 	   }
 	   
 	   @GetMapping("/product")
-	   public String getProduct()
-	   {
-	      return "product";
+	   public void getProduct(@RequestParam("n") int gdsCode, Model model) throws Exception {
+		   ShopVO product = s_service.product(gdsCode);
+		   model.addAttribute("product", product);
 	   }
-
-	@GetMapping("/itemView")
-	public String getItemView() {
-		log.info("getItemView()");
-		
-		return "itemView";
-	}
-	
 }

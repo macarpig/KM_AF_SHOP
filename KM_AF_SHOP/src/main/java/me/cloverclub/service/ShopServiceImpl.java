@@ -34,4 +34,9 @@ public class ShopServiceImpl implements ShopService {
 	public List<ShopVO> list(int cateCode) throws Exception {
 		return mapper.list(cateCode);
 	}
+
+	@Override
+	public ShopVO product(int gdsCode) throws Exception {
+		return mapper.product(gdsCode);
+	}
 }
