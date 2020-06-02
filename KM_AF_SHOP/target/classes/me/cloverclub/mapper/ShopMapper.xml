@@ -24,6 +24,12 @@
 	from goods g
 	inner join category c
 	on g.cateCode = c.cateCode
-	where cateCode = #{cateCode} or c.cateCodeRef = #{cateCode}
+	where c.cateCode = #{cateCode} or c.cateCodeRef = #{cateCode}
+	</select>
+	
+	<!-- select by goodsCode -->
+	<select id="product" resultType="me.cloverclub.vo.ShopVO">
+	select gdsCode, gdsName, cateCode, gdsPrice, gdsDesc, gdsImg, gdsDate, gdsView
+	from goods where gdsCode = #{gdsCode}
 	</select>
 </mapper>
