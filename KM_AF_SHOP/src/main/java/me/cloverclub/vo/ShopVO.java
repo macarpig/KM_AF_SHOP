@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ShopVO {
 
-	private int gdsCode;
+	private String gdsCode;
 	private String gdsName;
 	private String cateCode;
 	private int gdsPrice;
