@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <%@include file="./includes/header.jsp" %>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +17,6 @@ padding-bottom: 20px;
 }
 </style>
 <c:url var="getNoticeList" value="/notice"></c:url>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 	
 	$(document).on('click', '#btnWriteForm', function(e){
@@ -90,7 +92,7 @@ padding-bottom: 20px;
 
 							<td><c:out value="${list.notiDate}"/></td>
 
-							<td><c:out value="${list.notiView}"/></td>
+							<td><c:out value="  ${list.notiView}"/></td>
 						</tr>				
 					</c:forEach>
 
@@ -107,4 +109,3 @@ padding-bottom: 20px;
 	</article>
 </body>
 </html>
-<%@include file="./includes/footer.jsp" %>
