@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService {
 	// login
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
-		log.info("MemberService login()");
+		log.info("MemberService: login()");
 		
 		return mapper.login(vo);
 	}
@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 	// logout
 	@Override
 	public void logout(HttpSession session) throws Exception {
-		log.info("MemberService logout()");
+		log.info("MemberService: logout()");
 		
 		session.invalidate();
 	}
@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 	// join
 	@Override
 	public void join(MemberVO vo) throws Exception {
-		log.info("MemberService join()");
+		log.info("MemberService: join()");
 		
 		mapper.join(vo);
 	}
