@@ -223,6 +223,10 @@
                       </select>
                     </div>
                     <div>
+                      <label for="gdsCode">상품 코드</label>
+                      <input type="text" id="gdsCode" name="gdsCode" />
+                    </div>
+                    <div>
                       <label for="gdsName">상품명</label>
                       <input type="text" id="gdsName" name="gdsName" />
                     </div>
@@ -299,8 +303,6 @@
 		});
 	});
 
-	
 </script>
-
       
 <%@include file="./includes/footer.jsp" %>

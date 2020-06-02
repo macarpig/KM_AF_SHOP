@@ -1,5 +1,8 @@
 package me.cloverclub.service;
 
-public interface AdminService {
+import me.cloverclub.vo.GoodsVO;
 
+public interface AdminService {
+	// add goods
+	public void goodsAdd(GoodsVO vo) throws Exception;
 }
