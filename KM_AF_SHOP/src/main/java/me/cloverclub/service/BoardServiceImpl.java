@@ -46,6 +46,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	//notice update
+	@Override
 	public void updateNotice(NoticeVO notivo) throws Exception {
 		log.info("NoticeUpdate()");
 		
@@ -53,6 +54,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	//notice delete
+	@Override
 	public void deleteNotice(int noticeId) throws Exception {
 		log.info("NoticeDelete()");
 		

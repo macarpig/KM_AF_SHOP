@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+<c:url var="getNoticeContent" value="/noticeContent"></c:url>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	//목록 버튼
 	$(document).on('click', '#btnList', function(){
@@ -16,7 +17,7 @@
 	
 	//수정 버튼
 	$(document).on('click', '#btnUpdate', function() {
-		var url = "${pageContext.request.contextPath}/editNotice";
+		var url = "${pageContext.request.contextPath}/modifyNotice";
 		url = url + "?noticeId="+${noticeContent.noticeId};
 		url = url + "&mode=edit";
 		
@@ -70,7 +71,7 @@ padding-bottom: 20px;
 			<div class="bg-white rounded shadow-sm">
 				<div class="board_title"><c:out value="${noticeContent.notiTitle}"/></div>
 				<div class="board_info_box">
-					<span class="board_author"><c:out value="${noticeContent.userId}"/>,</span><span class="board_date"><c:out value="${noticeContent.notiDate}"/></span>
+					<span class="board_author"><c:out value="관리자"/>,</span><span class="board_date"><c:out value="${noticeContent.notiDate}"/></span>
 				</div>
 				<div class="board_content">${noticeContent.notiContent}</div>
 			</div>

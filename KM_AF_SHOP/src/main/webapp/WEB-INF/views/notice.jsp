@@ -23,19 +23,19 @@ padding-bottom: 20px;
 		location.href = "${pageContext.request.contextPath}/noticeForm";
 	});
 	
-	function fn_contentView(noticeid){
+	function fn_contentView(noticeId){
 		var url = "${pageContext.request.contextPath}/getNoticeContent";
-		url = url + "?noticeid="+noticeid;
+		url = url + "?noticeid="+noticeId;
 		location.href = url;
 	}
 	
 </script>
 </head>
-<body>
+<body bgcolor="white">
 <article>
 <h2>공지게시판<br><br><br></h2>
 
-	<table class="table table-striped table-sm">
+	<table class="table table-striped table-sm" bgcolor="white">
 
 		<colgroup>
 
@@ -52,7 +52,6 @@ padding-bottom: 20px;
 		<thead>
 
 			<tr>
-				<th>NO</th>
 				
 				<th>글제목</th> 
 
@@ -81,9 +80,11 @@ padding-bottom: 20px;
 					<c:forEach var="list" items="${noticeList}">
 
 						<tr>
-							<td><c:out value="${list.noticeId}"/></td>
-
-							<td><c:out value="${list.notiTitle}"/></td>
+						<td>
+							<a href="#" onclick="fn_contentView(<c:out value="${list.noticeId}"/>)">
+							<c:out value="${list.notiTitle}"/>
+							</a>
+						</td>
 
 							<td>관리자</td>
 
@@ -104,6 +105,6 @@ padding-bottom: 20px;
 			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
 		</div>
 	</article>
-<%@include file="./includes/footer.jsp" %>
 </body>
 </html>
+<%@include file="./includes/footer.jsp" %>

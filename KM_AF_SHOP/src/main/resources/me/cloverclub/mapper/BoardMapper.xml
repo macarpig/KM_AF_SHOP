@@ -32,7 +32,7 @@
 	
 	<select id="getNoticeContent" resultType="me.cloverclub.vo.NoticeVO">
 	SELECT
-		noticeId, noticeTitle, noticeContent, notiDate, notiView
+		noticeId, notiTitle, notiContent, notiDate, notiView
 	FROM
 		notice 
 	WHERE

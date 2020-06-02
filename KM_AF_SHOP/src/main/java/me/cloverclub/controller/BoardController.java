@@ -2,6 +2,7 @@ package me.cloverclub.controller;
 
 import javax.inject.Inject;
 
+
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -98,12 +99,34 @@ public class BoardController {
 
 	//공지 글쓰기
 	@RequestMapping(value = "/editNotice" , method = RequestMethod.GET)
-	public String editNoticeForm(@RequestParam("noticeid")int noticeid
-	, Model model) throws Exception {
-		model.addAttribute("noticeContent", boardservice.getNoticeContent(noticeid));
-		model.addAttribute("noticeVO", new NoticeVO());
-		return "noticeForm";
+	public String editNoticeForm(@ModelAttribute("noticeVO") NoticeVO notivo
+			, @RequestParam("mode") String mode
+			, @RequestParam("noticeId") int noticeId
+			, RedirectAttributes rttr) throws Exception {
+		if(mode.equals("edit")) {
+			boardservice.updateNotice(notivo);
+		} else {
+			boardservice.insertNotice(notivo);
+		}
+		return "redirect:/getNoitceList";
 	}
+	
+	//공지 수정
+	@RequestMapping(value = "/modifyNotice" , method = RequestMethod.GET)
+	public String editForm(@RequestParam("noticeId")int noticeId
+	, @RequestParam("mode") String mode, Model model) throws Exception {
+		model.addAttribute("noticeContent", boardservice.getNoticeContent(noticeId));
+		model.addAttribute("mode", mode);
+		model.addAttribute("NoticeVO", new NoticeVO());
+		return "/noticeForm";
+	}
+	
+	//공지 삭제
+		@RequestMapping(value = "/deleteNotice", method = RequestMethod.GET)
+		public String deleteNoticeBoard(RedirectAttributes rttr, @RequestParam("noticeId") int noticeid) throws Exception {
+			boardservice.deleteNotice(noticeid);
+			return "redirect:/getNoticeList";
+		}
 	
 	//faq 글쓰기
 		@RequestMapping(value = "/editFaq" , method = RequestMethod.GET)
@@ -114,12 +137,7 @@ public class BoardController {
 			return "faqForm";
 		}
 	
-	//공지 삭제
-	@RequestMapping(value = "/deleteNotice", method = RequestMethod.GET)
-	public String deleteNoticeBoard(RedirectAttributes rttr, @RequestParam("noticeid") int noticeid) throws Exception {
-		boardservice.deleteNotice(noticeid);
-		return "redirect:/getNoticeList";
-	}
+	
 	
 	//faq 삭제
 		@RequestMapping(value = "/deleteFaq", method = RequestMethod.GET)
