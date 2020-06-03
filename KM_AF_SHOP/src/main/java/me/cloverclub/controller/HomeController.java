@@ -1,6 +1,11 @@
 package me.cloverclub.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +17,7 @@ import lombok.extern.log4j.Log4j;
 import me.cloverclub.service.CategoryService;
 import me.cloverclub.service.ShopService;
 import me.cloverclub.vo.CategoryVO;
+import me.cloverclub.vo.MemberVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
@@ -53,8 +59,22 @@ public class HomeController {
 	   }
 	   
 	   @GetMapping("/product")
-	   public void getProduct(@RequestParam("n") int gdsCode, Model model) throws Exception {
+	   public void getProduct(@RequestParam("n") String gdsCode, Model model) throws Exception {
 		   ShopVO product = s_service.product(gdsCode);
 		   model.addAttribute("product", product);
+	   }
+	   
+	   @GetMapping("/checkout")
+	   public String getCheckout(@RequestParam("n") String gdsCode, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		   HttpSession session = request.getSession();
+		   MemberVO userId = (MemberVO)session.getAttribute("member");
+		   if(userId == null) {
+			   response.setContentType("text/html; charset=UTF-8");
+			   PrintWriter out = response.getWriter();
+			   out.println("<script>alert('로그인을 해주세요.'); history.go(-1);</script>");
+			   out.flush();
+		   }else {
+		   }
+		return "checkout";
 	   }
 }

@@ -36,7 +36,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public ShopVO product(int gdsCode) throws Exception {
+	public ShopVO product(String gdsCode) throws Exception {
 		return mapper.product(gdsCode);
 	}
 }
