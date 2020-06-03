@@ -12,6 +12,7 @@ public class GoodsVO {
 	private int gdsPrice;
 	private String gdsDesc;
 	private String gdsImg;
+	private String gdsThumbImg;
 	private Date gdsDate;
 	private int gdsView;
 }
