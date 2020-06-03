@@ -23,6 +23,17 @@
 	
 	<context:component-scan base-package="me.cloverclub.controller" />
 	
+	<!-- configure upload path -->
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="/Users/strixqlater/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/KM_AF_SHOP/resources" />
+	</beans:bean>
+	
+	<resources mapping="/imgUpload/**" location="/resources/imgUpload/" />
+	
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	
 	<!-- Interceptor configuration -->
 	<beans:bean id="AdminInterceptor" class="me.cloverclub.interceptor.AdminInterceptor"></beans:bean>
 	<interceptors>

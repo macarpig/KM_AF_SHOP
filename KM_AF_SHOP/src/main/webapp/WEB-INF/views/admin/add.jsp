@@ -238,6 +238,27 @@
                       <label for="gdsDesc">소개</label>
                       <textarea rows="5" cols="50" id="gdsDes" name="gdsDesc"></textarea>
                     </div>
+                    <div>
+                      <label for="gdsImg">이미지</label>
+                      <input type="file" id="gdsImg" name="file" />
+                      <div class="select_img"><img src="" /></div>
+                      
+                      <script>
+                      	$("#gdsImg").change(function() {
+                      		if(this.files && this.files[0]) {
+                      			var reader = new FileReader;
+                      			reader.onload = function(data) {
+                      				$(".select_img img").attr("src", data.target.result).width(500);
+                      			}
+                      			
+                      			reader.readAsDataURL(this.files[0]);
+                      		}
+                      	});
+                      </script>
+                      
+                      <%=request.getRealPath("/") %>
+                      
+                    </div>
                     <button type="submit" class="btn btn-primary">저장</button>
                   </form>
                 </div>
