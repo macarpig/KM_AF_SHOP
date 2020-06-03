@@ -56,14 +56,19 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<a href="#" class="btn btn-buynow">${product.gdsPrice} - Purchase</a>
+		개수 :&nbsp;&nbsp;  <select id="countbox">
+			<option>1</option>
+			<option>2</option>
+			</select><p></p>
+			<a href="/checkout?n=${product.gdsCode}" class="btn btn-buynow">${product.gdsPrice} - Purchase</a><p></p>
+			<a href="#" class="btn btn-buynow">장바구니</a>
 			<div class="properties-box">
 				<ul class="unstyle">
-					<li><b class="propertyname">Version:</b> 1.0</li>
+					<li><b class="propertyname">상품이름:</b> ${procuct.gdsName}</li>
 					<li><b class="propertyname">Image Size:</b> 2340x1200</li>
-					<li><b class="propertyname">Files Included:</b> mp3, audio, jpeg, png</li>
-					<li><b class="propertyname">Documentation:</b> Well Documented</li>
-					<li><b class="propertyname">License:</b> GNU</li>
+					<li><b class="propertyname">가격:</b> ${product.gdsPrice}</li>
+					<li><b class="propertyname">상품등록날짜:</b> ${product.gdsDate}</li>
+					<li><b class="propertyname">조회수:</b> ${product.gdsView}</li>
 					<li><b class="propertyname">Requires:</b> Easy Digital Downloads</li>
 					<li><b class="propertyname">Environment:</b> Wordpress</li>
 					<li><b class="propertyname">Any Field Etc:</b> Any Detail</li>

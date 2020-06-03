@@ -89,14 +89,14 @@
 								 This is a short excerpt to generally describe what the item is about.
 							</p>
 							<p>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
+								<a href="/product?n=${showRecent.gdsCode}" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
+								<a href="/product?n=${showRecent.gdsCode}" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 							</p>
 						</div>
 						<span class="maxproduct"><img src="${showRecent.gdsImg}" alt=""></span>
 					</div>
 					<div class="product-details">
-						<a href="#">
+						<a href="/product?n=${showRecent.gdsCode}">
 						<h1>${showRecent.gdsName}</h1>
 						</a>
 						<span class="price">
@@ -137,14 +137,14 @@
 								 This is a short excerpt to generally describe what the item is about.
 							</p>
 							<p>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
-								<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
+								<a href="/product?n=${showHot.gdsCode}" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
+								<a href="/product?n=${showHot.gdsCode}" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 							</p>
 						</div>
 						<span class="maxproduct"><img src="${showHot.gdsImg}" alt=""></span>
 					</div>
 					<div class="product-details">
-						<a href="#">
+						<a href="/product?n=${showHot.gdsCode}">
 						<h1>${showHot.gdsName}</h1>
 						</a>
 						<span class="price">

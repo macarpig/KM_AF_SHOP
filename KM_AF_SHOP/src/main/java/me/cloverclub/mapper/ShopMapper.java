@@ -20,5 +20,5 @@ public interface ShopMapper {
 	   public List<ShopVO> list(int cateCode) throws Exception;
 
 	   //상품 선택 후 띄워질 상품에 대한 것들
-	   public ShopVO product(int gdsCode) throws Exception;
+	   public ShopVO product(String gdsCode) throws Exception;
 }

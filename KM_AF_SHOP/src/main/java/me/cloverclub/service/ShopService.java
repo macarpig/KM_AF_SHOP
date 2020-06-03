@@ -13,5 +13,5 @@ public interface ShopService {
 	   
 	   public List<ShopVO> list(int cateCode) throws Exception;
 	   
-	   public ShopVO product(int gdsCode) throws Exception;
+	   public ShopVO product(String gdsCode) throws Exception;
 }
