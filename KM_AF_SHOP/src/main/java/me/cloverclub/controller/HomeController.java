@@ -64,8 +64,22 @@ public class HomeController {
 		   model.addAttribute("product", product);
 	   }
 	   
-	   @GetMapping("/checkout")
-	   public String getCheckout(@RequestParam("n") String gdsCode, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	   @GetMapping("/cartCheck")
+	   public String getCartCheck(@RequestParam("n") String gdsCode, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		   HttpSession session = request.getSession();
+		   MemberVO userId = (MemberVO)session.getAttribute("member");
+		   if(userId == null) {
+			   response.setContentType("text/html; charset=UTF-8");
+			   PrintWriter out = response.getWriter();
+			   out.println("<script>alert('로그인을 해주세요.'); history.go(-1);</script>");
+			   out.flush();
+		   }else {
+		   }
+		return "checkout";
+	   }
+	   
+	   @GetMapping("/purchaseCheck")
+	   public String getPurchaseCheck(@RequestParam("n") String gdsCode, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		   HttpSession session = request.getSession();
 		   MemberVO userId = (MemberVO)session.getAttribute("member");
 		   if(userId == null) {

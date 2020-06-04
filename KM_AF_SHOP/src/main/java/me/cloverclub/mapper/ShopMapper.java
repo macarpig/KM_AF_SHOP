@@ -2,6 +2,7 @@ package me.cloverclub.mapper;
 
 import java.util.List;
 
+import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.MemberVO;
 import me.cloverclub.vo.ShopVO;
 
@@ -21,4 +22,7 @@ public interface ShopMapper {
 
 	   //상품 선택 후 띄워질 상품에 대한 것들
 	   public ShopVO product(String gdsCode) throws Exception;
+	   
+	   //장바구니에 상품이 추가
+	   public void addCart(CartVO cart) throws Exception;
 }

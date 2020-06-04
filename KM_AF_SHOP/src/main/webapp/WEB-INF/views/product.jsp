@@ -60,8 +60,8 @@
 			<option>1</option>
 			<option>2</option>
 			</select><p></p>
-			<a href="/checkout?n=${product.gdsCode}" class="btn btn-buynow">${product.gdsPrice} - Purchase</a><p></p>
-			<a href="#" class="btn btn-buynow">장바구니</a>
+			<a href="/purchaseCheck?n=${product.gdsCode}" class="btn btn-buynow">${product.gdsPrice} - Purchase</a><p></p>
+			<a href="/cartCheck?n=${product.gdsCode}" class="btn btn-buynow">장바구니</a>
 			<div class="properties-box">
 				<ul class="unstyle">
 					<li><b class="propertyname">상품이름:</b> ${procuct.gdsName}</li>

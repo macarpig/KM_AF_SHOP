@@ -1,6 +1,8 @@
 package me.cloverclub.service;
 
 import java.util.List;
+
+import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.ShopVO;
 
 public interface ShopService {
@@ -14,4 +16,6 @@ public interface ShopService {
 	   public List<ShopVO> list(int cateCode) throws Exception;
 	   
 	   public ShopVO product(String gdsCode) throws Exception;
+	   
+	   public void addCart(CartVO cart) throws Exception;
 }

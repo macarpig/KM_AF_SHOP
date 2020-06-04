@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.mapper.ShopMapper;
+import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.ShopVO;
 
 @Log4j
@@ -38,5 +39,10 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ShopVO product(String gdsCode) throws Exception {
 		return mapper.product(gdsCode);
+	}
+
+	@Override
+	public void addCart(CartVO cart) throws Exception {
+		mapper.addCart(cart);
 	}
 }
