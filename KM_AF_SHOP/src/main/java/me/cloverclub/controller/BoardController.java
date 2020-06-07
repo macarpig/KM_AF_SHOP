@@ -38,7 +38,7 @@ public class BoardController {
 		@RequestMapping(value = "/getFaqList", method= RequestMethod.GET)
 		public String getFaqList(Model model) throws Exception {
 
-			//model.addAttribute("faqList", boardservice.getFaqList());
+			model.addAttribute("faqList", boardservice.getFaqList());
 			log.info("faqList()" + model);
 			return "faq";	
 		}

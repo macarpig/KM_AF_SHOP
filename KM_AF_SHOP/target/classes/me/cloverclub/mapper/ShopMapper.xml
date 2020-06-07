@@ -32,4 +32,10 @@
 	select gdsCode, gdsName, cateCode, gdsPrice, gdsDesc, gdsImg, gdsDate, gdsView
 	from goods where gdsCode = #{gdsCode}
 	</select>
+	
+	<!-- add Cart -->
+	<insert id="addCart">
+	insert into cart (cartId, userId, gdsCode, cartStock)
+	values (cart_seq.nextval, #{userId}, #{gdsCode}, #{cartStock})
+	</insert>
 </mapper>

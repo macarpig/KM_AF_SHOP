@@ -26,7 +26,7 @@ $(document).ready(function() {
             if(inputText != '')
             {
                 $('.search-query-sf').remove();
-                tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+                tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>검색 결과: "'
                     + $(that).val()
                     + '"</strong></td></tr>');
             }
@@ -55,6 +55,12 @@ $(document).ready(function() {
     });
 });
 </script>
+<style>
+input[id="answer"] {
+	display:none;
+}
+
+</style>
 <br><br><br><br><br><br><br><br><br>
 <div class="container">
 	<div class="row">
@@ -74,39 +80,42 @@ $(document).ready(function() {
     	 <table class="table table-list-search">
                     <thead>
                         <tr>
-                            <th>Entry</th>
-                            <th>Entry</th>
-                            <th>Entry</th>
-                            <th>Entry</th>
-                            <th>Entry</th>
-                            <th>Entry</th>
+                            <th>번호</th>
+                            <th>질문</th>
+                            <th>작성자</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Sample</td>
-                            <td>Filter</td>
-                            <td>12-11-2011 11:11</td>
-                            <td>OK</td>
-                            <td>123</td>
-                            <td>Do some other</td>
-                        </tr>
-                        <tr>
-                            <td>Try</td>
-                            <td>It</td>
-                            <td>11-20-2013 08:56</td>
-                            <td>It</td>
-                            <td>Works</td>
-                            <td>Do some FILTERME</td>
-                        </tr>
-                        <tr>
-                            <td>§</td>
-                            <td>$</td>
-                            <td>%</td>
-                            <td>&</td>
-                            <td>/</td>
-                            <td>!</td>
-                        </tr>
+                    <c:choose>
+
+				<c:when test="${empty faqList }" >
+
+					<tr><td colspan="3" align="center">데이터가 없습니다.</td></tr>
+
+				</c:when> 
+
+				<c:when test="${!empty faqList}">
+                       <c:forEach var="list" items="${faqList}">
+
+						<tr>
+						<td>
+							<c:out value="${list.faqId }"/>
+						</td>
+						<td>
+						<div class="faq">
+							<input type="checkbox" id="answer">
+							<label for="answer"><c:out value="${list.faqQ}"/></label>
+							<div><p><c:out value="${list.faqA}"/></p></div>
+						</div>	
+						</td>
+
+							<td>관리자</td>
+						</tr>				
+					</c:forEach>
+
+				</c:when>
+
+					</c:choose>
                     </tbody>
                 </table>   
 		</div>
