@@ -7,6 +7,13 @@
 		values(#{gdsCode}, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsDesc}, #{gdsImg}, #{gdsThumbImg})
 	</insert>
 	
+	<!-- view goods list -->
+	<select id="goodsList" resultType="me.cloverclub.vo.GoodsVO">
+		select gdsCode, gdsName, cateCode, gdsPrice, gdsDesc, gdsImg, gdsDate
+		from goods
+		order by gdsDate desc
+	</select>
+	
 	<!-- view goods w/ category join -->
 	<select id="goodsView" resultType="me.cloverclub.vo.ShopVO">
 		select g.gdsCode, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsDesc, gdsImg, gdsThumbImg, gdsDate

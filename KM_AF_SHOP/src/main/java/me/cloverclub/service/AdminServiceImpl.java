@@ -1,5 +1,7 @@
 package me.cloverclub.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import me.cloverclub.vo.GoodsVO;
 public class AdminServiceImpl implements AdminService {
 	private AdminMapper mapper;
 	
+	// add goods
 	@Override
 	public void goodsAdd(GoodsVO vo) throws Exception {
 		log.info("AdminService: goodsAdd()");
@@ -20,4 +23,11 @@ public class AdminServiceImpl implements AdminService {
 		mapper.goodsAdd(vo);
 	}
 
+	// list goods
+	@Override
+	public List<GoodsVO> goodsList() throws Exception {
+		log.info("AdminService: goodsList()");
+		
+		return mapper.goodsList();
+	}
 }
