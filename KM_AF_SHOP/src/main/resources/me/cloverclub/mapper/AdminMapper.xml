@@ -3,7 +3,15 @@
 <mapper namespace="me.cloverclub.mapper.AdminMapper">
 	<!-- add goods -->
 	<insert id="goodsAdd">
-		insert into goods(gdsCode, gdsName, cateCode, gdsPrice, gdsDesc)
-		values(#{gdsCode}, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsDesc})
+		insert into goods(gdsCode, gdsName, cateCode, gdsPrice, gdsDesc, gdsImg, gdsThumbImg)
+		values(#{gdsCode}, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsDesc}, #{gdsImg}, #{gdsThumbImg})
 	</insert>
+	
+	<!-- view goods w/ category join -->
+	<select id="goodsView" resultType="me.cloverclub.vo.ShopVO">
+		select g.gdsCode, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsDesc, gdsImg, gdsThumbImg, gdsDate
+		from goods g
+		inner join category c on g.cateCode = c.cateCode
+		where g.gdsCode = #{gdsNum}
+	</select>
 </mapper>
