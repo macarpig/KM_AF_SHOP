@@ -40,6 +40,17 @@ public class AdminController {
 		return "/admin/index";
 	}
 	
+	// get goods list
+	@GetMapping("/goods/list")
+	public String getGoodsList(Model model) throws Exception {
+		log.info("AdminController: getGoodsList()");
+		
+		List<GoodsVO> list = a_service.goodsList();
+		model.addAttribute("list", list);
+		
+		return "/admin/goods/list";
+	}
+	
 	// get goods add
 	@GetMapping("/goods/add")
 	public String getGoodsAdd(Model model) throws Exception {
@@ -49,7 +60,7 @@ public class AdminController {
 		category = c_service.category();
 		model.addAttribute("category", JSONArray.fromObject(category));
 		
-		return "/admin/add";
+		return "/admin/goods/add";
 	}
 	
 	// post goods add
