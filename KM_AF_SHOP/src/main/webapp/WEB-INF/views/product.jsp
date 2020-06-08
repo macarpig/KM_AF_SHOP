@@ -6,6 +6,19 @@
 
 <%@include file="./includes/header.jsp" %>
 <% String gCode = request.getParameter("n"); %>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+function purchaseChecker(gdsCode) {
+	var cntBox = $("#countbox option:selected").val();
+	location.href = "/purchaseCheck?n="+gdsCode+"&s="+cntBox;
+	return false;
+}
+function cartChecker(gdsCode) {
+	var cntBox = $("#countbox option:selected").val();
+	location.href = "/cartCheck?n="+gdsCode+"&s="+cntBox;
+	return false;
+}
+</script>
 </head>
 
    <div class="container">
@@ -59,9 +72,12 @@
 		개수 :&nbsp;&nbsp;  <select id="countbox">
 			<option>1</option>
 			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
 			</select><p></p>
-			<a href="/purchaseCheck?n=${product.gdsCode}" class="btn btn-buynow">${product.gdsPrice} - Purchase</a><p></p>
-			<a href="/cartCheck?n=${product.gdsCode}" class="btn btn-buynow">장바구니</a>
+			<a style="cursor:pointer;" onclick="purchaseChecker(${product.gdsCode})" class="btn btn-buynow">${product.gdsPrice} - Purchase</a><p></p>
+			<a style="cursor:pointer;" onclick="cartChecker(${product.gdsCode})" class="btn btn-buynow">장바구니</a>
 			<div class="properties-box">
 				<ul class="unstyle">
 					<li><b class="propertyname">상품이름:</b> ${procuct.gdsName}</li>
