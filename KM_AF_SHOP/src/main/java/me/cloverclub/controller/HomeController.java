@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.service.CategoryService;
 import me.cloverclub.service.ShopService;
+import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.MemberVO;
 import me.cloverclub.vo.ShopVO;
@@ -65,7 +66,7 @@ public class HomeController {
 	   }
 	   
 	   @GetMapping("/cartCheck")
-	   public String getCartCheck(@RequestParam("n") String gdsCode, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	   public String getCartCheck(@RequestParam("n") String gdsCode, @RequestParam("s") int cartStock, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		   HttpSession session = request.getSession();
 		   MemberVO userId = (MemberVO)session.getAttribute("member");
 		   if(userId == null) {
@@ -74,12 +75,25 @@ public class HomeController {
 			   out.println("<script>alert('로그인을 해주세요.'); history.go(-1);</script>");
 			   out.flush();
 		   }else {
+			   CartVO cart = new CartVO();
+			   cart.setUserId(userId.getUserId());
+			   cart.setCartStock(cartStock);
+			   cart.setGdsCode(gdsCode);
+			   s_service.addCart(cart);
+			   
+			   response.setContentType("text/html; charset=UTF-8");
+			   PrintWriter out = response.getWriter();
+			   out.println("<script>var con_test = confirm(\"장바구니에 담았습니다. 장바구니로 이동하시겠습니까?\"); " + 
+			   		"if(con_test == false){" + 
+			   		"  history.go(-1);" + 
+			   		"}</script>");
+			   out.flush();
 		   }
 		return "checkout";
 	   }
 	   
 	   @GetMapping("/purchaseCheck")
-	   public String getPurchaseCheck(@RequestParam("n") String gdsCode, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	   public String getPurchaseCheck(@RequestParam("n") String gdsCode, @RequestParam("s") String cartStock, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		   HttpSession session = request.getSession();
 		   MemberVO userId = (MemberVO)session.getAttribute("member");
 		   if(userId == null) {
