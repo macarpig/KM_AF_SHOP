@@ -211,7 +211,7 @@
                 	<h6 class="m-0 font-weight-bold text-primary">상품 추가</h6>
                 </div>
                 <div class="card-body">
-                  <form method="post">
+                  <form method="post" autocomplete="off" enctype="multipart/form-data">
                     <div>
                       <label>1차 분류</label>
                       <select class="category1">
