@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%@include file="./includes/header.jsp" %>
+<%@include file="../includes/header.jsp" %>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -272,58 +272,4 @@
       </div>
       <!-- End of Main Content -->
       
-<script>
-	var jsonData = JSON.parse('${category}');
-	console.log(jsonData);
-  
-	var cate1Arr = new Array();
-	var cate1Obj = new Object();
-      
-	for(var i=0; i<jsonData.length; i++) {
-		if(jsonData[i].level == "1") {
-			cate1Obj = new Object();
-    		cate1Obj.cateCode = jsonData[i].cateCode;
-    		cate1Obj.cateName = jsonData[i].cateName;
-    		cate1Arr.push(cate1Obj);
-    	}
-    }
-	      
-	var cate1Select = $("select.category1");
-
-	for(var i=0; i<cate1Arr.length; i++) {
-    	cate1Select.append("<option value='" + cate1Arr[i].cateCode + "'>" + cate1Arr[i].cateName + "</option>");
-    }
-      
-	$(document).on("change", "select.category1", function() { 
-		var cate2Arr = new Array();
-		var cate2Obj = new Object();
-    	  
-    	for(var i = 0; i < jsonData.length; i++) {
-			if(jsonData[i].level == "2") {
-	   	    	cate2Obj = new Object();
-	   	    	cate2Obj.cateCode = jsonData[i].cateCode;
-	   	    	cate2Obj.cateName = jsonData[i].cateName;
-	   	    	cate2Obj.cateCodeRef = jsonData[i].cateCodeRef;
-	    		cate2Arr.push(cate2Obj);
-			}
-		}
-	    	  
-	    var cate2Select = $("select.category2");
-	
-	 	cate2Select.children().remove();
-	 	
-	 	$("option:selected", this).each(function () {
-			var selectVal = $(this).val();
-			cate2Select.append("<option value='" + selectVal + "'>전체</option>");
-				
-			for(var i=0; i<cate2Arr.length; i++) {
-				if(selectVal == cate2Arr[i].cateCodeRef) {
-					cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>" + cate2Arr[i].cateName + "</option>");
-				}
-			}
-		});
-	});
-
-</script>
-      
-<%@include file="./includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp" %>
