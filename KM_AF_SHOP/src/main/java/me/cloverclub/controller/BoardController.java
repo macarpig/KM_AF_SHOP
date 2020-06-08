@@ -51,7 +51,7 @@ public class BoardController {
 	
 	//faq Æû È­¸é
 		@RequestMapping("/faqForm")
-		public String boardForm(@ModelAttribute("faqVO") FaqVO faqvo, Model model) {
+		public String boardForm(@ModelAttribute("FaqVO") FaqVO faqvo, Model model) {
 			return "faqForm";
 		}
 	
