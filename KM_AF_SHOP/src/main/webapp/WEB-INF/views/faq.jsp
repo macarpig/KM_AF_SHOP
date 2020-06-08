@@ -54,12 +54,17 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).on('click', '#btnWriteForm', function(e){
+	e.preventDefault();
+
+	location.href = "${pageContext.request.contextPath}/faqForm";
+});
 </script>
 <style>
 input[id="answer"] {
 	display:none;
-}
-
+}	
 </style>
 <br><br><br><br><br><br><br><br><br>
 <div class="container">
@@ -117,7 +122,12 @@ input[id="answer"] {
 
 					</c:choose>
                     </tbody>
-                </table>   
+                </table>
+                
+                <div>
+			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm" style="float: right;">글쓰기</button>
+			</div>   
 		</div>
 	</div>
 </div>
+<br><br><br><br><br>
