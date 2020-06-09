@@ -234,7 +234,9 @@
 							<c:forEach items="${list}" var="list">
 								<div class="row">
 									<div class="col">${list.gdsCode}</div>
-									<div class="col">${list.gdsName}</div>
+									<div class="col">
+										<a href="/admin/goods/view?n=${list.gdsCode}">${list.gdsName}</a>
+									</div>
 									<div class="col">${list.cateCode}</div>
 									<div class="col">
 										<fmt:formatNumber value="${list.gdsPrice}"
