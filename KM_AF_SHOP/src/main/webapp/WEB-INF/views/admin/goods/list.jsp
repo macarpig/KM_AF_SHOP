@@ -225,26 +225,27 @@
 						</div>
 						<div class="card-body">
 							<div class="row mb-2 font-weight-bold">
-			                  	<div class="col">상품코드</div>
-			                  	<div class="col">상품명</div>
-			                  	<div class="col">카테고리</div>
-			                  	<div class="col">가격</div>
-			                  	<div class="col">등록날짜</div>
-			                </div>
-	                  		<c:forEach items="${list}" var="list">
-	                  			<div class="row">
-	                  				<div class="col">${list.gdsCode}</div>
-	                  				<div class="col">${list.gdsName}</div>
-	                  				<div class="col">${list.cateCode}</div>
-	                  				<div class="col">
-	                  					<fmt:formatNumber value="${list.gdsPrice}" pattern="###,###,###" />
-	                  				</div>
-	                  				<div class="col">
-	                  					<fmt:formatDate value="${list.gdsDate}" pattern="yyyy-MM-dd" />
-	                  				</div>
-	                  			</div>
-	                  		</c:forEach>
-                  		</div>
+								<div class="col">상품코드</div>
+								<div class="col">상품명</div>
+								<div class="col">카테고리</div>
+								<div class="col">가격</div>
+								<div class="col">등록날짜</div>
+							</div>
+							<c:forEach items="${list}" var="list">
+								<div class="row">
+									<div class="col">${list.gdsCode}</div>
+									<div class="col">${list.gdsName}</div>
+									<div class="col">${list.cateCode}</div>
+									<div class="col">
+										<fmt:formatNumber value="${list.gdsPrice}"
+											pattern="###,###,###" />
+									</div>
+									<div class="col">
+										<fmt:formatDate value="${list.gdsDate}" pattern="yyyy-MM-dd" />
+									</div>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -254,4 +255,4 @@
 	</div>
 	<!-- End of Main Content -->
 
-<%@include file="../includes/footer.jsp"%>
+	<%@include file="../includes/footer.jsp"%>
