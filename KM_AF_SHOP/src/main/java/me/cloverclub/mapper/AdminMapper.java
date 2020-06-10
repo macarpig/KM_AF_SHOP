@@ -14,4 +14,10 @@ public interface AdminMapper {
 	
 	// list goods
 	public List<GoodsVO> goodsList() throws Exception;
+	
+	// modify goods
+	public void goodsModify(GoodsVO vo) throws Exception;
+	
+	// delete goods
+	public void goodsDelete(String gdsCode) throws Exception;
 }

@@ -221,37 +221,36 @@
 					<!-- Approach -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">상품 추가</h6>
+							<h6 class="m-0 font-weight-bold text-primary">상품 수정</h6>
 						</div>
 						<div class="card-body">
-							<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+							<form method="post" autocomplete="off" enctype="multipart/form-data">
 								<input type="hidden" name="n" value="${goods.gdsCode}" />
 								<div>
-									<label class="font-weight-bold">1차 분류</label>
-									<span class="category1">${goods.cateCodeRef}</span>
-									<label class="font-weight-bold">2차 분류</label>
-									<span class="category2">${goods.cateCode}</span>
+									<label>1차 분류</label> <select class="category1">
+										<option value="">전체</option>
+									</select> <label>2차 분류</label> <select class="category2" name="cateCode">
+										<option value="">전체</option>
+									</select>
 								</div>
 								<div>
-									<label class="font-weight-bold">상품 코드</label> 
-									<span>${goods.gdsCode}</span>
+									<label for="gdsCode">상품 코드</label> <input type="text"
+										id="gdsCode" name="gdsCode" value="${goods.gdsCode}" />
 								</div>
 								<div>
-									<label class="font-weight-bold">상품명</label>
-									<span>${goods.gdsName}</span>
+									<label for="gdsName">상품명</label> <input type="text"
+										id="gdsName" name="gdsName" value="${goods.gdsName}" />
 								</div>
 								<div>
-									<label class="font-weight-bold">가격</label>
-									<span>
-										<fmt:formatNumber value="${goods.gdsPrice}" pattern="###,###,###" />
-									</span>
+									<label for="gdsPrice">가격</label> <input type="text"
+										id="gdsPrice" name="gdsPrice" value="${goods.gdsPrice}" />
 								</div>
 								<div>
-									<label class="font-weight-bold">소개</label>
-									<span>${goods.gdsDesc}</span>
+									<label for="gdsDesc">소개</label>
+									<textarea rows="5" cols="50" id="gdsDes" name="gdsDesc">${goods.gdsDesc}</textarea>
 								</div>
 								<div>
-									<label class="font-weight-bold">이미지</label> <input type="file" id="gdsImg"
+									<label for="gdsImg">이미지</label> <input type="file" id="gdsImg"
 										name="file" />
 									<div class="select_img">
 										<img src="" />
@@ -273,26 +272,29 @@
 									<%=request.getRealPath("/") %>
 
 								</div>
-								<button type="button" id="btnModify" class="btn btn-warning">수정</button>
-								<button type="button" id="btnDelete" class="btn btn-danger">삭제</button>
+								<button type="submit" id="btnUpdate" class="btn btn-primary">수정</button>
+								<button type="button" id="btnCancel" class="btn btn-warning">취소</button>
 								
 								<script>
-									var formObj = $("form[role='form']");
-									
-									$("#btnModify").click(function() {
-										formObj.attr("action", "/admin/goods/modify");
-										formObj.attr("method", "get");
-										formObj.submit();
+									$("#btnCancel").click(function() {
+										location.href = "/admin/goods/view?n=" + ${goods.gdsCode};
 									});
 									
-									$("#btnDelete").click(function() {
-										var conf = confirm("정말로 삭제하시겠습니까?");
-										
-										if(conf) {
-											formObj.attr("action", "/admin/goods/delete");
-											formObj.submit();
-										}
-									});
+									var select_cateCode = '${goods.cateCode}';
+									var select_cateCodeRef = '${goods.cateCodeRef}';
+									var select_cateName = '${goods.cateName}';
+									
+									if(select_cateCodeRef != null && select_cateCodeRef != '') {
+										$(".category1").val(select_cateCodeRef);
+										$(".category2").val(select_cateCode);
+										$(".category2").children().remove();
+										$(".category2").append("<option value='" + select_cateCode + "'>" + select_cateName + "</option>");
+									}
+									
+									else {
+										$(".category1").val(select_cateCode);
+										$(".category2").val(select_cateCode);
+									}
 								</script>
 							</form>
 						</div>

@@ -79,6 +79,8 @@ public class AdminController {
 	// post goods add
 	@PostMapping("/goods/add")
 	public String postGoodsAdd(GoodsVO vo, MultipartFile file) throws Exception {
+		log.info("AdminController: postGoodsAdd()");
+		
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
 		String fileName = null;
@@ -98,5 +100,40 @@ public class AdminController {
 		a_service.goodsAdd(vo);
 		
 		return "redirect:/admin/goods/add";
+	}
+	
+	// get goods modify
+	@GetMapping("/goods/modify")
+	public String getGoodsModify(@RequestParam("n") String gdsCode, Model model) throws Exception {
+		log.info("AdminController: getGoodsModify()");
+		
+		ShopVO vo = a_service.goodsView(gdsCode);
+		model.addAttribute("goods", vo);
+		
+		List<CategoryVO> category = null;
+		category = c_service.category();
+		model.addAttribute("category", JSONArray.fromObject(category));
+		
+		return "/admin/goods/modify";
+	}
+	
+	// post goods modify
+	@PostMapping("/goods/modify")
+	public String postGoodsModify(GoodsVO vo) throws Exception {
+		log.info("AdminController: postGoodsModify()");
+		
+		a_service.goodsModify(vo);
+		
+		return "redirect:/admin/index";
+	}
+	
+	// post goods delete
+	@PostMapping("/goods/delete")
+	public String postGoodsDelete(@RequestParam("n") String gdsCode) throws Exception {
+		log.info("AdminController: postGoodsDelete()");
+		
+		a_service.goodsDelete(gdsCode);
+		
+		return "redirect:/admin/index";
 	}
 }

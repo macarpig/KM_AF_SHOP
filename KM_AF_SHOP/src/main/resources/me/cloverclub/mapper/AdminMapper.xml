@@ -21,4 +21,17 @@
 		inner join category c on g.cateCode = c.cateCode
 		where g.gdsCode = #{gdsNum}
 	</select>
+	
+	<!-- modify goods -->
+	<update id="goodsModify">
+		update goods
+		set gdsName = #{gdsName}, cateCode = #{cateCode}, gdsPrice = #{gdsPrice}, gdsDesc = #{gdsDesc}
+		where gdsCode = ${gdsCode}
+	</update>
+	
+	<!-- delete goods -->
+	<delete id="goodsDelete">
+		delete goods
+		where gdsCode = #{gdsCode}
+	</delete>
 </mapper>

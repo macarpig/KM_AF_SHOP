@@ -39,4 +39,20 @@ public class AdminServiceImpl implements AdminService {
 		
 		return mapper.goodsList();
 	}
+
+	// modify goods
+	@Override
+	public void goodsModify(GoodsVO vo) throws Exception {
+		log.info("AdminService: goodsModify()");
+		
+		mapper.goodsModify(vo);
+	}
+
+	// delete goods
+	@Override
+	public void goodsDelete(String gdsCode) throws Exception {
+		log.info("AdminService: goodsDelete()");
+		
+		mapper.goodsDelete(gdsCode);
+	}
 }
