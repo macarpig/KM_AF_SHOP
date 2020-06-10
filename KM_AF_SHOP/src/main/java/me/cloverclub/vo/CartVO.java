@@ -6,6 +6,9 @@ import lombok.Data;
 public class CartVO {
 	private int cartId;
 	private String userId;
-	private String gdsCode;
+	private int gdsCode;
 	private int cartStock;
+	private String gdsName;
+	private int gdsPrice;
+	private String gdsImg;
 }

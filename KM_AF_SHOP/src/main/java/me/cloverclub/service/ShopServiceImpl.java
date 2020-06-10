@@ -14,35 +14,40 @@ import me.cloverclub.vo.ShopVO;
 @Service
 @AllArgsConstructor
 public class ShopServiceImpl implements ShopService {
-	private ShopMapper mapper;
+   private ShopMapper mapper;
 
-	@Override
-	public List<ShopVO> show() throws Exception {
-		return mapper.show();
-	}
+   @Override
+   public List<ShopVO> show() throws Exception {
+      return mapper.show();
+   }
 
-	@Override
-	public List<ShopVO> showRecent() throws Exception {
-		return mapper.showRecent();
-	}
+   @Override
+   public List<ShopVO> showRecent() throws Exception {
+      return mapper.showRecent();
+   }
 
-	@Override
-	public List<ShopVO> showHot() throws Exception {
-		return mapper.showHot();
-	}
+   @Override
+   public List<ShopVO> showHot() throws Exception {
+      return mapper.showHot();
+   }
 
-	@Override
-	public List<ShopVO> list(int cateCode) throws Exception {
-		return mapper.list(cateCode);
-	}
+   @Override
+   public List<ShopVO> list(int cateCode) throws Exception {
+      return mapper.list(cateCode);
+   }
 
-	@Override
-	public ShopVO product(String gdsCode) throws Exception {
-		return mapper.product(gdsCode);
-	}
+   @Override
+   public ShopVO product(String gdsCode) throws Exception {
+      return mapper.product(gdsCode);
+   }
 
-	@Override
-	public void addCart(CartVO cart) throws Exception {
-		mapper.addCart(cart);
-	}
+   @Override
+   public void addCart(String userId, int gdsCode, int cartStock) throws Exception {
+      mapper.addCart(userId, gdsCode, cartStock);
+   }
+
+   @Override
+   public List<CartVO> showCart(String userId) throws Exception {
+      return mapper.showCart(userId);
+   }
 }
