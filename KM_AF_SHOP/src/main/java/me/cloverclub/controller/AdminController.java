@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import me.cloverclub.service.CategoryService;
 import me.cloverclub.util.UploadFileUtil;
 import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.GoodsVO;
+import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
 @Controller
@@ -49,6 +51,17 @@ public class AdminController {
 		model.addAttribute("list", list);
 		
 		return "/admin/goods/list";
+	}
+	
+	// get view goods
+	@GetMapping("/goods/view")
+	public String getGoodsView(@RequestParam("n") String gdsCode, Model model) throws Exception {
+		log.info("AdminController: getGoodsView()");
+		
+		ShopVO vo = a_service.goodsView(gdsCode);
+		model.addAttribute("goods", vo);
+		
+		return "/admin/goods/view";
 	}
 	
 	// get goods add

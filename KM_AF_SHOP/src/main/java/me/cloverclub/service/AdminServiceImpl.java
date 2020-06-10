@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.mapper.AdminMapper;
 import me.cloverclub.vo.GoodsVO;
+import me.cloverclub.vo.ShopVO;
 
 @Log4j
 @Service
@@ -21,6 +22,14 @@ public class AdminServiceImpl implements AdminService {
 		log.info("AdminService: goodsAdd()");
 		
 		mapper.goodsAdd(vo);
+	}
+	
+	// view goods
+	@Override
+	public ShopVO goodsView(String gdsCode) throws Exception {
+		log.info("AdminService: goodsView()");
+		
+		return mapper.goodsView(gdsCode);
 	}
 
 	// list goods
