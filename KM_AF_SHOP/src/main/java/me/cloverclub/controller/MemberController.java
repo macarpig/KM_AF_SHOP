@@ -1,13 +1,17 @@
 package me.cloverclub.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -30,37 +34,33 @@ public class MemberController {
 		
 		return "login";
 	}
+
 	
 	@PostMapping("/login")
 	public String postLogin(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
-		log.info("postLogin()" + vo);
 		
 		MemberVO login = service.login(vo);
 		HttpSession session = req.getSession();
 		
+		if(login!=null) {
 		boolean loginMatch = passEncoder.matches(vo.getUserPw(), login.getUserPw());
 		
-		log.info("loginMatch: " + loginMatch);
-		
-		if(login != null && loginMatch) {
+		if(login!=null && loginMatch) {
 			session.setAttribute("member", login);
-		}
-		
-		else {
+			log.info("postLogin()" + login);
+		} else {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
 			
 			return "redirect:/login";
 		}
-		
+		} else {
+			session.setAttribute("member", null);
+			rttr.addFlashAttribute("msg", false);
+			
+			return "redirect:/login";
+		}
 		return "redirect:/";
-	}
-	
-	@GetMapping("/join")
-	public String getJoin() {
-		log.info("getJoin()");
-		
-		return "join";
 	}
 	
 	@PostMapping("/join")
@@ -74,5 +74,15 @@ public class MemberController {
 		service.join(vo);
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping("logout") 
+	public String logout(MemberVO vo,
+			HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+		log.info("logout()" + vo);
+		HttpSession session = req.getSession();
+		session.setAttribute("member", null);
+		rttr.addFlashAttribute("msg", false);
+		return "redirect:/login";
 	}
 }

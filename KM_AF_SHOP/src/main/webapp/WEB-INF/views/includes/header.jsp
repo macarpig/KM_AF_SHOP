@@ -30,7 +30,19 @@
 				<li class="propClone"><a href="product.html">Product</a></li>
 				<li class="propClone"><a href="checkout.html">Checkout</a></li>
 				<li class="propClone"><a href="contact.html">Contact</a></li>
+				<c:choose>
+  		<c:when test="${member == null }">
+  		<a href="${pageContext.request.contextPath}/login">로그인</a>
+  		</c:when>
+  		<c:otherwise>
+  		${member.userName} 님이 로그인 중입니다.
+  		<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+  		</c:otherwise>
+  		</c:choose>
 			</ul>
+		</div>
+		<div>
+		
 		</div>
 	</div>
 	</nav>

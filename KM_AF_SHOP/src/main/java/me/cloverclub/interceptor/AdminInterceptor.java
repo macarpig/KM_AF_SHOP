@@ -21,6 +21,10 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 		
+		/*if(member != null) {
+			session.setAttribute(name, value);
+		}*/
+		
 		if(member.getUserAuth() != 1) {
 			response.sendRedirect("/");
 			

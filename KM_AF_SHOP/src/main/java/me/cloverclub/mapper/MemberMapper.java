@@ -1,5 +1,7 @@
 package me.cloverclub.mapper;
 
+import javax.servlet.http.HttpSession;
+
 import me.cloverclub.vo.MemberVO;
 
 public interface MemberMapper {

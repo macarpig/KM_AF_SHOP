@@ -19,9 +19,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
 		log.info("MemberService: login()");
-		
 		return mapper.login(vo);
 	}
+	
+	//login
+	
 
 	// logout
 	@Override

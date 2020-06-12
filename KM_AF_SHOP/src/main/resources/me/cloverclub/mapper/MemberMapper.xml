@@ -13,5 +13,4 @@
 		from member
 		where userId = #{userId}
 	</select>
-	
 </mapper>
