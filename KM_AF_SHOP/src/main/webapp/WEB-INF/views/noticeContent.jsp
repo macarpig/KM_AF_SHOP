@@ -82,6 +82,5 @@ padding-bottom: 20px;
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</div>
 	</article>
-	<%@include file="./includes/footer.jsp" %>
 </body>
 </html>

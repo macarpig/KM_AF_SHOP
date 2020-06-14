@@ -15,6 +15,11 @@ body {
 padding-top: 50px;
 padding-bottom: 20px;
 }
+.board_title {
+	font-weight : 700;
+	font-size : 22pt;
+	margin : 10pt;
+}
 </style>
 <c:url var="getNoticeList" value="/notice"></c:url>
 <script>
@@ -35,8 +40,8 @@ padding-bottom: 20px;
 </head>
 <body bgcolor="white">
 <article>
-<h2>공지게시판<br><br><br></h2>
-
+	<div class="container" role="main">
+	<h2>공지게시판<br><br><br></h2>
 	<table class="table table-striped table-sm" bgcolor="white">
 
 		<colgroup>
@@ -105,6 +110,7 @@ padding-bottom: 20px;
 	</table>
 		<div>
 			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
+		</div>
 		</div>
 	</article>
 </body>

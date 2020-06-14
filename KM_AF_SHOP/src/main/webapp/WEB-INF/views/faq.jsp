@@ -66,8 +66,9 @@ input[id="answer"] {
 	display:none;
 }	
 </style>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br>
 <div class="container">
+<h2>FaQ 게시판 <br><br><br><br><br></h2>
 	<div class="row">
         <div class="col-md-3">
             <form action="#" method="get">
