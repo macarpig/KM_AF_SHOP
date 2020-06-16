@@ -50,4 +50,9 @@ public class ShopServiceImpl implements ShopService {
    public List<CartVO> showCart(String userId) throws Exception {
       return mapper.showCart(userId);
    }
+
+@Override
+public void deleteCart(CartVO cart) throws Exception {
+	mapper.deleteCart(cart);
+}
 }

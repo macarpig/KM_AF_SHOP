@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
@@ -100,7 +101,30 @@ public class HomeController {
             out.println("<script>alert('로그인을 해주세요.'); history.go(-1);</script>");
             out.flush();
          }else {
+            ShopVO product = s_service.product(gdsCode);
+             model.addAttribute("product", product);
          }
       return "checkout?n="+gdsCode+"&s="+cartStock;
+      }
+      
+      @PostMapping("/deleteCart")
+      public int postDeleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
+    	  MemberVO member = (MemberVO)session.getAttribute("member");
+    	  String userId = member.getUserId();
+    	  
+    	  int result = 0;
+    	  int gdsCode = 0;
+    	  
+    	  if(member != null) {
+    		  cart.setUserId(userId);
+    		  
+    		  for(String i : chArr) {
+    			  gdsCode = Integer.parseInt(i);
+    			  cart.setGdsCode(gdsCode);
+    			  s_service.deleteCart(cart);
+    		  }
+    		  result = 1;
+    	  }
+    	  return result;
       }
 }

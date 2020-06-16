@@ -28,4 +28,7 @@ public interface ShopMapper {
       
       //장바구니 보여짐
       public List<CartVO> showCart(String userId) throws Exception;
+      
+      //카트 선택 삭제
+      public void deleteCart(CartVO cart) throws Exception;
 }

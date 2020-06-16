@@ -20,4 +20,6 @@ public interface ShopService {
       public void addCart(String userId, int gdsCode, int cartStock) throws Exception;
       
       public List<CartVO> showCart(String userId) throws Exception;
+      
+      public void deleteCart(CartVO cart) throws Exception;
 }

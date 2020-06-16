@@ -4,6 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@include file="./includes/header.jsp" %>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <% String gCode = request.getParameter("n");
 String cStock = request.getParameter("s"); %>
 
@@ -45,6 +46,19 @@ String cStock = request.getParameter("s"); %>
             <table id="edd_checkout_cart" class="ajaxed">
             <thead>
             <tr class="edd_cart_header_row">
+               <th>
+                   <input type="checkbox" name="allCheck"/><label for="allCheck">모두 선택</label>
+               	   <script>
+               	   $("#allCheck").click(function() {
+					var chk = $("#allCheck").prop("checked");
+					if(chk){
+						$(".chBox").prop("checked", true);
+					}else{
+						$(".chBox").prop("checked", false);
+					}
+				});
+               	   </script>
+               </th>
                <th class="edd_cart_item_name">
                    Item Name
                </th>
@@ -52,7 +66,29 @@ String cStock = request.getParameter("s"); %>
                    Item Price
                </th>
                <th class="edd_cart_actions">
-                   Actions
+                   <a class="selectDelete_btn">선택 삭제</a>
+                   <script>
+                   	$(".selectDelete_btn").click(function() {
+						var confirm_val = confirm("정말 삭제하시겠습니까?");
+						
+						if(confirm_val){
+							var checkArr = new Array();
+							
+							$("input[class='chBox']:checked").each(function() {
+								checkArr.push($(this).attr("data-gdsCode"));
+							});
+							
+							$.ajax({
+								url : "/deleteCart",
+								type : "post",
+								data : { chbox : checkArr },
+								success : function () {
+									location.href = "/checkout";
+								}
+							})
+						}
+					})
+                   </script>
                </th>
             </tr>
             </thead>
@@ -60,6 +96,14 @@ String cStock = request.getParameter("s"); %>
             <c:set var="sum" value="0"/>
             <c:forEach items="${showCart}" var="showCart">
             <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
+               <td>
+               		<input type="checkbox" name="chBox" class="chBox" data-gdsCode="${showCart.gdsCode}"/>
+               		<script>
+               			$(".chBox").click(function() {
+							$("#allCheck").prop("checked", false);
+						});
+               		</script>
+               </td>
                <td class="edd_cart_item_name">
                   <div class="edd_cart_item_image">
                      <img width="25" height="25" src="${showCart.gdsImg}" alt="">
@@ -68,21 +112,38 @@ String cStock = request.getParameter("s"); %>
                </td>
                <td class="edd_cart_item_price">
                <c:set var="price" value="${showCart.gdsPrice * showCart.cartStock}"/>
-                   	(￦${showCart.gdsPrice} * ${showCart.cartStock}개)<br> = ￦${price}
+                      (￦${showCart.gdsPrice} * ${showCart.cartStock}개)<br> = ￦${price}
                </td>
                <td class="edd_cart_actions">
-                  <a class="edd_cart_remove_item_btn" href="#">Remove</a>
+                  <a class="edd_cart_remove_item_btn" href="#" data-gdsCode="${showCart.gdsCode}">-</a>&nbsp;
+                  <a class="edd_cart_add_item_btn" href="#" data-gdsCode="${showCart.gdsCode}">+</a>&nbsp;
+                  <a class="edd_cart_delete_item_btn" href="#" data-gdsCode="${showCart.gdsCode}">삭제</a>
                </td>
             </tr>
             <c:set var="sum" value="${sum + price}"/> 
             </c:forEach>
+            <% if(gCode != null&cStock!=null){%>
+               <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
+               <td class="edd_cart_item_name">
+                  <div class="edd_cart_item_image">
+                     <img width="25" height="25" src="${product.gdsImg}" alt="">
+                  </div>
+                  <span class="edd_checkout_cart_item_title">${product.gdsName} · <%=cStock %>개</span>
+               </td>
+               <td class="edd_cart_item_price">
+               <c:set var="price" value="${product.gdsPrice * param.s}"/>
+                      (￦${showCart.gdsPrice} * ${param.s}개)<br> = ￦${price}
+               </td>
+               <td class="edd_cart_actions">
+                  <a class="edd_cart_remove_item_btn" href="#">-</a>&nbsp;
+                  <a class="edd_cart_add_item_btn" href="#">+</a>&nbsp;
+                  <a class="edd_cart_delete_item_btn" href="#">삭제</a>
+               </td>
+            </tr>
+            <%}
+            %>
             </tbody>
             <tfoot>
-            <tr class="edd_cart_footer_row">
-               <th colspan="5">
-                  <a class="edd-cart-saving-button edd-submit button " id="edd-save-cart-button" href="#">Save Cart</a>
-               </th>
-            </tr>
             <tr class="edd_cart_footer_row edd_cart_discount_row" style="display:none;">
                <th colspan="5" class="edd_cart_discount">
                </th>

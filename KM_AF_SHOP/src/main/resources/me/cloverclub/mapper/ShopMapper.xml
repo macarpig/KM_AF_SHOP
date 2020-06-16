@@ -47,4 +47,11 @@
    on c.gdsCode = g.gdsCode
    where c.userId = #{userId}
    </select>
+   
+   <!-- 카트 삭제 -->
+   <delete id="deleteCart">
+   	delete cart
+   	where gdsCode = #{gdsCode}
+   	and userId = #{userId}
+   </delete>
 </mapper>
