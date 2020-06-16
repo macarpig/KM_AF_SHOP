@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -119,8 +120,25 @@ public class AdminController {
 	
 	// post goods modify
 	@PostMapping("/goods/modify")
-	public String postGoodsModify(GoodsVO vo) throws Exception {
+	public String postGoodsModify(GoodsVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
 		log.info("AdminController: postGoodsModify()");
+		
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			new File(uploadPath + req.getParameter("gdsImg")).delete();
+			new File(uploadPath + req.getParameter("gdsThumbImg")).delete();
+			
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+			String fileName = UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			
+			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		}
+		
+		else {
+			vo.setGdsImg(req.getParameter("gdsImg"));
+			vo.setGdsThumbImg(req.getParameter("gdsThumbImg"));
+		}
 		
 		a_service.goodsModify(vo);
 		

@@ -25,7 +25,7 @@
 	<!-- modify goods -->
 	<update id="goodsModify">
 		update goods
-		set gdsName = #{gdsName}, cateCode = #{cateCode}, gdsPrice = #{gdsPrice}, gdsDesc = #{gdsDesc}
+		set gdsName = #{gdsName}, cateCode = #{cateCode}, gdsPrice = #{gdsPrice}, gdsDesc = #{gdsDesc}, gdsImg = #{gdsImg}, gdsThumbImg = #{gdsThumbImg}
 		where gdsCode = ${gdsCode}
 	</update>
 	
