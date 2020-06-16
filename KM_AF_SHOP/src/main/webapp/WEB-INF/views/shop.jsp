@@ -71,49 +71,25 @@ if(<%=cCode%>==0){
 
 var activeSystemClass = $('.list-group-item.active');
 
-//검색 기능
-$('#system-search').keyup( function() {
-   var that = this;
-    // affect all table rows on in systems table
-    var tableBody = $('.table-list-search tbody');
-    var tableRowsClass = $('.table-list-search tbody tr');
-    $('.search-sf').remove();
-    tableRowsClass.each( function(i, val) {
-    
-        //Lower text for case insensitive
-        var rowText = $(val).text().toLowerCase();
-        var inputText = $(that).val().toLowerCase();
-        if(inputText != '')
-        {
-            $('.search-query-sf').remove();
-            tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>검색 결과: "'
-                + $(that).val()
-                + '"</strong></td></tr>');
-        }
-        else
-        {
-            $('.search-query-sf').remove();
-        }
+});
 
-        if( rowText.indexOf( inputText ) == -1 )
-        {
-            //hide rows
-            tableRowsClass.eq(i).hide();
-            
-        }
-        else
-        {
-            $('.search-sf').remove();
-            tableRowsClass.eq(i).show();
-        }
-    });
-    //all tr elements are hidden
-    if(tableRowsClass.children(':visible').length == 0)
-    {
-        tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
-    }
-});
-});
+//검색 기능
+function filter() {
+  var value, name, item, i;
+  
+  value = document.getElementById("value").value.toUpperCase();
+  item = document.getElementsByClassName("productbox");
+  
+  for(i=0;i<item.length;i++) {
+	   name = item[i].getElementsByClassName("name");
+	   if(name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+		   item[i].style.display = "flex";
+		   
+	   } else {
+		   item[i].style.display="none";
+	   }
+  }
+}
 alert(cate1Div.html());
 </script>
 </head>
@@ -148,7 +124,7 @@ alert(cate1Div.html());
             <form action="#" method="get">
                 <div class="input-group">
                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                    <input onkeyup="filter()" type="text" id="value" placeholder="Type to Search">
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                     </span>
@@ -209,19 +185,19 @@ alert(cate1Div.html());
             </div>
             <div class="product-details">
                <a href="/product?n=${list.gdsCode}">
-               <h1>${list.gdsName}</h1>
+               <span class="name"><h1>${list.gdsName}</h1></span>
                </a>
                <span class="price">
                <span class="edd_price">${list.gdsPrice}</span>
                </span>
             </div>
-         </div>
       </div>
       <c:if test="${i eq 3}">
     <c:out value="</div><div class='row'>" />
 	</c:if>
 	<c:set var="i" value="${i + 1}"/>
 </c:forEach>
+</div>
 </div>
 </section>
 
