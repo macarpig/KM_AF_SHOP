@@ -124,10 +124,7 @@ alert(cate1Div.html());
             <form action="#" method="get">
                 <div class="input-group">
                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                    <input onkeyup="filter()" type="text" id="value" placeholder="Type to Search">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
+                    <input onkeyup="filter()" type="text" id="value" placeholder="제품명으로 검색">
                 </div>
             </form>
         </div>
