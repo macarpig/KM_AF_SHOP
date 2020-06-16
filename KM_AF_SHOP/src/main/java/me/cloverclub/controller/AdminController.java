@@ -1,10 +1,16 @@
 package me.cloverclub.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.JsonObject;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -23,6 +31,7 @@ import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 @Log4j
@@ -86,7 +95,7 @@ public class AdminController {
 		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
 		String fileName = null;
 		
-		if(file != null) {
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			fileName = UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 		}
 		
@@ -153,5 +162,59 @@ public class AdminController {
 		a_service.goodsDelete(gdsCode);
 		
 		return "redirect:/admin/index";
+	}
+	
+	@PostMapping("/goods/ckUpload")
+	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload) throws Exception {
+		log.info("AdminController: postCKEditorImgUpload()");
+		
+		UUID uuid = UUID.randomUUID();
+		
+		OutputStream os = null;
+		PrintWriter pw = null;
+		
+		req.setCharacterEncoding("UTF-8");
+		
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
+		
+		try {
+			String fileName = upload.getOriginalFilename();
+			byte[] bytes = upload.getBytes();
+			
+			String ckUploadPath = uploadPath + File.separator + "ckUpload" + File.separator + uuid + "_" + fileName;
+			
+			os = new FileOutputStream(new File(ckUploadPath));
+			os.write(bytes);
+			os.flush();
+			
+			pw = res.getWriter();
+			String fileUrl = "/ckUpload/" + uuid + "_" + fileName;
+			
+			JsonObject json = new JsonObject();
+			json.addProperty("uploaded", 1);
+			json.addProperty("filename", fileName);
+			json.addProperty("url", fileUrl);
+			
+			pw.println(json);
+			pw.flush();
+		}
+		
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		finally {
+			try {
+				if(os != null) os.close();
+				if(pw != null) pw.close();
+			}
+			
+			catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return;
 	}
 }
