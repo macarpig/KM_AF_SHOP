@@ -82,8 +82,13 @@ String cStock = request.getParameter("s"); %>
 								url : "/deleteCart",
 								type : "post",
 								data : { chbox : checkArr },
-								success : function () {
-									location.href = "/checkout";
+								success : function (result) {
+									if(result == 1){
+
+										location.href = "/checkout";
+									}else{
+										alert("삭제 실패");
+									}
 								}
 							})
 						}
@@ -115,9 +120,100 @@ String cStock = request.getParameter("s"); %>
                       (￦${showCart.gdsPrice} * ${showCart.cartStock}개)<br> = ￦${price}
                </td>
                <td class="edd_cart_actions">
-                  <a class="edd_cart_remove_item_btn" href="#" data-gdsCode="${showCart.gdsCode}">-</a>&nbsp;
-                  <a class="edd_cart_add_item_btn" href="#" data-gdsCode="${showCart.gdsCode}">+</a>&nbsp;
-                  <a class="edd_cart_delete_item_btn" href="#" data-gdsCode="${showCart.gdsCode}">삭제</a>
+                  <a class="remove_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">-</a>&nbsp;
+                  <script>
+                  	$(".remove_${showCart.gdsCode}_btn").click(function() {
+						if($(this).attr("data-cartStock") == 1){
+							var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까?");
+							
+							if(confirm_val){
+								var checkArr = new Array();
+								checkArr.push($(this).attr("data-gdsCode"));
+								
+								$.ajax({
+									url : "/deleteCart",
+									type : "post",
+									data : { chbox : checkArr},
+									success : function (result) {
+										if(result == 1){
+											location.href = "/checkout";
+										}else {
+											alert("삭제 실패");
+										}
+									}
+								});
+							}
+						}else{
+							var confirm_val = confirm("하나 더 제거하시겠습니까?");
+							
+							if(confirm_val){
+								var checkArr = new Array();
+								checkArr.push($(this).attr("data-gdsCode"));
+								
+								$.ajax({
+									url : "/removeCart",
+									type : "post",
+									data : { chbox : checkArr},
+									success : function (result) {
+										if(result == 1){
+											location.href = "/checkout";
+										}else {
+											alert("하나 제거 실패");
+										}
+									}
+								});
+							}
+						}
+					});
+                  </script>
+                  <a class="add_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">+</a>&nbsp;
+                  <script>
+                  	$(".add_${showCart.gdsCode}_btn").click(function() {
+						var confirm_val = confirm("하나 더 추가하시겠습니까?");
+						
+						if(confirm_val){
+							var checkArr = new Array();
+							checkArr.push($(this).attr("data-gdsCode"));
+							
+							$.ajax({
+								url : "/addCart",
+								type : "post",
+								data : { chbox : checkArr},
+								success : function (result) {
+									if(result == 1){
+										location.href = "/checkout";
+									}else {
+										alert("하나 추가 실패");
+									}
+								}
+							});
+						}
+					});
+                  </script>
+                  <a class="delete_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">삭제</a>
+                  <script>
+                  	$(".delete_${showCart.gdsCode}_btn").click(function() {
+						var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까?");
+						
+						if(confirm_val){
+							var checkArr = new Array();
+							checkArr.push($(this).attr("data-gdsCode"));
+							
+							$.ajax({
+								url : "/deleteCart",
+								type : "post",
+								data : { chbox : checkArr},
+								success : function (result) {
+									if(result == 1){
+										location.href = "/checkout";
+									}else {
+										alert("삭제 실패");
+									}
+								}
+							});
+						}
+					});
+                  </script>
                </td>
             </tr>
             <c:set var="sum" value="${sum + price}"/> 
@@ -135,9 +231,9 @@ String cStock = request.getParameter("s"); %>
                       (￦${showCart.gdsPrice} * ${param.s}개)<br> = ￦${price}
                </td>
                <td class="edd_cart_actions">
-                  <a class="edd_cart_remove_item_btn" href="#">-</a>&nbsp;
-                  <a class="edd_cart_add_item_btn" href="#">+</a>&nbsp;
-                  <a class="edd_cart_delete_item_btn" href="#">삭제</a>
+                  <a class="remove_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">-</a>&nbsp;
+                  <a class="add_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">+</a>&nbsp;
+                  <a class="delete_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">삭제</a>
                </td>
             </tr>
             <%}

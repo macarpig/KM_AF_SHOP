@@ -31,4 +31,10 @@ public interface ShopMapper {
       
       //카트 선택 삭제
       public void deleteCart(CartVO cart) throws Exception;
+      
+      //카트 상품 하나 추가
+      public void addCart(CartVO cart) throws Exception;
+      
+    //카트 상품 하나 제거
+      public void removeCart(CartVO cart) throws Exception;
 }

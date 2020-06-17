@@ -55,4 +55,14 @@ public class ShopServiceImpl implements ShopService {
 public void deleteCart(CartVO cart) throws Exception {
 	mapper.deleteCart(cart);
 }
+
+@Override
+public void addCart(CartVO cart) throws Exception {
+	mapper.addCart(cart);
+}
+
+@Override
+public void removeCart(CartVO cart) throws Exception {
+	mapper.removeCart(cart);
+}
 }

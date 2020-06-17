@@ -127,4 +127,46 @@ public class HomeController {
     	  }
     	  return result;
       }
+      
+      @PostMapping("/addCart")
+      public int postAddCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
+    	  MemberVO member = (MemberVO)session.getAttribute("member");
+    	  String userId = member.getUserId();
+    	  
+    	  int result = 0;
+    	  int gdsCode = 0;
+    	  
+    	  if(member != null) {
+    		  cart.setUserId(userId);
+    		  
+    		  for(String i : chArr) {
+    			  gdsCode = Integer.parseInt(i);
+    			  cart.setGdsCode(gdsCode);
+    			  s_service.addCart(cart);
+    		  }
+    		  result = 1;
+    	  }
+    	  return result;
+      }
+      
+      @PostMapping("/removeCart")
+      public int postRemoveCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
+    	  MemberVO member = (MemberVO)session.getAttribute("member");
+    	  String userId = member.getUserId();
+    	  
+    	  int result = 0;
+    	  int gdsCode = 0;
+    	  
+    	  if(member != null) {
+    		  cart.setUserId(userId);
+    		  
+    		  for(String i : chArr) {
+    			  gdsCode = Integer.parseInt(i);
+    			  cart.setGdsCode(gdsCode);
+    			  s_service.removeCart(cart);
+    		  }
+    		  result = 1;
+    	  }
+    	  return result;
+      }
 }
