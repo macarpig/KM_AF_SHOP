@@ -45,6 +45,7 @@ public class HomeController {
          return "index";
       }   
       
+      
       @GetMapping("/shop")
       public void getShop(@RequestParam("c") int cateCode, @RequestParam("l") int level, Model model) throws Exception {
          List<CategoryVO> category = null;
@@ -127,4 +128,5 @@ public class HomeController {
     	  }
     	  return result;
       }
+      
 }
