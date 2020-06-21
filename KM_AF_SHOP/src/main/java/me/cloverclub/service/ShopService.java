@@ -22,4 +22,8 @@ public interface ShopService {
       public List<CartVO> showCart(String userId) throws Exception;
       
       public void deleteCart(CartVO cart) throws Exception;
+      
+      public void addCart(CartVO cart) throws Exception;
+      
+      public void removeCart(CartVO cart) throws Exception;
 }

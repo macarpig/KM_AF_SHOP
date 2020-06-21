@@ -40,4 +40,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		mapper.join(vo);
 	}
+	
+	// update
+	@Override
+	public void update(MemberVO vo) throws Exception {
+		log.info("MemberService: update()");
+		
+		mapper.update(vo);
+	}
 }

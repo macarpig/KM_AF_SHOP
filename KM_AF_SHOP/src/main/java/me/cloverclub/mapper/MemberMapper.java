@@ -10,4 +10,7 @@ public interface MemberMapper {
 	
 	// join
 	public void join(MemberVO vo) throws Exception;
+	
+	//update
+	public void update(MemberVO vo) throws Exception; 
 }

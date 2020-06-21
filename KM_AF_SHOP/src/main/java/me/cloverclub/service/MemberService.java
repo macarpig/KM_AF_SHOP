@@ -13,4 +13,7 @@ public interface MemberService {
 	
 	// join
 	public void join(MemberVO vo) throws Exception;
+	
+	//update
+	public void update(MemberVO vo) throws Exception;
 }

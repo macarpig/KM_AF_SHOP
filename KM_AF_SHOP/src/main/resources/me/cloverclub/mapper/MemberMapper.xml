@@ -13,4 +13,17 @@
 		from member
 		where userId = #{userId}
 	</select>
+	
+	<!-- update -->
+	<update id="update">
+		update member
+		set userPw = #{userPw},
+		userName = #{userName}, 
+		userEmail = #{userEmail}, 
+		userTel = #{userTel}, 
+		userZipcode = #{userZipcode}, 
+		userAddr1 = #{userAddr1}, 
+		userAddr2 = #{userAddr2}
+		where userId = #{userId}
+	</update>
 </mapper>

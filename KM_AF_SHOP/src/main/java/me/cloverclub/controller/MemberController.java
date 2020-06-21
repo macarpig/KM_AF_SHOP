@@ -85,4 +85,14 @@ public class MemberController {
 		rttr.addFlashAttribute("msg", false);
 		return "redirect:/login";
 	}
+	
+	@RequestMapping("update")
+	public String memberUpdate(@ModelAttribute MemberVO vo) throws Exception {
+		String userPw = vo.getUserPw();
+		String encodePw = passEncoder.encode(userPw);
+		vo.setUserPw(encodePw);
+		
+		service.update(vo);
+		return "redirect:/";
+	}
 }

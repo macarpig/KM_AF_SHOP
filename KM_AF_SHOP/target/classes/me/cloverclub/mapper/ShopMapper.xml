@@ -54,4 +54,20 @@
    	where gdsCode = #{gdsCode}
    	and userId = #{userId}
    </delete>
+   
+   <!-- 카트 수량 수정 -->
+   <update id="addCart">
+   	update cart
+   	set cartStock = cartStock + 1
+   	where gdsCode = #{gdsCode}
+   	and userId = #{userId}
+   </update>
+   
+   <!-- 카트 수량 수정 -->
+   <update id="removeCart">
+   	update cart
+   	set cartStock = cartStock - 1
+   	where gdsCode = #{gdsCode}
+   	and userId = #{userId}
+   </update>
 </mapper>
