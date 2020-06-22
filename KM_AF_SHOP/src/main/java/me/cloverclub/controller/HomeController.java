@@ -110,64 +110,86 @@ public class HomeController {
       
       @PostMapping("/deleteCart")
       public int postDeleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
-    	  MemberVO member = (MemberVO)session.getAttribute("member");
-    	  String userId = member.getUserId();
-    	  
-    	  int result = 0;
-    	  int gdsCode = 0;
-    	  
-    	  if(member != null) {
-    		  cart.setUserId(userId);
-    		  
-    		  for(String i : chArr) {
-    			  gdsCode = Integer.parseInt(i);
-    			  cart.setGdsCode(gdsCode);
-    			  s_service.deleteCart(cart);
-    		  }
-    		  result = 1;
-    	  }
-    	  return result;
+         MemberVO member = (MemberVO)session.getAttribute("member");
+         String userId = member.getUserId();
+         
+         int result = 0;
+         int gdsCode = 0;
+         
+         if(member != null) {
+            cart.setUserId(userId);
+            
+            for(String i : chArr) {
+               gdsCode = Integer.parseInt(i);
+               cart.setGdsCode(gdsCode);
+               s_service.deleteCart(cart);
+            }
+            result = 1;
+         }
+         return result;
       }
       
       @PostMapping("/plusCart")
       public int postPlusCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
-    	  MemberVO member = (MemberVO)session.getAttribute("member");
-    	  String userId = member.getUserId();
-    	  
-    	  int result = 0;
-    	  int gdsCode = 0;
-    	  
-    	  if(member != null) {
-    		  cart.setUserId(userId);
-    		  
-    		  for(String i : chArr) {
-    			  gdsCode = Integer.parseInt(i);
-    			  cart.setGdsCode(gdsCode);
-    			  s_service.plusCart(cart);
-    		  }
-    		  result = 1;
-    	  }
-    	  return result;
+         MemberVO member = (MemberVO)session.getAttribute("member");
+         String userId = member.getUserId();
+         
+         int result = 0;
+         int gdsCode = 0;
+         
+         if(member != null) {
+            cart.setUserId(userId);
+            
+            for(String i : chArr) {
+               gdsCode = Integer.parseInt(i);
+               cart.setGdsCode(gdsCode);
+               s_service.plusCart(cart);
+            }
+            result = 1;
+         }
+         return result;
       }
       
       @PostMapping("/removeCart")
       public int postRemoveCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
-    	  MemberVO member = (MemberVO)session.getAttribute("member");
-    	  String userId = member.getUserId();
-    	  
-    	  int result = 0;
-    	  int gdsCode = 0;
-    	  
-    	  if(member != null) {
-    		  cart.setUserId(userId);
-    		  
-    		  for(String i : chArr) {
-    			  gdsCode = Integer.parseInt(i);
-    			  cart.setGdsCode(gdsCode);
-    			  s_service.removeCart(cart);
-    		  }
-    		  result = 1;
-    	  }
-    	  return result;
+         MemberVO member = (MemberVO)session.getAttribute("member");
+         String userId = member.getUserId();
+         
+         int result = 0;
+         int gdsCode = 0;
+         
+         if(member != null) {
+            cart.setUserId(userId);
+            
+            for(String i : chArr) {
+               gdsCode = Integer.parseInt(i);
+               cart.setGdsCode(gdsCode);
+               s_service.removeCart(cart);
+            }
+            result = 1;
+         }
+         return result;
       }
+      
+      @GetMapping("/cart")
+      public String getCart(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+         HttpSession session = request.getSession();
+          MemberVO userId = (MemberVO)session.getAttribute("member");
+          if(userId == null) {
+             response.setContentType("text/html; charset=UTF-8");
+             PrintWriter out = response.getWriter();
+             out.println("<script>alert('로그인을 해주세요.'); history.go(-1);</script>");
+             out.flush();
+          }else {
+             List<CartVO> cart = s_service.showCart(userId.getUserId());
+             model.addAttribute("showCart", cart);
+          }
+       return "checkout";
+      }
+      
+      @GetMapping("/order")
+      public void getOrder() throws Exception {
+         
+      }
+      
 }
