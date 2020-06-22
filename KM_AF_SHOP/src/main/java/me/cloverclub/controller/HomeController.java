@@ -129,8 +129,8 @@ public class HomeController {
     	  return result;
       }
       
-      @PostMapping("/addCart")
-      public int postAddCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
+      @PostMapping("/plusCart")
+      public int postPlusCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
     	  MemberVO member = (MemberVO)session.getAttribute("member");
     	  String userId = member.getUserId();
     	  
@@ -143,7 +143,7 @@ public class HomeController {
     		  for(String i : chArr) {
     			  gdsCode = Integer.parseInt(i);
     			  cart.setGdsCode(gdsCode);
-    			  s_service.addCart(cart);
+    			  s_service.plusCart(cart);
     		  }
     		  result = 1;
     	  }

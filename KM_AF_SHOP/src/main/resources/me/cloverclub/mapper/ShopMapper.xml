@@ -56,7 +56,7 @@
    </delete>
    
    <!-- 카트 수량 수정 -->
-   <update id="addCart">
+   <update id="plusCart">
    	update cart
    	set cartStock = cartStock + 1
    	where gdsCode = #{gdsCode}

@@ -57,8 +57,8 @@ public void deleteCart(CartVO cart) throws Exception {
 }
 
 @Override
-public void addCart(CartVO cart) throws Exception {
-	mapper.addCart(cart);
+public void plusCart(CartVO cart) throws Exception {
+	mapper.plusCart(cart);
 }
 
 @Override
