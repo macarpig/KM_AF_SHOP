@@ -86,8 +86,8 @@
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">상품 관리</h6>
-          <a class="collapse-item active" href="#">상품 추가</a>
-          <a class="collapse-item" href="register.html">상품 수정/삭제</a>
+          <a class="collapse-item" href="/admin/goods/add">상품 추가</a>
+          <a class="collapse-item" href="/admin/goods/list">상품 수정/삭제</a>
           <div class="collapse-divider"></div>
           <h6 class="collapse-header">주문 관리</h6>
           <a class="collapse-item" href="404.html">주문 목록</a>
