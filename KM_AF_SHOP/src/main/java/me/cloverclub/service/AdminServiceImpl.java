@@ -34,7 +34,7 @@ public class AdminServiceImpl implements AdminService {
 
 	// list goods
 	@Override
-	public List<GoodsVO> goodsList() throws Exception {
+	public List<ShopVO> goodsList() throws Exception {
 		log.info("AdminService: goodsList()");
 		
 		return mapper.goodsList();

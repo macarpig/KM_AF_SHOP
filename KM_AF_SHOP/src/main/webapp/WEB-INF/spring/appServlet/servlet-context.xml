@@ -37,6 +37,9 @@
 	<!-- ckeditor upload path -->
 	<resources mapping="/ckUpload/**" location="/resources/ckUpload/" />
 	
+	<!-- replace image path -->
+	<resources mapping="/images/**" location="/resources/images/" />
+	
 	<!-- Interceptor configuration -->
 	<beans:bean id="AdminInterceptor" class="me.cloverclub.interceptor.AdminInterceptor"></beans:bean>
 	<interceptors>

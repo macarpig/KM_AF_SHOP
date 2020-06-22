@@ -225,6 +225,7 @@
 						</div>
 						<div class="card-body">
 							<div class="row mb-2 font-weight-bold">
+								<div class="col">썸네일</div>
 								<div class="col">상품코드</div>
 								<div class="col">상품명</div>
 								<div class="col">카테고리</div>
@@ -233,11 +234,12 @@
 							</div>
 							<c:forEach items="${list}" var="list">
 								<div class="row">
+									<div class="col"><img style="width: 150px; height: auto;" src="${list.gdsThumbImg}"></div>
 									<div class="col">${list.gdsCode}</div>
 									<div class="col">
 										<a href="/admin/goods/view?n=${list.gdsCode}">${list.gdsName}</a>
 									</div>
-									<div class="col">${list.cateCode}</div>
+									<div class="col">${list.cateName}</div>
 									<div class="col">
 										<fmt:formatNumber value="${list.gdsPrice}"
 											pattern="###,###,###" />

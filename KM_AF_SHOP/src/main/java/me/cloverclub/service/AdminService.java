@@ -13,7 +13,7 @@ public interface AdminService {
 	public ShopVO goodsView(String gdsCode) throws Exception;
 	
 	// list goods
-	public List<GoodsVO> goodsList() throws Exception;
+	public List<ShopVO> goodsList() throws Exception;
 	
 	// modify goods
 	public void goodsModify(GoodsVO vo) throws Exception;
