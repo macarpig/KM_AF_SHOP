@@ -52,7 +52,7 @@
 		<div class="col-md-4">
 			<div class="productbox">
 				<div class="product-details">
-					<a href="${pageContext.request.contextPath}/checkout">
+					<a href="${pageContext.request.contextPath}/cartCheck">
 					<span class="maxproduct"><img src="resources/images/cart.png" alt=""></span>
 					<h1>장바구니</h1>
 					</a>
@@ -66,7 +66,7 @@
 		<div class="col-md-4">
 			<div class="productbox">
 				<div class="product-details">
-					<a href="${pageContext.request.contextPath}/join">
+					<a href="${pageContext.request.contextPath}/memberInfo">
 					<span class="maxproduct"><img src="resources/images/membership.png" alt=""></span>
 					<h1>회원정보 수정</h1>
 					</a>
@@ -80,7 +80,7 @@
 		<div class="col-md-4">
 			<div class="productbox">
 				<div class="product-details">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/orderList">
 					<span class="maxproduct"><img src="resources/images/list.png" alt=""></span>
 					<h1>주문내역</h1>
 					</a>

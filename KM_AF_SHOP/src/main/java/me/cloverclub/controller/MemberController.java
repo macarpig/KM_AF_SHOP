@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -86,13 +87,14 @@ public class MemberController {
 		return "redirect:/login";
 	}
 	
-	@RequestMapping("update")
-	public String memberUpdate(@ModelAttribute MemberVO vo) throws Exception {
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String registerUpdate(MemberVO vo, HttpSession session) throws Exception {
 		String userPw = vo.getUserPw();
 		String encodePw = passEncoder.encode(userPw);
 		vo.setUserPw(encodePw);
 		
 		service.update(vo);
+		session.invalidate();
 		return "redirect:/";
 	}
 }

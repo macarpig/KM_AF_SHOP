@@ -13,4 +13,7 @@ public interface MemberMapper {
 	
 	//update
 	public void update(MemberVO vo) throws Exception; 
+	
+	// viewMember
+	public MemberVO viewMember(String userId) throws Exception;
 }

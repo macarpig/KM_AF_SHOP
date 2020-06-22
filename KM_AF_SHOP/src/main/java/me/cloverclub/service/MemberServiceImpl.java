@@ -48,4 +48,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		mapper.update(vo);
 	}
+	
+	//viewMember
+	@Override
+	public MemberVO viewMember(String userId) throws Exception {
+		log.info("MemberService: viewMember()");
+		
+		return mapper.viewMember(userId);
+	}
 }
