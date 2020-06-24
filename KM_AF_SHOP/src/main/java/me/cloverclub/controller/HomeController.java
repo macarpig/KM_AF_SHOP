@@ -210,7 +210,6 @@ public class HomeController {
           }
            }
       }
-      
     //주문내역 출력
   	@GetMapping(value = "/orderList")
   	public void getOrderlist(HttpSession session,
@@ -229,3 +228,4 @@ public class HomeController {
       	
       
 }
+

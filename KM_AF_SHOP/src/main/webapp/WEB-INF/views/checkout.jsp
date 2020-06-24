@@ -231,9 +231,45 @@ String cStock = request.getParameter("s"); %>
                       (￦${showCart.gdsPrice} * ${param.s}개)<br> = ￦${price}
                </td>
                <td class="edd_cart_actions">
-                  <a class="remove_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">-</a>&nbsp;
-                  <a class="add_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">+</a>&nbsp;
-                  <a class="delete_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">삭제</a>
+                  <a class="remove_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">-</a>&nbsp;
+                  <script>
+                  	$(".remove_btn").click(function() {
+                  		if($(this).attr("data-cartStock") == 1){
+							var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까? 삭제하시면 해당 상품화면으로 돌아갑니다.");
+							
+							if(confirm_val){
+								location.href ="/product?n="+ $(this).attr("data-gdsCode");
+							}
+                  		}else{
+                  			var confirm_val = confirm("하나 더 제거하시겠습니까?");
+    						
+    						if(confirm_val){
+    							location.href ="/checkout?n="+ $(this).attr("data-gdsCode")+"&s="+($(this).attr("data-cartStock")-1);
+    						}
+                  		}
+                  		
+					});
+                  </script>
+                  <a class="add_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">+</a>&nbsp;
+                  <script>
+                  	$(".add_btn").click(function() {
+						var confirm_val = confirm("하나 더 추가하시겠습니까?");
+						
+						if(confirm_val){
+							location.href ="/checkout?n="+ $(this).attr("data-gdsCode")+"&s="+($(this).attr("data-cartStock")+1);
+						}
+					});
+                  </script>
+                  <a class="delete_btn" data-gdsCode="${showCart.gdsCode}">삭제</a>
+                   <script>
+                  	$(".delete_btn").click(function() {
+						var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까? 삭제하시면 해당 상품화면으로 돌아갑니다.");
+						
+						if(confirm_val){
+							location.href ="/product?n="+ $(this).attr("data-gdsCode");
+						}
+					});
+                  </script>
                </td>
             </tr>
             <%}
@@ -254,31 +290,16 @@ String cStock = request.getParameter("s"); %>
          </div>
       </form>
       <div id="edd_checkout_form_wrap" class="edd_clearfix">
-         <form id="edd_purchase_form" class="edd_form" action="#" method="POST">
-            <fieldset id="edd_checkout_user_info">
-               <legend>Personal Info</legend>
-               <p id="edd-email-wrap">
-                  <label class="edd-label" for="edd-email">
-                  Email Address <span class="edd-required-indicator">*</span></label>
-                  <input class="edd-input required" type="email" name="edd_email" placeholder="Email address" id="edd-email" value="">
-               </p>
-               <p id="edd-first-name-wrap">
-                  <label class="edd-label" for="edd-first">
-                  First Name <span class="edd-required-indicator">*</span>
-                  </label>
-                  <input class="edd-input required" type="text" name="edd_first" placeholder="First name" id="edd-first" value="" required="">
-               </p>
-               <p id="edd-last-name-wrap">
-                  <label class="edd-label" for="edd-last">
-                  Last Name </label>
-                  <input class="edd-input" type="text" name="edd_last" id="edd-last" placeholder="Last name" value="">
-               </p>
-            </fieldset>
+         <form id="edd_purchase_form" class="edd_form" action="order" method="POST">
             <fieldset id="edd_purchase_submit">
                <p id="edd_final_total_wrap">
                   <strong>Purchase Total:</strong>
                   <span class="edd_cart_amount" data-subtotal="11.99" data-total="11.99">${sum}</span>
                </p>
+               <% if(gCode != null&cStock!=null){%>
+               <input type="hidden" name="gCode" value="<%=gCode%>">
+               <input type="hidden" name="cStock" value="<%=cStock%>">
+               <%} %>
                <input type="hidden" name="edd_action" value="purchase">
                <input type="hidden" name="edd-gateway" value="manual">
                <input type="submit" class="edd-submit button" id="edd-purchase-button" name="edd-purchase" value="Purchase">
