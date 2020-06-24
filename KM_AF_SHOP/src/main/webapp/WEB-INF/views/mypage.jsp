@@ -9,7 +9,6 @@
 <script type="text/javascript">
 
 
-
 </script>
 </head>
 
@@ -36,7 +35,7 @@
 <div class="container toparea">
 	<div class="underlined-title">
       <div class="editContent">
-         <h1 class="text-center latestitems">마이페이지</h1>
+         <h1 class="text-center latestitems">${member.userName}님의 마이페이지</h1>
       </div>
        
       <div class="wow-hr type_short">
@@ -80,7 +79,7 @@
 		<div class="col-md-4">
 			<div class="productbox">
 				<div class="product-details">
-					<a href="${pageContext.request.contextPath}/orderList">
+					<a href="${pageContext.request.contextPath}/orderList?c=${member.userId}">
 					<span class="maxproduct"><img src="resources/images/list.png" alt=""></span>
 					<h1>주문내역</h1>
 					</a>

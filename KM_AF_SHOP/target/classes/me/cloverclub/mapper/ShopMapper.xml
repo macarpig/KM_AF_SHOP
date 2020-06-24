@@ -70,4 +70,17 @@
    	where gdsCode = #{gdsCode}
    	and userId = #{userId}
    </update>
+   
+   <!-- 주문내역 보기 -->
+   <select id="orderView" resultType="me.cloverclub.vo.OrderListVO">
+   select  o.userId, o.orderDate, o.orderId, 
+   d.gdsStatus, d.gdsSum, d.gdsCode,
+   g.gdsName, g.gdsImg, g.gdsPrice 
+   from ordertbl o
+   inner join orderDetail d
+   on o.orderId = d.orderId
+   inner join goods g
+   on d.gdsCode = g.gdsCode
+   where o.userId = #{userId}
+   </select>
 </mapper>

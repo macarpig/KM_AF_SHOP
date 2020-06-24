@@ -27,7 +27,7 @@
 <div class="container toparea">
 	<div class="underlined-title">
 		<div class="editContent">
-			<h1 class="text-center latestitems">주문내역</h1>
+			<h1 class="text-center latestitems">${member.userId} 님의 주문내역</h1>
 		</div>
 		<div class="wow-hr type_short">
 			<span class="wow-hr-h">
@@ -36,7 +36,8 @@
 			<i class="fa fa-star"></i>
 			</span>
 		</div>
-	</div>
+	</div> 
+	
 	<div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2">
 		<form id="edd_checkout_cart_form" method="post">
 			<div id="edd_checkout_cart_wrap">
@@ -57,24 +58,36 @@
 					</th>
 				</tr>
 				</thead>
+				
 				<tbody>
-				<tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
-					<td class="edd_cart_item_name">
-						<div class="edd_cart_item_image">
-							<img width="25" height="25" src="images/scorilo2-70x70.jpg" alt="">
-						</div>
-						<span class="edd_checkout_cart_item_title">Audio Item - Single License</span>
-					</td>
-					<td class="edd_cart_item_price">
-						 2020-06-22
-					</td>
-					<td class="edd_cart_actions">
-						20200622<a class="edd_cart_remove_item_btn" href="#">(주문상태)</a>
-					</td>
-					<td class="edd_cart_actions">
-						99,999(1개)
-					</td>
-				</tr>
+					<c:choose>
+						<c:when test="${empty orderView }" >
+							<tr><td colspan="4" align="center">주문내역이 없습니다.</td></tr>
+						</c:when>
+						
+						<c:when test="${!empty orderView}">
+							<c:forEach var="list" items="${orderView}">
+								<tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
+								<td class="edd_cart_item_name">
+								<div class="edd_cart_item_image">
+								<img width="25" height="25" src="<c:out value="${list.gdsImg}"/>" alt="">
+								</div>
+								<span class="edd_checkout_cart_item_title"><c:out value="${list.gdsName}"/></span>
+								</td>
+								<td class="edd_cart_item_price">
+						 			<c:out value="${list.orderDate}"/>
+								</td>
+								<td class="edd_cart_actions">
+									<c:out value="${list.orderId}"/><a class="edd_cart_remove_item_btn" href="#">
+									<c:out value="${list.gdsStatus}"/></a>
+								</td>
+								<td class="edd_cart_actions">
+									<c:out value="${list.gdsPrice}"/>(<c:out value="${list.gdsSum}"/>개)
+								</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose>
 				</tbody>
 				</table>
 			</div>

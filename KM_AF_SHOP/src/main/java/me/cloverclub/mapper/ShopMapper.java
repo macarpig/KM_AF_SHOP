@@ -4,6 +4,8 @@ import java.util.List;
 
 import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.MemberVO;
+import me.cloverclub.vo.OrderListVO;
+import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
 
 public interface ShopMapper {
@@ -37,4 +39,7 @@ public interface ShopMapper {
       
     //카트 상품 하나 제거
       public void removeCart(CartVO cart) throws Exception;
+      
+      //주문내역 보기
+      public List<OrderListVO> orderView(OrderListVO order) throws Exception;
 }

@@ -3,6 +3,7 @@ package me.cloverclub.service;
 import java.util.List;
 
 import me.cloverclub.vo.GoodsVO;
+import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
 
 public interface AdminService {
@@ -20,4 +21,5 @@ public interface AdminService {
 	
 	// delete goods
 	public void goodsDelete(String gdsCode) throws Exception;
+	
 }

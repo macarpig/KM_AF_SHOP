@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.mapper.ShopMapper;
 import me.cloverclub.vo.CartVO;
+import me.cloverclub.vo.OrderListVO;
+import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
 
 @Log4j
@@ -64,5 +66,12 @@ public void plusCart(CartVO cart) throws Exception {
 @Override
 public void removeCart(CartVO cart) throws Exception {
 	mapper.removeCart(cart);
+}
+
+@Override
+// orderList view
+public List<OrderListVO> orderView(OrderListVO order) throws Exception {
+	
+	return mapper.orderView(order);
 }
 }

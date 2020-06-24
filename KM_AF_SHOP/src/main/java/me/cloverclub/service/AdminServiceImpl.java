@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.mapper.AdminMapper;
+import me.cloverclub.mapper.ShopMapper;
 import me.cloverclub.vo.GoodsVO;
+import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
 
 @Log4j
@@ -15,6 +17,7 @@ import me.cloverclub.vo.ShopVO;
 @AllArgsConstructor
 public class AdminServiceImpl implements AdminService {
 	private AdminMapper mapper;
+	private ShopMapper mapper2;
 	
 	// add goods
 	@Override

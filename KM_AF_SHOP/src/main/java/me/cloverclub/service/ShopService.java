@@ -3,6 +3,8 @@ package me.cloverclub.service;
 import java.util.List;
 
 import me.cloverclub.vo.CartVO;
+import me.cloverclub.vo.OrderListVO;
+import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
 
 public interface ShopService {
@@ -26,4 +28,7 @@ public interface ShopService {
       public void plusCart(CartVO cart) throws Exception;
       
       public void removeCart(CartVO cart) throws Exception;
+      
+     // orderList view
+  	 public List<OrderListVO> orderView(OrderListVO order) throws Exception;
 }
