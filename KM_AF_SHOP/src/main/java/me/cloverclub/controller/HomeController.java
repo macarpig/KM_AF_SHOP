@@ -1,3 +1,4 @@
+
 package me.cloverclub.controller;
 
 import java.io.PrintWriter;
@@ -20,6 +21,7 @@ import me.cloverclub.service.ShopService;
 import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.MemberVO;
+import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
@@ -110,64 +112,120 @@ public class HomeController {
       
       @PostMapping("/deleteCart")
       public int postDeleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
-    	  MemberVO member = (MemberVO)session.getAttribute("member");
-    	  String userId = member.getUserId();
-    	  
-    	  int result = 0;
-    	  int gdsCode = 0;
-    	  
-    	  if(member != null) {
-    		  cart.setUserId(userId);
-    		  
-    		  for(String i : chArr) {
-    			  gdsCode = Integer.parseInt(i);
-    			  cart.setGdsCode(gdsCode);
-    			  s_service.deleteCart(cart);
-    		  }
-    		  result = 1;
-    	  }
-    	  return result;
+         MemberVO member = (MemberVO)session.getAttribute("member");
+         String userId = member.getUserId();
+         
+         int result = 0;
+         int gdsCode = 0;
+         
+         if(member != null) {
+            cart.setUserId(userId);
+            
+            for(String i : chArr) {
+               gdsCode = Integer.parseInt(i);
+               cart.setGdsCode(gdsCode);
+               s_service.deleteCart(cart);
+            }
+            result = 1;
+         }
+         return result;
       }
       
       @PostMapping("/plusCart")
       public int postPlusCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
-    	  MemberVO member = (MemberVO)session.getAttribute("member");
-    	  String userId = member.getUserId();
-    	  
-    	  int result = 0;
-    	  int gdsCode = 0;
-    	  
-    	  if(member != null) {
-    		  cart.setUserId(userId);
-    		  
-    		  for(String i : chArr) {
-    			  gdsCode = Integer.parseInt(i);
-    			  cart.setGdsCode(gdsCode);
-    			  s_service.plusCart(cart);
-    		  }
-    		  result = 1;
-    	  }
-    	  return result;
+         MemberVO member = (MemberVO)session.getAttribute("member");
+         String userId = member.getUserId();
+         
+         int result = 0;
+         int gdsCode = 0;
+         
+         if(member != null) {
+            cart.setUserId(userId);
+            
+            for(String i : chArr) {
+               gdsCode = Integer.parseInt(i);
+               cart.setGdsCode(gdsCode);
+               s_service.plusCart(cart);
+            }
+            result = 1;
+         }
+         return result;
       }
       
       @PostMapping("/removeCart")
       public int postRemoveCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
-    	  MemberVO member = (MemberVO)session.getAttribute("member");
-    	  String userId = member.getUserId();
-    	  
-    	  int result = 0;
-    	  int gdsCode = 0;
-    	  
-    	  if(member != null) {
-    		  cart.setUserId(userId);
-    		  
-    		  for(String i : chArr) {
-    			  gdsCode = Integer.parseInt(i);
-    			  cart.setGdsCode(gdsCode);
-    			  s_service.removeCart(cart);
-    		  }
-    		  result = 1;
-    	  }
-    	  return result;
+         MemberVO member = (MemberVO)session.getAttribute("member");
+         String userId = member.getUserId();
+         
+         int result = 0;
+         int gdsCode = 0;
+         
+         if(member != null) {
+            cart.setUserId(userId);
+            
+            for(String i : chArr) {
+               gdsCode = Integer.parseInt(i);
+               cart.setGdsCode(gdsCode);
+               s_service.removeCart(cart);
+            }
+            result = 1;
+         }
+         return result;
       }
+      
+      @GetMapping("/cart")
+      public String getCart(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+         HttpSession session = request.getSession();
+          MemberVO userId = (MemberVO)session.getAttribute("member");
+          if(userId == null) {
+             response.setContentType("text/html; charset=UTF-8");
+             PrintWriter out = response.getWriter();
+             out.println("<script>alert('로그인을 해주세요.'); history.go(-1);</script>");
+             out.flush();
+          }else {
+             List<CartVO> cart = s_service.showCart(userId.getUserId());
+             model.addAttribute("showCart", cart);
+          }
+       return "checkout";
+      }
+      
+      @PostMapping("/order")
+      public void postOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	  HttpSession session = request.getSession();
+          MemberVO userId = (MemberVO)session.getAttribute("member");
+          String gCode = request.getParameter("gCode");
+          if(userId == null) {
+              response.setContentType("text/html; charset=UTF-8");
+              PrintWriter out = response.getWriter();
+              out.println("<script>alert('주문 접속에 실패했습니다. 로그인을 다시 해주세요.'); history.go(-1);</script>");
+              out.flush();
+           }else {
+          if(gCode != null) {
+        	  String cStock = request.getParameter("cStock");
+        	  model.addAttribute("gCode", gCode);
+        	  model.addAttribute("cStock", cStock);
+          }else {
+        	  List<CartVO> cart = s_service.showCart(userId.getUserId());
+              model.addAttribute("showCart", cart);
+          }
+           }
+      }
+      
+    //주문내역 출력
+  	@GetMapping(value = "/orderList")
+  	public void getOrderlist(HttpSession session,
+  			Model model,@RequestParam(value="c", required=false) String userId, OrderListVO order) throws Exception {
+  		log.info("getOrderList()");
+  		MemberVO member = (MemberVO)session.getAttribute("member");
+  		order.setUserId(userId);	
+  		if(member==null) {
+  			System.out.println("로그인 하고오세요.");
+  		} else {	
+  			System.out.println(userId);
+  			List<OrderListVO> orderView  = s_service.orderView(order);
+  			model.addAttribute("orderView", orderView);
+  		}
+  	}
+      	
+      
 }
