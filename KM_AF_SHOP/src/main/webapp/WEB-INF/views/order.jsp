@@ -112,6 +112,17 @@
 					<textarea class="edd-input" rows="3" name="edd_require" id="edd-require" placeholder="요청사항을 입력하세요"></textarea>
                </p>
             </fieldset>
+            <c:set var="sum" value="0"/>
+            <fieldset id="edd_checkout_list">
+            	<p id="edd_list">
+            		<c:forEach items="${showCart}" var="showCart">
+            		${showCart.gdsName} · ${showCart.cartStock}개 
+            		<c:set var="price" value="${showCart.gdsPrice * showCart.cartStock}"/>
+            		(￦${showCart.gdsPrice} * ${showCart.cartStock}개)<br> = ￦${price}<br>
+            		</c:forEach>
+            		<c:set var="sum" value="${sum + price}"/> 
+            	</p>
+            </fieldset>
             <fieldset id="edd_purchase_submit">
                <p id="edd_final_total_wrap">
                   <strong>Purchase Total:</strong>
