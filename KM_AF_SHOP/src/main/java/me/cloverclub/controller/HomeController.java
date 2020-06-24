@@ -187,9 +187,26 @@ public class HomeController {
        return "checkout";
       }
       
-      @GetMapping("/order")
-      public void getOrder() throws Exception {
-         
+      @PostMapping("/order")
+      public void postOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	  HttpSession session = request.getSession();
+          MemberVO userId = (MemberVO)session.getAttribute("member");
+          String gCode = request.getParameter("gCode");
+          if(userId == null) {
+              response.setContentType("text/html; charset=UTF-8");
+              PrintWriter out = response.getWriter();
+              out.println("<script>alert('주문 접속에 실패했습니다. 로그인을 다시 해주세요.'); history.go(-1);</script>");
+              out.flush();
+           }else {
+          if(gCode != null) {
+        	  String cStock = request.getParameter("cStock");
+        	  model.addAttribute("gCode", gCode);
+        	  model.addAttribute("cStock", cStock);
+          }else {
+        	  List<CartVO> cart = s_service.showCart(userId.getUserId());
+              model.addAttribute("showCart", cart);
+          }
+           }
       }
       
 }
