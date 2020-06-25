@@ -64,6 +64,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/join")
+	public String getJoin() throws Exception {
+		log.info("getJoin()");
+		
+		return "join";
+	}
+	
 	@PostMapping("/join")
 	public String postJoin(MemberVO vo) throws Exception {
 		log.info("postJoin()" + vo);
