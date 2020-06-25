@@ -1,6 +1,6 @@
 package me.cloverclub.mapper;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import me.cloverclub.vo.MemberVO;
 
@@ -16,4 +16,7 @@ public interface MemberMapper {
 	
 	// viewMember
 	public MemberVO viewMember(String userId) throws Exception;
+	
+	// list
+	public List<MemberVO> list() throws Exception;
 }

@@ -1,5 +1,7 @@
 package me.cloverclub.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
@@ -55,5 +57,13 @@ public class MemberServiceImpl implements MemberService {
 		log.info("MemberService: viewMember()");
 		
 		return mapper.viewMember(userId);
+	}
+
+	// list
+	@Override
+	public List<MemberVO> list() throws Exception {
+		log.info("MemberService: list()");
+		
+		return mapper.list();
 	}
 }

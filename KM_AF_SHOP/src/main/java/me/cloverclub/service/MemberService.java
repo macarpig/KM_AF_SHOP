@@ -1,5 +1,7 @@
 package me.cloverclub.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import me.cloverclub.vo.MemberVO;
@@ -19,4 +21,7 @@ public interface MemberService {
 	
 	// viewMember
 	public MemberVO viewMember(String userId) throws Exception;
+	
+	// list
+	public List<MemberVO> list() throws Exception;
 }

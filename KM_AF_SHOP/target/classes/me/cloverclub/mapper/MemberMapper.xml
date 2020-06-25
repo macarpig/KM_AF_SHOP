@@ -33,4 +33,10 @@
 		from member
 		where userId = #{userId}
 	</select>
+	
+	<!-- list -->
+	<select id="list" resultType="me.cloverclub.vo.MemberVO">
+		select userId, userName, userEmail, userTel, userZipcode, userAddr1, userAddr2, userAuth
+		from member
+	</select>
 </mapper>

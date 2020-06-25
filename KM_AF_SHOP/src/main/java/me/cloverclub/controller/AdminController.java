@@ -26,12 +26,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.service.AdminService;
 import me.cloverclub.service.CategoryService;
+import me.cloverclub.service.MemberService;
 import me.cloverclub.util.UploadFileUtil;
 import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.GoodsVO;
+import me.cloverclub.vo.MemberVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 @Controller
 @Log4j
@@ -40,6 +41,7 @@ import net.sf.json.JSONObject;
 public class AdminController {
 	private AdminService a_service;
 	private CategoryService c_service;
+	private MemberService m_service;
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -218,5 +220,16 @@ public class AdminController {
 		}
 		
 		return;
+	}
+	
+	// get member list
+	@GetMapping("/member/list")
+	public String getMemberList(Model model) throws Exception {
+		log.info("AdminController: getMemberList()");
+		
+		List<MemberVO> list = m_service.list();
+		model.addAttribute("list", list);
+		
+		return "/admin/member/list";
 	}
 }
