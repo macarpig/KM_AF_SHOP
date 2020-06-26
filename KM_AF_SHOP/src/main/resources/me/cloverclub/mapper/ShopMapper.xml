@@ -36,7 +36,7 @@
    <!-- add Cart -->
    <insert id="addCart">
    insert into cart (cartId, userId, gdsCode, cartStock)
-   values (cart_seq.nextval, #{userId}, #{gdsCode}, #{cartStock})
+   values (null, #{userId}, #{gdsCode}, #{cartStock})
    </insert>
    
    <!-- show Cart -->
@@ -83,4 +83,17 @@
    on d.gdsCode = g.gdsCode
    where o.userId = #{userId}
    </select>
+   
+   <!-- 주문완료 시 배송 정보 삽입 -->
+   <insert id="orderInfo">
+   insert into order(orderId, userId, orderRecvr, orderZipCode, orderAddr1, orderAddr2, orderTel1, orderTel2, orderTel3, orderDate)
+   values(#{orderId}, #{userId}, #{orderRecvr}, #{orderZipCode}, #{orderAddr1}, #{orderAddr2}, #{orderTel1}, #{orderTel2}, #{orderTel3}, #{orderDate})
+   </insert>
+   
+   <!-- 주문 상세 정보 삽입 -->
+   <insert id="orderInfo_Details">
+   insert into orderDetail(orderId, gdsCode, cartStock)
+   select #{orderId}, gdsCode, cartStock
+   from cart
+   </insert>
 </mapper>

@@ -70,8 +70,8 @@ public class HomeController {
       }
       
       @GetMapping("/cartCheck")
-      public String getCartCheck(@RequestParam("n") int gdsCode, @RequestParam("s") int cartStock, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-         HttpSession session = request.getSession();
+      public String getCartCheck(@RequestParam("n") int gdsCode, @RequestParam("s") int cartStock, Model model, HttpServletRequest request, HttpServletResponse response, CartVO cart) throws Exception {
+    	  HttpSession session = request.getSession();
          MemberVO userId = (MemberVO)session.getAttribute("member");
          if(userId == null) {
             response.setContentType("text/html; charset=UTF-8");
@@ -79,7 +79,11 @@ public class HomeController {
             out.println("<script>alert('로그인을 해주세요.'); history.go(-1);</script>");
             out.flush();
          }else {
-            s_service.addCart(userId.getUserId(), gdsCode, cartStock);
+             log.info("getCartCheck() userId : "+userId.getUserId()+ " gdsCode : "+gdsCode+" cartStock :" + cartStock);
+             cart.setUserId(userId.getUserId());
+             cart.setGdsCode(gdsCode);
+             cart.setCartStock(cartStock);
+            s_service.addCart(cart);
             
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -88,15 +92,16 @@ public class HomeController {
                   "  history.go(-1);" + 
                   "}</script>");
             out.flush();
-            List<CartVO> cart = s_service.showCart(userId.getUserId());
-            model.addAttribute("showCart", cart);
+            List<CartVO> carts = s_service.showCart(userId.getUserId());
+            model.addAttribute("showCart", carts);
          }
       return "checkout";
       }
       
       @GetMapping("/purchaseCheck")
       public String getPurchaseCheck(@RequestParam("n") String gdsCode, @RequestParam("s") int cartStock, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-         HttpSession session = request.getSession();
+    	  log.info("getPurchaseCheck() gdsCode : "+gdsCode+" cartStock :" + cartStock);
+    	  HttpSession session = request.getSession();
          MemberVO userId = (MemberVO)session.getAttribute("member");
          if(userId == null) {
             response.setContentType("text/html; charset=UTF-8");
@@ -210,6 +215,29 @@ public class HomeController {
           }
            }
       }
+     
+      //주문완료체크
+      @PostMapping("/ordercheck")
+      public void postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	  HttpSession session = request.getSession();
+          MemberVO userId = (MemberVO)session.getAttribute("member");
+          String gCode = request.getParameter("gCode");
+          if(userId == null) {
+              response.setContentType("text/html; charset=UTF-8");
+              PrintWriter out = response.getWriter();
+              out.println("<script>alert('죄송합니다. 주문 접속에 실패했습니다. 로그인을 다시 해주세요.'); history.go(-1);</script>");
+              out.flush();
+           }else {
+        	   if(gCode != null) {
+        	  String cStock = request.getParameter("cStock");
+
+          	}else {
+        	  List<CartVO> cart = s_service.showCart(userId.getUserId());
+              model.addAttribute("showCart", cart);
+          	}
+          }
+      }
+      
     //주문내역 출력
   	@GetMapping(value = "/orderList")
   	public void getOrderlist(HttpSession session,

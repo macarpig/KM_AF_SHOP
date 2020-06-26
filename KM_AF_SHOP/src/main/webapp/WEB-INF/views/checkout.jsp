@@ -176,7 +176,7 @@ String cStock = request.getParameter("s"); %>
 							checkArr.push($(this).attr("data-gdsCode"));
 							
 							$.ajax({
-								url : "/addCart",
+								url : "/plusCart",
 								type : "post",
 								data : { chbox : checkArr},
 								success : function (result) {

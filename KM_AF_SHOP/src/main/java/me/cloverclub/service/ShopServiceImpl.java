@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.mapper.ShopMapper;
 import me.cloverclub.vo.CartVO;
+import me.cloverclub.vo.OrderDetailVO;
 import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
@@ -44,8 +45,8 @@ public class ShopServiceImpl implements ShopService {
    }
 
    @Override
-   public void addCart(String userId, int gdsCode, int cartStock) throws Exception {
-      mapper.addCart(userId, gdsCode, cartStock);
+   public void addCart(CartVO cart) throws Exception {
+      mapper.addCart(cart);
    }
 
    @Override
@@ -73,5 +74,17 @@ public void removeCart(CartVO cart) throws Exception {
 public List<OrderListVO> orderView(OrderListVO order) throws Exception {
 	
 	return mapper.orderView(order);
+}
+
+@Override
+public void orderInfo(OrderVO order) throws Exception {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
+	// TODO Auto-generated method stub
+	
 }
 }
