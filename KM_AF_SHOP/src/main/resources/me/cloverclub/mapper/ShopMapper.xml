@@ -47,12 +47,6 @@
    on c.gdsCode = g.gdsCode
    where c.userId = #{userId}
    </select>
-   
-   <!-- 주문완료 시 배송 정보 삽입 -->
-   <insert id="orderInfo">
-   insert into order(orderId, userId, orderRecvr, orderZipCode, orderAddr1, orderAddr2, orderTel1, orderTel2, orderTel3, orderDate)
-   values(#{orderId}, #{userId}, #{orderRecvr}, #{orderZipCode}, #{orderAddr1}, #{orderAddr2}, #{orderTel1}, #{orderTel2}, #{orderTel3}, #{orderDate})
-   </insert>
 
    <!-- 주문 상세 정보 삽입 -->
    <insert id="orderInfo_Details">

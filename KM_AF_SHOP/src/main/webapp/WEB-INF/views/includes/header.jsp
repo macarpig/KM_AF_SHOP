@@ -35,8 +35,12 @@
   		<c:when test="${member == null }">
   		<a href="${pageContext.request.contextPath}/login">로그인</a>
   		</c:when>
+  		<c:when test="${member.userAuth == 0}">
+  		<a href="webapp/WEB-INF/views/admin/index">관리자페이지</a>
+  		 | 
+  		<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+  		</c:when>
   		<c:otherwise>
-  		${member.userName} 님,  
   		<a href="${pageContext.request.contextPath}/mypage">마이페이지</a>
   		 | 
   		<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
@@ -69,6 +73,11 @@
         <c:when test="${member == null }">
         <a href="${pageContext.request.contextPath}/login">로그인</a>
         </c:when>
+        <c:when test="${member.userAuth == 1}">
+  		<a href="${pageContext.request.contextPath}/admin/index">관리자페이지</a>
+  		 | 
+  		<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+  		</c:when>
         <c:otherwise>
         <a href="${pageContext.request.contextPath}/mypage">마이페이지</a>
          | 
@@ -82,4 +91,3 @@
       </div>
    </div>
    </nav>
->>>>>>> branch 'master' of https://github.com/macarpig/KM_AF_SHOP.git

@@ -78,10 +78,26 @@
 						 			<c:out value="${list.orderDate}"/>
 								</td>
 								<td class="edd_cart_actions">
-									<c:out value="${list.orderId}"/><a class="edd_cart_remove_item_btn" href="#">
-									<c:out value="${list.gdsStatus}"/></a>
+									<c:out value="${list.orderId}"/>
+									<a class="edd_cart_remove_item_btn" href="#">
+									<c:choose>
+										<c:when test="${list.process == 1 }">
+											배송준비
+										</c:when>
+										<c:when test="${list.process == 2 }">
+											배송중
+										</c:when>
+										<c:when test="${list.process == 3 }">
+											배송완료
+										</c:when>
+										<c:otherwise>
+											배송오류. 관리자에게 문의하세요
+										</c:otherwise>
+									</c:choose>
+									
 								</td>
 								<td class="edd_cart_actions">
+								
 									<c:out value="${list.gdsPrice}"/>(<c:out value="${list.gdsSum}"/>개)
 								</td>
 								</tr>

@@ -10,7 +10,7 @@ public class OrderListVO {
 	private String userId;
 	private Date orderDate;
 	private String gdsCode;
-	private String gdsStatus;
+	private int process;
 	private int gdsSum;
 	private String gdsName;
 	private int gdsPrice;
