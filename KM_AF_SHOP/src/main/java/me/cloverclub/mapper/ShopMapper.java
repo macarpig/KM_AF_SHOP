@@ -26,7 +26,7 @@ public interface ShopMapper {
       public ShopVO product(String gdsCode) throws Exception;
       
       //장바구니에 상품이 추가
-      public void addCart(String userId, int gdsCode, int cartStock) throws Exception;
+      public void addCart(CartVO cart) throws Exception;
       
       //장바구니 보여짐
       public List<CartVO> showCart(String userId) throws Exception;

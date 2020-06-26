@@ -3,6 +3,7 @@ package me.cloverclub.service;
 import java.util.List;
 
 import me.cloverclub.vo.CartVO;
+import me.cloverclub.vo.OrderDetailVO;
 import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
@@ -19,7 +20,7 @@ public interface ShopService {
       
       public ShopVO product(String gdsCode) throws Exception;
       
-      public void addCart(String userId, int gdsCode, int cartStock) throws Exception;
+      public void addCart(CartVO cart) throws Exception;
       
       public List<CartVO> showCart(String userId) throws Exception;
       
@@ -31,4 +32,10 @@ public interface ShopService {
       
      // orderList view
   	 public List<OrderListVO> orderView(OrderListVO order) throws Exception;
+  	 
+  	 //주문 정보 삽입
+  	 public void orderInfo(OrderVO order) throws Exception;
+  	 
+  	 //주문 상세 정보 삽입
+  	 public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
 }
