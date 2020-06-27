@@ -33,7 +33,7 @@
 <!-- CONTENT =============================-->
 <section class="item content">
 <div class="container toparea">
-	<div class="underlined-title">
+   <div class="underlined-title">
       <div class="editContent">
          <h1 class="text-center latestitems">${member.userName}님의 마이페이지</h1>
       </div>
@@ -48,49 +48,49 @@
    </div>
    
    <div class="row">
-		<div class="col-md-4">
-			<div class="productbox">
-				<div class="product-details">
-					<a href="${pageContext.request.contextPath}/cartCheck">
-					<span class="maxproduct"><img src="resources/images/cart.png" alt=""></span>
-					<h1>장바구니</h1>
-					</a>
-					<span class="price">
-					<span class="edd_price">장바구니 가기</span>
-					</span>
-				</div>
-			</div>
-		</div>
-		<!-- 회원정보 수정 -->
-		<div class="col-md-4">
-			<div class="productbox">
-				<div class="product-details">
-					<a href="${pageContext.request.contextPath}/memberInfo">
-					<span class="maxproduct"><img src="resources/images/membership.png" alt=""></span>
-					<h1>회원정보 수정</h1>
-					</a>
-					<span class="price">
-					<span class="edd_price">회원정보 수정하기</span>
-					</span>
-				</div>
-			</div>
-		</div>
-		<!-- /.productbox -->
-		<div class="col-md-4">
-			<div class="productbox">
-				<div class="product-details">
-					<a href="${pageContext.request.contextPath}/orderList?c=${member.userId}">
-					<span class="maxproduct"><img src="resources/images/list.png" alt=""></span>
-					<h1>주문내역</h1>
-					</a>
-					<span class="price">
-					<span class="edd_price">주문내역 보기</span>
-					</span>
-				</div>
-			</div>
-		</div>
-		
-	</div>
+      <div class="col-md-4">
+         <div class="productbox">
+            <div class="product-details">
+               <a href="${pageContext.request.contextPath}/cart">
+               <span class="maxproduct"><img src="resources/images/cart.png" alt=""></span>
+               <h1>장바구니</h1>
+               </a>
+               <span class="price">
+               <span class="edd_price">장바구니 가기</span>
+               </span>
+            </div>
+         </div>
+      </div>
+      <!-- 회원정보 수정 -->
+      <div class="col-md-4">
+         <div class="productbox">
+            <div class="product-details">
+               <a href="${pageContext.request.contextPath}/memberInfo">
+               <span class="maxproduct"><img src="resources/images/membership.png" alt=""></span>
+               <h1>회원정보 수정</h1>
+               </a>
+               <span class="price">
+               <span class="edd_price">회원정보 수정하기</span>
+               </span>
+            </div>
+         </div>
+      </div>
+      <!-- /.productbox -->
+      <div class="col-md-4">
+         <div class="productbox">
+            <div class="product-details">
+               <a href="${pageContext.request.contextPath}/orderList">
+               <span class="maxproduct"><img src="resources/images/list.png" alt=""></span>
+               <h1>주문내역</h1>
+               </a>
+               <span class="price">
+               <span class="edd_price">주문내역 보기</span>
+               </span>
+            </div>
+         </div>
+      </div>
+      
+   </div>
 </div>
 </div>
 </section>

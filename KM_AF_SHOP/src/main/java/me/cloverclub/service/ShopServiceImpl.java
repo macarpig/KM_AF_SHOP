@@ -90,4 +90,14 @@ public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
 public void viewUp(String gdsCode) throws Exception {
    mapper.viewUp(gdsCode);
 }
+
+@Override
+public void orderInsert(String orderId) throws Exception {
+	mapper.orderInsert(orderId);
+}
+
+@Override
+public void cartAllDelete(String userId) throws Exception {
+	mapper.cartAllDelete(userId);
+}
 }

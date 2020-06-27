@@ -72,6 +72,7 @@ public class HomeController {
       @GetMapping("/product")
       public void getProduct(@RequestParam("n") String gdsCode, Model model) throws Exception {
          ShopVO product = s_service.product(gdsCode);
+         s_service.viewUp(gdsCode);
          model.addAttribute("product", product);
       }
       
@@ -261,6 +262,7 @@ public class HomeController {
               order.setOrderTel3(request.getParameter("phone3"));
               order.setOrderDate(now);
              s_service.orderInfo(order);
+             s_service.orderInsert(str1+userId.getUserId());
              orderDetail.setOrderId(str1+userId.getUserId());
              
               if(gCode != null && gCode != " " && gCode != "") {
@@ -275,26 +277,25 @@ public class HomeController {
                  orderDetail.setCartStock(cart.get(i).getCartStock());
                  s_service.orderInfo_Details(orderDetail);
               }
+              s_service.cartAllDelete(userId.getUserId());
              }
           }
           return "orderList";
       }
       
     //주문내역 출력
-  	@GetMapping(value = "/orderList")
-  	public void getOrderlist(HttpSession session,
-  			Model model,@RequestParam(value="c", required=false) String userId, OrderListVO order) throws Exception {
-  		log.info("getOrderList()");
-  		MemberVO member = (MemberVO)session.getAttribute("member");
-  		order.setUserId(userId);	
-  		if(member==null) {
-  			System.out.println("로그인 하고오세요.");
-  		} else {	
-  			System.out.println(userId);
-  			List<OrderListVO> orderView  = s_service.orderView(order);
-  			model.addAttribute("orderView", orderView);
-  		}
-  	}
-  	
+     @GetMapping(value = "/orderList")
+     public void getOrderlist(HttpSession session,
+           Model model,@RequestParam(value="c", required=false) String userId, OrderListVO order) throws Exception {
+        log.info("getOrderList()");
+        MemberVO member = (MemberVO)session.getAttribute("member");
+        if(member==null) {
+           System.out.println("로그인 하고오세요.");
+        } else {   
+             order.setUserId(member.getUserId());   
+           List<OrderListVO> orderView  = s_service.orderView(order);
+           model.addAttribute("orderView", orderView);
+        }
+     }
+     
 }
-

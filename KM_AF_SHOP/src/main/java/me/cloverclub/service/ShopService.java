@@ -40,4 +40,8 @@ public interface ShopService {
       
       //주문 상세 정보 삽입
       public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
+      
+      public void orderInsert(String orderId) throws Exception;
+      
+      public void cartAllDelete(String userId) throws Exception;
 }

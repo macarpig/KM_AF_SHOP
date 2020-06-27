@@ -52,5 +52,11 @@ public interface ShopMapper {
       
       //배송주문의 주문상품 목록 입력
       public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
+      
+      //배송주문 완료시 process 테이블에도 입력해야 함
+      public void orderInsert(String orderId) throws Exception;
+      
+      //장바구니 비우기
+      public void cartAllDelete(String userId) throws Exception;
 
 }
