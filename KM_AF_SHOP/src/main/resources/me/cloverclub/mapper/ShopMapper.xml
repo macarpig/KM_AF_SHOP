@@ -81,7 +81,7 @@
    
    <!-- 주문내역 보기 -->
    <select id="orderView" resultType="me.cloverclub.vo.OrderListVO">
-   select  o.userId, o.orderDate, o.orderId, d.gdsCode,
+   select  o.userId, o.orderDate, o.orderId, d.gdsCode,d.cartStock
    g.gdsName, g.gdsImg, g.gdsPrice,
    p.process
    from ordertbl o
