@@ -211,7 +211,7 @@ public class HomeController {
       }
       
       @PostMapping("/order")
-      public void postOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+      public String postOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
          HttpSession session = request.getSession();
           MemberVO userId = (MemberVO)session.getAttribute("member");
           String gCode = request.getParameter("gCode");
@@ -230,15 +230,17 @@ public class HomeController {
               model.addAttribute("showCart", cart);
           }
            }
+          return "order";
       }
      
       
       //주문완료체크
       @PostMapping("/ordercheck")
-      public void postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response, OrderVO order, OrderDetailVO orderDetail) throws Exception {
+      public String postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response, OrderVO order, OrderDetailVO orderDetail) throws Exception {
          HttpSession session = request.getSession();
           MemberVO userId = (MemberVO)session.getAttribute("member");
           String gCode = request.getParameter("gCode");
+          
           if(userId == null) {
               response.setContentType("text/html; charset=UTF-8");
               PrintWriter out = response.getWriter();
@@ -261,7 +263,7 @@ public class HomeController {
              s_service.orderInfo(order);
              orderDetail.setOrderId(str1+userId.getUserId());
              
-              if(gCode != null) {
+              if(gCode != null && gCode != " " && gCode != "") {
              String cStock = request.getParameter("cStock");
              orderDetail.setGdsCode(Integer.parseInt(gCode));
              orderDetail.setCartStock(Integer.parseInt(cStock));
@@ -275,6 +277,7 @@ public class HomeController {
               }
              }
           }
+          return "orderList";
       }
       
     //주문내역 출력
