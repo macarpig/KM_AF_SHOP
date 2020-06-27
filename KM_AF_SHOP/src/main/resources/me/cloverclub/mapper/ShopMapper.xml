@@ -81,7 +81,7 @@
    <!-- 주문내역 보기 -->
    <select id="orderView" resultType="me.cloverclub.vo.OrderListVO">
    select  o.userId, o.orderDate, o.orderId, 
-   d.gdsSum, d.gdsCode,
+   d.gdsCode, d.cartStock
    g.gdsName, g.gdsImg, g.gdsPrice,
    p.process
    from ordertbl o
@@ -100,10 +100,5 @@
    values(#{orderId}, #{userId}, #{orderRecvr}, #{orderZipCode}, #{orderAddr1}, #{orderAddr2}, #{orderTel1}, #{orderTel2}, #{orderTel3}, #{orderDate})
    </insert>
    
-   <!-- 주문 상세 정보 삽입 -->
-   <insert id="orderInfo_Details">
-   insert into orderDetail(orderId, gdsCode, cartStock)
-   select #{orderId}, gdsCode, cartStock
-   from cart
-   </insert>
+   
 </mapper>
