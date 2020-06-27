@@ -33,77 +33,74 @@
    from goods where gdsCode = #{gdsCode}
    </select>
    
+   <!-- 조회수 증가 -->
+   <update id="viewUp">
+   update goods
+      set gdsView = gdsView + 1
+      where gdsCode = #{gdsCode}
+   </update>
+   
    <!-- add Cart -->
    <insert id="addCart">
-   insert into cart (cartId, userId, gdsCode, cartStock)
-   values (null, #{userId}, #{gdsCode}, #{cartStock})
+   insert into cart (userId, gdsCode, cartStock)
+   values (#{userId}, #{gdsCode}, #{cartStock})
+   on duplicate key update cartStock = cartStock + #{cartStock}
    </insert>
    
    <!-- show Cart -->
    <select id="showCart" resultType="me.cloverclub.vo.CartVO">
-   select c.cartId, c.userId, c.gdsCode, c.cartStock, g.gdsName, g.gdsPrice, g.gdsImg
+   select c.userId, c.gdsCode, c.cartStock, g.gdsName, g.gdsPrice, g.gdsImg
    from cart c
    inner join goods g
    on c.gdsCode = g.gdsCode
    where c.userId = #{userId}
    </select>
-
-   <!-- 주문 상세 정보 삽입 -->
-   <insert id="orderInfo_Details">
-   insert into orderDetail(orderId, gdsCode, cartStock)
-   select #{orderId}, gdsCode, cartStock
-   from cart
-   </insert>
    
    <!-- 카트 삭제 -->
    <delete id="deleteCart">
-   	delete cart
-   	where gdsCode = #{gdsCode}
-   	and userId = #{userId}
+      delete cart
+      where gdsCode = #{gdsCode}
+      and userId = #{userId}
    </delete>
    
    <!-- 카트 수량 수정 -->
    <update id="plusCart">
-   	update cart
-   	set cartStock = cartStock + 1
-   	where gdsCode = #{gdsCode}
-   	and userId = #{userId}
+      update cart
+      set cartStock = cartStock + 1
+      where gdsCode = #{gdsCode}
+      and userId = #{userId}
    </update>
    
    <!-- 카트 수량 수정 -->
    <update id="removeCart">
-   	update cart
-   	set cartStock = cartStock - 1
-   	where gdsCode = #{gdsCode}
-   	and userId = #{userId}
+      update cart
+      set cartStock = cartStock - 1
+      where gdsCode = #{gdsCode}
+      and userId = #{userId}
    </update>
    
    <!-- 주문내역 보기 -->
    <select id="orderView" resultType="me.cloverclub.vo.OrderListVO">
    select  o.userId, o.orderDate, o.orderId, 
-   d.gdsSum, d.gdsCode,
-   g.gdsName, g.gdsImg, g.gdsPrice,
-   p.process
+   d.gdsStatus, d.gdsSum, d.gdsCode,
+   g.gdsName, g.gdsImg, g.gdsPrice 
    from ordertbl o
    inner join orderDetail d
    on o.orderId = d.orderId
    inner join goods g
    on d.gdsCode = g.gdsCode
-   inner join process p
-   on o.orderId = p.orderId
    where o.userId = #{userId}
    </select>
    
    <!-- 주문완료 시 배송 정보 삽입 -->
    <insert id="orderInfo">
-   insert into order(orderId, userId, orderRecvr, orderZipCode, orderAddr1, orderAddr2, orderTel1, orderTel2, orderTel3, orderDate)
+   insert into ordertbl(orderId, userId, orderRecvr, orderZipCode, orderAddr1, orderAddr2, orderTel1, orderTel2, orderTel3, orderDate)
    values(#{orderId}, #{userId}, #{orderRecvr}, #{orderZipCode}, #{orderAddr1}, #{orderAddr2}, #{orderTel1}, #{orderTel2}, #{orderTel3}, #{orderDate})
    </insert>
    
    <!-- 주문 상세 정보 삽입 -->
    <insert id="orderInfo_Details">
    insert into orderDetail(orderId, gdsCode, cartStock)
-   select #{orderId}, gdsCode, cartStock
-   from cart
+   values(#{orderId}, #{gdsCode}, #{cartStock})
    </insert>
 </mapper>

@@ -6,8 +6,8 @@ import lombok.Data;
 public class OrderDetailVO {
 	private String orderDetailed;
 	private String orderId;
-	private String gdsCode;
-	private String cartStock;
+	private int gdsCode;
+	private int cartStock;
 	private String gdsStatus;
 	private int gdsSum;
 }

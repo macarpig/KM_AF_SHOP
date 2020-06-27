@@ -2,6 +2,8 @@
 package me.cloverclub.controller;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -21,7 +24,9 @@ import me.cloverclub.service.ShopService;
 import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.MemberVO;
+import me.cloverclub.vo.OrderDetailVO;
 import me.cloverclub.vo.OrderListVO;
+import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
@@ -63,15 +68,18 @@ public class HomeController {
          model.addAttribute("list", list);
       }
       
+      
       @GetMapping("/product")
       public void getProduct(@RequestParam("n") String gdsCode, Model model) throws Exception {
          ShopVO product = s_service.product(gdsCode);
          model.addAttribute("product", product);
       }
       
+      
+     
       @GetMapping("/cartCheck")
       public String getCartCheck(@RequestParam("n") int gdsCode, @RequestParam("s") int cartStock, Model model, HttpServletRequest request, HttpServletResponse response, CartVO cart) throws Exception {
-    	  HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
          MemberVO userId = (MemberVO)session.getAttribute("member");
          if(userId == null) {
             response.setContentType("text/html; charset=UTF-8");
@@ -90,7 +98,8 @@ public class HomeController {
             out.println("<script>var con_test = confirm(\"장바구니에 담았습니다. 장바구니로 이동하시겠습니까?\"); " + 
                   "if(con_test == false){" + 
                   "  history.go(-1);" + 
-                  "}</script>");
+                  "}else{"
+                  + "location.href=\"/cart\";}</script>");
             out.flush();
             List<CartVO> carts = s_service.showCart(userId.getUserId());
             model.addAttribute("showCart", carts);
@@ -100,8 +109,8 @@ public class HomeController {
       
       @GetMapping("/purchaseCheck")
       public String getPurchaseCheck(@RequestParam("n") String gdsCode, @RequestParam("s") int cartStock, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	  log.info("getPurchaseCheck() gdsCode : "+gdsCode+" cartStock :" + cartStock);
-    	  HttpSession session = request.getSession();
+         log.info("getPurchaseCheck() gdsCode : "+gdsCode+" cartStock :" + cartStock);
+         HttpSession session = request.getSession();
          MemberVO userId = (MemberVO)session.getAttribute("member");
          if(userId == null) {
             response.setContentType("text/html; charset=UTF-8");
@@ -112,9 +121,11 @@ public class HomeController {
             ShopVO product = s_service.product(gdsCode);
              model.addAttribute("product", product);
          }
-      return "checkout?n="+gdsCode+"&s="+cartStock;
+      return "checkout";
       }
       
+      
+      @ResponseBody
       @PostMapping("/deleteCart")
       public int postDeleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
          MemberVO member = (MemberVO)session.getAttribute("member");
@@ -135,7 +146,9 @@ public class HomeController {
          }
          return result;
       }
+
       
+      @ResponseBody
       @PostMapping("/plusCart")
       public int postPlusCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
          MemberVO member = (MemberVO)session.getAttribute("member");
@@ -157,6 +170,8 @@ public class HomeController {
          return result;
       }
       
+      
+      @ResponseBody
       @PostMapping("/removeCart")
       public int postRemoveCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
          MemberVO member = (MemberVO)session.getAttribute("member");
@@ -178,6 +193,7 @@ public class HomeController {
          return result;
       }
       
+      
       @GetMapping("/cart")
       public String getCart(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
          HttpSession session = request.getSession();
@@ -196,7 +212,7 @@ public class HomeController {
       
       @PostMapping("/order")
       public void postOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	  HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
           MemberVO userId = (MemberVO)session.getAttribute("member");
           String gCode = request.getParameter("gCode");
           if(userId == null) {
@@ -206,20 +222,21 @@ public class HomeController {
               out.flush();
            }else {
           if(gCode != null) {
-        	  String cStock = request.getParameter("cStock");
-        	  model.addAttribute("gCode", gCode);
-        	  model.addAttribute("cStock", cStock);
+             String cStock = request.getParameter("cStock");
+             model.addAttribute("gCode", gCode);
+             model.addAttribute("cStock", cStock);
           }else {
-        	  List<CartVO> cart = s_service.showCart(userId.getUserId());
+             List<CartVO> cart = s_service.showCart(userId.getUserId());
               model.addAttribute("showCart", cart);
           }
            }
       }
      
+      
       //주문완료체크
       @PostMapping("/ordercheck")
-      public void postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	  HttpSession session = request.getSession();
+      public void postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response, OrderVO order, OrderDetailVO orderDetail) throws Exception {
+         HttpSession session = request.getSession();
           MemberVO userId = (MemberVO)session.getAttribute("member");
           String gCode = request.getParameter("gCode");
           if(userId == null) {
@@ -228,13 +245,35 @@ public class HomeController {
               out.println("<script>alert('죄송합니다. 주문 접속에 실패했습니다. 로그인을 다시 해주세요.'); history.go(-1);</script>");
               out.flush();
            }else {
-        	   if(gCode != null) {
-        	  String cStock = request.getParameter("cStock");
-
-          	}else {
-        	  List<CartVO> cart = s_service.showCart(userId.getUserId());
-              model.addAttribute("showCart", cart);
-          	}
+              order.setUserId(userId.getUserId());
+              Date now = new Date();
+              SimpleDateFormat format = new SimpleDateFormat("yymmddhhmm");
+              String str1 = format.format(now);
+              order.setOrderId(str1+userId.getUserId());
+              order.setOrderRecvr(request.getParameter("reciever"));
+              order.setOrderZipCode(request.getParameter("zip-code"));
+              order.setOrderAddr1(request.getParameter("address"));
+              order.setOrderAddr2(request.getParameter("detail-address"));
+              order.setOrderTel1(request.getParameter("phone1"));
+              order.setOrderTel2(request.getParameter("phone2"));
+              order.setOrderTel3(request.getParameter("phone3"));
+              order.setOrderDate(now);
+             s_service.orderInfo(order);
+             orderDetail.setOrderId(str1+userId.getUserId());
+             
+              if(gCode != null) {
+             String cStock = request.getParameter("cStock");
+             orderDetail.setGdsCode(Integer.parseInt(gCode));
+             orderDetail.setCartStock(Integer.parseInt(cStock));
+             s_service.orderInfo_Details(orderDetail);
+             }else {
+             List<CartVO> cart = s_service.showCart(userId.getUserId());
+              for(int i=0; i<cart.size(); i++) {
+                 orderDetail.setGdsCode(cart.get(i).getGdsCode());
+                 orderDetail.setCartStock(cart.get(i).getCartStock());
+                 s_service.orderInfo_Details(orderDetail);
+              }
+             }
           }
       }
       
@@ -253,7 +292,6 @@ public class HomeController {
   			model.addAttribute("orderView", orderView);
   		}
   	}
-      	
-      
+  	
 }
 

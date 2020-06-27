@@ -67,71 +67,71 @@
                <legend>Personal Info</legend>
                <p id="edd-zip-code-wrap">
                   <label class="edd-label" for="edd-zip-code">
-                  	우편번호 <span class="edd-required-indicator">*</span></label>
+                     우편번호 <span class="edd-required-indicator">*</span></label>
                   <input class="edd-input required" type="number" name="zip-code" placeholder="우편번호" id="zip-code" value="" required>
                   <input style="border:none;" type="button" value="우편번호 찾기">
                   <script>
-               	   $("#allCheck").click(function() {
-					var chk = $("#allCheck").prop("checked");
-					if(chk){
-						$(".chBox").prop("checked", true);
-					}else{
-						$(".chBox").prop("checked", false);
-					}
-				});
-               	   </script>
+                     $("#allCheck").click(function() {
+               var chk = $("#allCheck").prop("checked");
+               if(chk){
+                  $(".chBox").prop("checked", true);
+               }else{
+                  $(".chBox").prop("checked", false);
+               }
+            });
+                     </script>
                </p>
                <p id="edd-address-wrap">
                   <label class="edd-label" for="edd-address">
-                  	주소 <span class="edd-required-indicator">*</span>
+                     주소 <span class="edd-required-indicator">*</span>
                   </label>
                   <input class="edd-input required" type="text" name="address" placeholder="지역명(동/리)+번지 또는 도로명+건물번호를 입력하세요" id="address" value="" required>
                </p>
                <p id="edd-detail-address-wrap">
                   <label class="edd-label" for="edd-detail-address">
-                  	상세주소 </label>
+                     상세주소 </label>
                   <input class="edd-input" type="text" name="detail-address" id="detail-address" placeholder="상세주소를 입력하세요(건물명, 동/호수 등)" value="">
                </p>
                <p id="edd-reciever-wrap">
                   <label class="edd-label" for="edd-reciever">
-                  	수신자  <span class="edd-required-indicator">*</span>
-                  	</label>
+                     수신자  <span class="edd-required-indicator">*</span>
+                     </label>
                   <input class="edd-input" type="text" name="reciever" id="reciever" placeholder="수신자를 입력해주세요" value="" required>
                </p>
                <p id="edd-phone-wrap">
                   <label class="edd-label" for="phone">
-                  	전화번호 <span class="edd-required-indicator">*</span>
-                  	 </label>
-                  	<select class="edd-input" name="phone1" id="phone1">
-                  	<option>010</option>
-                  	<option>011</option>
-                  	<option>020</option>
-                  	<option>030</option>
-                  	<option>040</option>
-                  	<option>050</option>
-                  	<option>060</option>
-                  	<option>070</option>
-                  	<option>080</option>
-                  	<option>090</option>
-                  	</select>
+                     전화번호 <span class="edd-required-indicator">*</span>
+                      </label>
+                     <select class="edd-input" name="phone1" id="phone1">
+                     <option>010</option>
+                     <option>011</option>
+                     <option>020</option>
+                     <option>030</option>
+                     <option>040</option>
+                     <option>050</option>
+                     <option>060</option>
+                     <option>070</option>
+                     <option>080</option>
+                     <option>090</option>
+                     </select>
                   -<input class="edd-input" type="number" size="4" maxlength="4" name="phone2" id="phone2" value="" required>-<input class="edd-input" type="number" size="4" maxlength="4" name="phone3" id="phone3" value="" required>
                </p>
                <p id="edd-require-wrap">
                   <label class="edd-label" for="require">
-                  	요청사항 </label>
-					<textarea class="edd-input" rows="3" name="require" id="require" placeholder="요청사항을 입력하세요"></textarea>
+                     요청사항 </label>
+               <textarea class="edd-input" rows="3" name="require" id="require" placeholder="요청사항을 입력하세요"></textarea>
                </p>
             </fieldset>
             <c:set var="sum" value="0"/>
             <fieldset id="edd_checkout_list">
-            	<p id="edd_list">
-            		<c:forEach items="${showCart}" var="showCart">
-            		${showCart.gdsName} · ${showCart.cartStock}개 
-            		<c:set var="price" value="${showCart.gdsPrice * showCart.cartStock}"/>
-            		(￦${showCart.gdsPrice} * ${showCart.cartStock}개)<br> = ￦${price}<br>
-            		</c:forEach>
-            		<c:set var="sum" value="${sum + price}"/> 
-            	</p>
+               <p id="edd_list">
+                  <c:forEach items="${showCart}" var="showCart">
+                  ${showCart.gdsName} · ${showCart.cartStock}개 
+                  <c:set var="price" value="${showCart.gdsPrice * showCart.cartStock}"/>
+                  (￦${showCart.gdsPrice} * ${showCart.cartStock}개)<br> = ￦${price}<br>
+                  </c:forEach>
+                  <c:set var="sum" value="${sum + price}"/> 
+               </p>
             </fieldset>
             <fieldset id="edd_purchase_submit">
                <p id="edd_final_total_wrap">

@@ -20,6 +20,8 @@ public interface ShopService {
       
       public ShopVO product(String gdsCode) throws Exception;
       
+      public void viewUp(String gdsCode) throws Exception;
+      
       public void addCart(CartVO cart) throws Exception;
       
       public List<CartVO> showCart(String userId) throws Exception;
@@ -31,11 +33,11 @@ public interface ShopService {
       public void removeCart(CartVO cart) throws Exception;
       
      // orderList view
-  	 public List<OrderListVO> orderView(OrderListVO order) throws Exception;
-  	 
-  	 //주문 정보 삽입
-  	 public void orderInfo(OrderVO order) throws Exception;
-  	 
-  	 //주문 상세 정보 삽입
-  	 public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
+      public List<OrderListVO> orderView(OrderListVO order) throws Exception;
+      
+      //주문 정보 삽입
+      public void orderInfo(OrderVO order) throws Exception;
+      
+      //주문 상세 정보 삽입
+      public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
 }

@@ -36,7 +36,7 @@ for(var i = 0; i < jsonData.length; i++){
    }
 }
 $(document).ready(function(){
-	
+   
 
 var cate1Div = $("div.category1");
 
@@ -64,9 +64,9 @@ for(var i = 0; i < cate2Arr.length; i++){
 
 var cateH1 = $("h1.latestitems");
 if(<%=cCode%>==0){
-	cateH1.append("All");
+   cateH1.append("All");
 }else{
-	cateH1.append(title);
+   cateH1.append(title);
 }
 
 var activeSystemClass = $('.list-group-item.active');
@@ -81,13 +81,13 @@ function filter() {
   item = document.getElementsByClassName("productbox");
   
   for(i=0;i<item.length;i++) {
-	   name = item[i].getElementsByClassName("name");
-	   if(name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-		   item[i].style.display = "flex";
-		   
-	   } else {
-		   item[i].style.display="none";
-	   }
+      name = item[i].getElementsByClassName("name");
+      if(name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+         item[i].style.display = "flex";
+         
+      } else {
+         item[i].style.display="none";
+      }
   }
 }
 alert(cate1Div.html());
@@ -115,7 +115,7 @@ alert(cate1Div.html());
 <!-- CONTENT =============================-->
 <section class="item content">
 <div class="container toparea">
-	<div class="underlined-title">
+   <div class="underlined-title">
       <div class="editContent">
          <h1 class="text-center latestitems"></h1>
       </div>
@@ -149,18 +149,6 @@ alert(cate1Div.html());
    </div></div>
    
    
-   <!-- Items -->
-   <c:forEach items="${list}" var="list">
-   <li>
-      <div class="goodsImg">
-         <img src="${list.gdsImg}">
-      </div>
-      <div class="goodsName">
-         <a href="/product?n=${list.gdsCode}">${list.gdsName}</a>
-      </div>
-   </li>
-   </c:forEach>
-   
    <!-- 상품들이 한 줄에 세 개씩 보여짐 -->
    <div class="row">
    <c:forEach items="${list}" var="list">
@@ -191,8 +179,8 @@ alert(cate1Div.html());
       </div>
       <c:if test="${i eq 3}">
     <c:out value="</div><div class='row'>" />
-	</c:if>
-	<c:set var="i" value="${i + 1}"/>
+   </c:if>
+   <c:set var="i" value="${i + 1}"/>
 </c:forEach>
 </div>
 </div>
