@@ -47,17 +47,17 @@ String cStock = request.getParameter("s"); %>
             <thead>
             <tr class="edd_cart_header_row">
                <th>
-                   <input type="checkbox" name="allCheck"/><label for="allCheck">모두 선택</label>
-               	   <script>
-               	   $("#allCheck").click(function() {
-					var chk = $("#allCheck").prop("checked");
-					if(chk){
-						$(".chBox").prop("checked", true);
-					}else{
-						$(".chBox").prop("checked", false);
-					}
-				});
-               	   </script>
+                   <input type="checkbox" name="allCheck" id="allCheck"/><label for="allCheck">모두 선택</label>
+                     <script>
+                     $("#allCheck").click(function() {
+               var chk = $("#allCheck").prop("checked");
+               if(chk){
+                  $(".chBox").prop("checked", true);
+               }else{
+                  $(".chBox").prop("checked", false);
+               }
+            });
+                     </script>
                </th>
                <th class="edd_cart_item_name">
                    Item Name
@@ -68,31 +68,31 @@ String cStock = request.getParameter("s"); %>
                <th class="edd_cart_actions">
                    <a class="selectDelete_btn">선택 삭제</a>
                    <script>
-                   	$(".selectDelete_btn").click(function() {
-						var confirm_val = confirm("정말 삭제하시겠습니까?");
-						
-						if(confirm_val){
-							var checkArr = new Array();
-							
-							$("input[class='chBox']:checked").each(function() {
-								checkArr.push($(this).attr("data-gdsCode"));
-							});
-							
-							$.ajax({
-								url : "/deleteCart",
-								type : "post",
-								data : { chbox : checkArr },
-								success : function (result) {
-									if(result == 1){
+                      $(".selectDelete_btn").click(function() {
+                  var confirm_val = confirm("정말 삭제하시겠습니까?");
+                  
+                  if(confirm_val){
+                     var checkArr = new Array();
+                     
+                     $("input[class='chBox']:checked").each(function() {
+                        checkArr.push($(this).attr("data-gdsCode"));
+                     });
+                     
+                     $.ajax({
+                        url : "/deleteCart",
+                        type : "post",
+                        data : { chbox : checkArr },
+                        success : function (result) {
+                           if(result == 1){
 
-										location.href = "/checkout";
-									}else{
-										alert("삭제 실패");
-									}
-								}
-							})
-						}
-					})
+                              location.href = "/checkout";
+                           }else{
+                              alert("삭제 실패");
+                           }
+                        }
+                     })
+                  }
+               })
                    </script>
                </th>
             </tr>
@@ -102,12 +102,12 @@ String cStock = request.getParameter("s"); %>
             <c:forEach items="${showCart}" var="showCart">
             <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
                <td>
-               		<input type="checkbox" name="chBox" class="chBox" data-gdsCode="${showCart.gdsCode}"/>
-               		<script>
-               			$(".chBox").click(function() {
-							$("#allCheck").prop("checked", false);
-						});
-               		</script>
+                     <input type="checkbox" name="chBox" class="chBox" data-gdsCode="${showCart.gdsCode}"/>
+                     <script>
+                        $(".chBox").click(function() {
+                     $("#allCheck").prop("checked", false);
+                  });
+                     </script>
                </td>
                <td class="edd_cart_item_name">
                   <div class="edd_cart_item_image">
@@ -122,97 +122,97 @@ String cStock = request.getParameter("s"); %>
                <td class="edd_cart_actions">
                   <a class="remove_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">-</a>&nbsp;
                   <script>
-                  	$(".remove_${showCart.gdsCode}_btn").click(function() {
-						if($(this).attr("data-cartStock") == 1){
-							var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까?");
-							
-							if(confirm_val){
-								var checkArr = new Array();
-								checkArr.push($(this).attr("data-gdsCode"));
-								
-								$.ajax({
-									url : "/deleteCart",
-									type : "post",
-									data : { chbox : checkArr},
-									success : function (result) {
-										if(result == 1){
-											location.href = "/checkout";
-										}else {
-											alert("삭제 실패");
-										}
-									}
-								});
-							}
-						}else{
-							var confirm_val = confirm("하나 더 제거하시겠습니까?");
-							
-							if(confirm_val){
-								var checkArr = new Array();
-								checkArr.push($(this).attr("data-gdsCode"));
-								
-								$.ajax({
-									url : "/removeCart",
-									type : "post",
-									data : { chbox : checkArr},
-									success : function (result) {
-										if(result == 1){
-											location.href = "/checkout";
-										}else {
-											alert("하나 제거 실패");
-										}
-									}
-								});
-							}
-						}
-					});
+                     $(".remove_${showCart.gdsCode}_btn").click(function() {
+                  if($(this).attr("data-cartStock") == 1){
+                     var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까?");
+                     
+                     if(confirm_val){
+                        var checkArr = new Array();
+                        checkArr.push($(this).attr("data-gdsCode"));
+                        
+                        $.ajax({
+                           url : "/deleteCart",
+                           type : "post",
+                           data : { chbox : checkArr},
+                           success : function (result) {
+                              if(result == 1){
+                                 location.href = "/cart";
+                              }else {
+                                 alert("삭제 실패");
+                              }
+                           }
+                        });
+                     }
+                  }else{
+                     var confirm_val = confirm("하나 더 제거하시겠습니까?");
+                     
+                     if(confirm_val){
+                        var checkArr = new Array();
+                        checkArr.push($(this).attr("data-gdsCode"));
+                        
+                        $.ajax({
+                           url : "/removeCart",
+                           type : "post",
+                           data : { chbox : checkArr},
+                           success : function (result) {
+                              if(result == 1){
+                                 location.href = "/cart";
+                              }else {
+                                 alert("하나 제거 실패");
+                              }
+                           }
+                        });
+                     }
+                  }
+               });
                   </script>
                   <a class="add_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">+</a>&nbsp;
                   <script>
-                  	$(".add_${showCart.gdsCode}_btn").click(function() {
-						var confirm_val = confirm("하나 더 추가하시겠습니까?");
-						
-						if(confirm_val){
-							var checkArr = new Array();
-							checkArr.push($(this).attr("data-gdsCode"));
-							
-							$.ajax({
-								url : "/plusCart",
-								type : "post",
-								data : { chbox : checkArr},
-								success : function (result) {
-									if(result == 1){
-										location.href = "/checkout";
-									}else {
-										alert("하나 추가 실패");
-									}
-								}
-							});
-						}
-					});
+                     $(".add_${showCart.gdsCode}_btn").click(function() {
+                  var confirm_val = confirm("하나 더 추가하시겠습니까?");
+                  
+                  if(confirm_val){
+                     var checkArr = new Array();
+                     checkArr.push($(this).attr("data-gdsCode"));
+                     
+                     $.ajax({
+                        url : "/plusCart",
+                        type : "post",
+                        data : { chbox : checkArr},
+                        success : function (result) {
+                           if(result == 1){
+                              location.href = "/cart";
+                           }else {
+                              alert("하나 추가 실패");
+                           }
+                        }
+                     });
+                  }
+               });
                   </script>
                   <a class="delete_${showCart.gdsCode}_btn" data-gdsCode="${showCart.gdsCode}">삭제</a>
                   <script>
-                  	$(".delete_${showCart.gdsCode}_btn").click(function() {
-						var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까?");
-						
-						if(confirm_val){
-							var checkArr = new Array();
-							checkArr.push($(this).attr("data-gdsCode"));
-							
-							$.ajax({
-								url : "/deleteCart",
-								type : "post",
-								data : { chbox : checkArr},
-								success : function (result) {
-									if(result == 1){
-										location.href = "/checkout";
-									}else {
-										alert("삭제 실패");
-									}
-								}
-							});
-						}
-					});
+                     $(".delete_${showCart.gdsCode}_btn").click(function() {
+                  var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까?");
+                  
+                  if(confirm_val){
+                     var checkArr = new Array();
+                     checkArr.push($(this).attr("data-gdsCode"));
+                     
+                     $.ajax({
+                        url : "/deleteCart",
+                        type : "post",
+                        data : { chbox : checkArr},
+                        success : function (result) {
+                           if(result == 1){
+                              location.href = "/cart";
+                           }else {
+                              alert("삭제 실패");
+                           }
+                        }
+                     });
+                  }
+               });
                   </script>
                </td>
             </tr>
@@ -220,6 +220,14 @@ String cStock = request.getParameter("s"); %>
             </c:forEach>
             <% if(gCode != null&cStock!=null){%>
                <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
+               <td>
+                     <input type="checkbox" name="chBox" class="chBox" data-gdsCode="${showCart.gdsCode}"/>
+                     <script>
+                        $(".chBox").click(function() {
+                     $("#allCheck").prop("checked", false);
+                  });
+                     </script>
+               </td>
                <td class="edd_cart_item_name">
                   <div class="edd_cart_item_image">
                      <img width="25" height="25" src="${product.gdsImg}" alt="">
@@ -233,42 +241,42 @@ String cStock = request.getParameter("s"); %>
                <td class="edd_cart_actions">
                   <a class="remove_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">-</a>&nbsp;
                   <script>
-                  	$(".remove_btn").click(function() {
-                  		if($(this).attr("data-cartStock") == 1){
-							var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까? 삭제하시면 해당 상품화면으로 돌아갑니다.");
-							
-							if(confirm_val){
-								location.href ="/product?n="+ $(this).attr("data-gdsCode");
-							}
-                  		}else{
-                  			var confirm_val = confirm("하나 더 제거하시겠습니까?");
-    						
-    						if(confirm_val){
-    							location.href ="/checkout?n="+ $(this).attr("data-gdsCode")+"&s="+($(this).attr("data-cartStock")-1);
-    						}
-                  		}
-                  		
-					});
+                     $(".remove_btn").click(function() {
+                        if($(this).attr("data-cartStock") == 1){
+                     var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까? 삭제하시면 해당 상품화면으로 돌아갑니다.");
+                     
+                     if(confirm_val){
+                        location.href ="/product?n="+ $(this).attr("data-gdsCode");
+                     }
+                        }else{
+                           var confirm_val = confirm("하나 더 제거하시겠습니까?");
+                      
+                      if(confirm_val){
+                         location.href ="/checkout?n="+ $(this).attr("data-gdsCode")+"&s="+($(this).attr("data-cartStock")-1);
+                      }
+                        }
+                        
+               });
                   </script>
                   <a class="add_btn" data-gdsCode="${showCart.gdsCode}" data-cartStock="${showCart.cartStock}">+</a>&nbsp;
                   <script>
-                  	$(".add_btn").click(function() {
-						var confirm_val = confirm("하나 더 추가하시겠습니까?");
-						
-						if(confirm_val){
-							location.href ="/checkout?n="+ $(this).attr("data-gdsCode")+"&s="+($(this).attr("data-cartStock")+1);
-						}
-					});
+                     $(".add_btn").click(function() {
+                  var confirm_val = confirm("하나 더 추가하시겠습니까?");
+                  
+                  if(confirm_val){
+                     location.href ="/checkout?n="+ $(this).attr("data-gdsCode")+"&s="+($(this).attr("data-cartStock")+1);
+                  }
+               });
                   </script>
                   <a class="delete_btn" data-gdsCode="${showCart.gdsCode}">삭제</a>
                    <script>
-                  	$(".delete_btn").click(function() {
-						var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까? 삭제하시면 해당 상품화면으로 돌아갑니다.");
-						
-						if(confirm_val){
-							location.href ="/product?n="+ $(this).attr("data-gdsCode");
-						}
-					});
+                     $(".delete_btn").click(function() {
+                  var confirm_val = confirm("정말 이 상품을 삭제하시겠습니까? 삭제하시면 해당 상품화면으로 돌아갑니다.");
+                  
+                  if(confirm_val){
+                     location.href ="/product?n="+ $(this).attr("data-gdsCode");
+                  }
+               });
                   </script>
                </td>
             </tr>

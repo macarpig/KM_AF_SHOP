@@ -98,7 +98,7 @@
 								</td>
 								<td class="edd_cart_actions">
 								
-									<c:out value="${list.gdsPrice}"/>(<c:out value="${list.gdsSum}"/>개)
+									<c:out value="${list.gdsPrice}"/>(<c:out value="${list.cartStock}"/>개)
 								</td>
 								</tr>
 							</c:forEach>

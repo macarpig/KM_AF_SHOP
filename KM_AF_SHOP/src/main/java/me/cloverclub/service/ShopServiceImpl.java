@@ -56,35 +56,38 @@ public class ShopServiceImpl implements ShopService {
 
 @Override
 public void deleteCart(CartVO cart) throws Exception {
-	mapper.deleteCart(cart);
+   mapper.deleteCart(cart);
 }
 
 @Override
 public void plusCart(CartVO cart) throws Exception {
-	mapper.plusCart(cart);
+   mapper.plusCart(cart);
 }
 
 @Override
 public void removeCart(CartVO cart) throws Exception {
-	mapper.removeCart(cart);
+   mapper.removeCart(cart);
 }
 
 @Override
 // orderList view
 public List<OrderListVO> orderView(OrderListVO order) throws Exception {
-	
-	return mapper.orderView(order);
+   
+   return mapper.orderView(order);
 }
 
 @Override
 public void orderInfo(OrderVO order) throws Exception {
-	// TODO Auto-generated method stub
-	
+   mapper.orderInfo(order);
 }
 
 @Override
 public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
-	// TODO Auto-generated method stub
-	
+   mapper.orderInfo_Details(orderDetail);
+}
+
+@Override
+public void viewUp(String gdsCode) throws Exception {
+   mapper.viewUp(gdsCode);
 }
 }

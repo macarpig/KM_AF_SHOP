@@ -11,7 +11,7 @@ public class OrderListVO {
 	private Date orderDate;
 	private String gdsCode;
 	private int process;
-	private int gdsSum;
+	private int cartStock;
 	private String gdsName;
 	private int gdsPrice;
 	private String gdsImg;
