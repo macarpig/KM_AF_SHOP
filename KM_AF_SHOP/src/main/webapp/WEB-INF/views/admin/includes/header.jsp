@@ -52,7 +52,7 @@
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/admin/index">
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
       </div>
@@ -148,14 +148,14 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" href="${pageContext.request.contextPath}/getNoticeList">
         <i class="fas fa-fw fa-info-circle"></i>
         <span>공지사항</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" href="${pageContext.request.contextPath}/getFaqList">
         <i class="fas fa-fw fa-question-circle"></i>
         <span>FAQ</span></a>
     </li>

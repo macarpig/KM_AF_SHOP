@@ -126,7 +126,10 @@ input[id="answer"] {
                 </table>
                 
                 <div>
+                <c:choose>
+                <c:when test="${member.userAuth == 1 }">
 			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm" style="float: right;">글쓰기</button>
+			</c:when><c:otherwise></c:otherwise></c:choose>
 			</div>   
 		</div>
 	</div>

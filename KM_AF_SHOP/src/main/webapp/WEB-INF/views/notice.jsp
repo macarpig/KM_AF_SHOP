@@ -108,8 +108,13 @@ padding-bottom: 20px;
 		</tbody>
 
 	</table>
+	
 		<div>
+		<c:choose>
+		<c:when test="${member.userAuth == 1 }">
 			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
+		</c:when><c:otherwise></c:otherwise>
+		</c:choose>
 		</div>
 		</div>
 	</article>

@@ -81,8 +81,7 @@
    
    <!-- 주문내역 보기 -->
    <select id="orderView" resultType="me.cloverclub.vo.OrderListVO">
-   select  o.userId, o.orderDate, o.orderId, 
-   d.gdsCode,d.cartStock,
+   select  o.userId, o.orderDate, o.orderId, d.gdsCode,d.cartStock,
    g.gdsName, g.gdsImg, g.gdsPrice,
    p.process
    from ordertbl o
@@ -106,4 +105,17 @@
    insert into orderDetail(orderId, gdsCode, cartStock)
    values(#{orderId}, #{gdsCode}, #{cartStock})
    </insert>
+   
+   <!-- process에 주문id 입력 -->
+   <insert id="orderInsert">
+   insert into process(orderId)
+   values(#{orderId})
+   </insert>
+   
+   <!-- 카트 비우기 -->
+	<delete id="cartAllDelete">
+ 	delete tbl_cart
+     where userId = #{userId}
+	</delete>
+   
 </mapper>
