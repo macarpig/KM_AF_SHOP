@@ -239,7 +239,7 @@ public class HomeController {
       
       //주문완료체크
       @PostMapping("/ordercheck")
-      public String postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response, OrderVO order, OrderDetailVO orderDetail, PayVO pay) throws Exception {
+      public void postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response, OrderVO order, OrderDetailVO orderDetail, PayVO pay) throws Exception {
          HttpSession session = request.getSession();
           MemberVO userId = (MemberVO)session.getAttribute("member");
           String gCode = request.getParameter("gCode");
@@ -301,7 +301,10 @@ public class HomeController {
               s_service.addPay(pay);
              }
           }
-          return "orderList";
+          response.setContentType("text/html; charset=UTF-8");
+          PrintWriter out = response.getWriter();
+          out.println("<script>alert('주문이 완료되었습니다. 감사합니다♡');location.href=\"/orderList\";}</script>");
+          out.flush();
       }
       
     //주문내역 출력
