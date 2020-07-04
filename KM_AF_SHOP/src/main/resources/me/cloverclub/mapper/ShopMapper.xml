@@ -114,7 +114,7 @@
    
    <!-- 카트 비우기 -->
 	<delete id="cartAllDelete">
- 	delete cart
+ 	delete from cart
      where userId = #{userId}
 	</delete>
    
