@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import me.cloverclub.mapper.AdminMapper;
 import me.cloverclub.mapper.ShopMapper;
+import me.cloverclub.vo.AdminorderVO;
 import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.ShopVO;
@@ -57,5 +58,13 @@ public class AdminServiceImpl implements AdminService {
 		log.info("AdminService: goodsDelete()");
 		
 		mapper.goodsDelete(gdsCode);
+	}
+	
+	//order list
+	@Override
+	public List<AdminorderVO> orderView() throws Exception {
+		log.info("AdminService: orderList()");
+		
+		return mapper.orderView();
 	}
 }

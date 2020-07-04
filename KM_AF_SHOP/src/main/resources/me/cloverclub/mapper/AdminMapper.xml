@@ -34,4 +34,16 @@
 		delete goods
 		where gdsCode = #{gdsCode}
 	</delete>
+	
+	<!-- order list -->
+	<select id="orderView" resultType="me.cloverclub.vo.AdminorderVO">
+   select o.orderId, o.userId, o.orderRecvr, o.orderZipCode, o.orderAddr1, o.orderAddr2, o.orderTel1, o.orderTel2, o.orderTel3, o.orderDate, 
+   d.gdsCode,d.cartStock,
+   p.process
+   from ordertbl o
+   inner join orderDetail d
+   on o.orderId = d.orderId
+   inner join process p
+   on o.orderId = p.orderId
+   </select>
 </mapper>

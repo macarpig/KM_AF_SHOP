@@ -58,7 +58,7 @@
    
    <!-- 카트 삭제 -->
    <delete id="deleteCart">
-      delete cart
+      delete from cart
       where gdsCode = #{gdsCode}
       and userId = #{userId}
    </delete>
@@ -114,7 +114,7 @@
    
    <!-- 카트 비우기 -->
 	<delete id="cartAllDelete">
- 	delete tbl_cart
+ 	delete cart
      where userId = #{userId}
 	</delete>
    

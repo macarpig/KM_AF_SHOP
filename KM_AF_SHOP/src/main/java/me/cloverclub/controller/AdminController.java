@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,9 +29,11 @@ import me.cloverclub.service.AdminService;
 import me.cloverclub.service.CategoryService;
 import me.cloverclub.service.MemberService;
 import me.cloverclub.util.UploadFileUtil;
+import me.cloverclub.vo.AdminorderVO;
 import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.MemberVO;
+import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
@@ -232,4 +235,15 @@ public class AdminController {
 		
 		return "/admin/member/list";
 	}
+	
+	//get order list
+    @GetMapping(value = "/goods/order")
+    public String getOrderlist(Model model) throws Exception {
+       log.info("AdminController: getOrderList()");  
+       
+          List<AdminorderVO> orderView  = a_service.orderView();
+          model.addAttribute("list", orderView);
+          
+          return "/admin/goods/order";
+    }
 }

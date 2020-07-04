@@ -2,7 +2,9 @@ package me.cloverclub.mapper;
 
 import java.util.List;
 
+import me.cloverclub.vo.AdminorderVO;
 import me.cloverclub.vo.GoodsVO;
+import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.ShopVO;
 
 public interface AdminMapper {
@@ -20,4 +22,7 @@ public interface AdminMapper {
 	
 	// delete goods
 	public void goodsDelete(String gdsCode) throws Exception;
+	
+	//order list
+	public List<AdminorderVO> orderView() throws Exception;
 }

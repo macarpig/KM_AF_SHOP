@@ -82,12 +82,15 @@
 									<a class="edd_cart_remove_item_btn" href="#">
 									<c:choose>
 										<c:when test="${list.process == 1 }">
-											배송준비
+											출고준비중
 										</c:when>
 										<c:when test="${list.process == 2 }">
-											배송중
+											출고완료
 										</c:when>
 										<c:when test="${list.process == 3 }">
+											배송중
+										</c:when>
+										<c:when test="${list.process == 4 }">
 											배송완료
 										</c:when>
 										<c:otherwise>
