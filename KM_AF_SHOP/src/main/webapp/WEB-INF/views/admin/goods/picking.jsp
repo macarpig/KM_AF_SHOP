@@ -237,7 +237,9 @@
 									<div class="col"><img style="width: 150px; height: auto;" src="${list.gdsThumbImg}"></div>
 									<div class="col">${list.gdsCode}</div>
 									<div class="col">${list.cartStock}</div>
-									<div class="col">${list.process}</div>
+									<div class="col">
+									<button type="button" class="btn btn-warning">피킹 완료</button>
+									</div>
 								</div>
 							</c:forEach>
 						</div>
