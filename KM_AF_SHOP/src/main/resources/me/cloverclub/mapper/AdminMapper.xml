@@ -46,4 +46,22 @@
    inner join process p
    on o.orderId = p.orderId
    </select>
+   <!-- picking list -->
+   <select id="pickingView" resultType="me.cloverclub.vo.PickingVO">
+   select o.orderId, 
+   d.gdsCode, d.cartStock,
+   p.process,
+   g.gdsThumbImg
+   from ordertbl o
+   inner join orderDetail d on o.orderId = d.orderId
+   inner join process p on o.orderId = p.orderId
+   inner join goods g on d.gdsCode = g.gdsCode
+   where process = 1
+   </select>
+   <!-- picking complete -->
+   <update id = "pickingComplete">
+   	update process
+   	set process = '2'
+   	where orderId = #{orderId}
+   </update>
 </mapper>

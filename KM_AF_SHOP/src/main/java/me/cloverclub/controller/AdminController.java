@@ -34,6 +34,7 @@ import me.cloverclub.vo.CategoryVO;
 import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.MemberVO;
 import me.cloverclub.vo.OrderListVO;
+import me.cloverclub.vo.PickingVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
@@ -245,5 +246,16 @@ public class AdminController {
           model.addAttribute("list", orderView);
           
           return "/admin/goods/order";
+    }
+    
+  //get picking list
+    @GetMapping(value = "/goods/picking")
+    public String getPickinglist(Model model) throws Exception {
+       log.info("AdminController: getPickingList()");  
+       
+          List<PickingVO> pickingView  = a_service.pickingView();
+          model.addAttribute("list", pickingView);
+          
+          return "/admin/goods/picking";
     }
 }

@@ -11,6 +11,7 @@ import me.cloverclub.mapper.ShopMapper;
 import me.cloverclub.vo.AdminorderVO;
 import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.OrderVO;
+import me.cloverclub.vo.PickingVO;
 import me.cloverclub.vo.ShopVO;
 
 @Log4j
@@ -66,5 +67,13 @@ public class AdminServiceImpl implements AdminService {
 		log.info("AdminService: orderList()");
 		
 		return mapper.orderView();
+	}
+	
+	//picking list
+	@Override
+	public List<PickingVO> pickingView() throws Exception {
+		log.info("AdminService: pickingList()");
+		
+		return mapper.pickingView();
 	}
 }
