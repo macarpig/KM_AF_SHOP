@@ -258,4 +258,12 @@ public class AdminController {
           
           return "/admin/goods/picking";
     }
+    
+    //get category
+    @GetMapping("/manage/category")
+    public String getCategory(Model model) throws Exception {
+    	List<CategoryVO> category = c_service.category();
+    	model.addAttribute("category", JSONArray.fromObject(category));
+    	return "/admin/manage/category";
+    }
 }
