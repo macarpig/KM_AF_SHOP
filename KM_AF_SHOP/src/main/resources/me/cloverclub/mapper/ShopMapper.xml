@@ -118,4 +118,9 @@
      where userId = #{userId}
 	</delete>
    
+   <!-- 결제수단 추가 -->
+   <insert id="addPay">
+   insert into pay(orderId, payCorp, payCode)
+   values(#{orderId},#{payCorp}, #{payCode})
+   </insert>
 </mapper>

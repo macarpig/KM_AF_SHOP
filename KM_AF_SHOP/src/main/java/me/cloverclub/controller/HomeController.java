@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ import me.cloverclub.vo.MemberVO;
 import me.cloverclub.vo.OrderDetailVO;
 import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.OrderVO;
+import me.cloverclub.vo.PayVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
@@ -237,7 +239,7 @@ public class HomeController {
       
       //주문완료체크
       @PostMapping("/ordercheck")
-      public String postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response, OrderVO order, OrderDetailVO orderDetail) throws Exception {
+      public String postOrdercheck(Model model, HttpServletRequest request, HttpServletResponse response, OrderVO order, OrderDetailVO orderDetail, PayVO pay) throws Exception {
          HttpSession session = request.getSession();
           MemberVO userId = (MemberVO)session.getAttribute("member");
           String gCode = request.getParameter("gCode");
@@ -278,6 +280,25 @@ public class HomeController {
                  s_service.orderInfo_Details(orderDetail);
               }
               s_service.cartAllDelete(userId.getUserId());
+              pay.setOrderId(str1+userId.getUserId());
+              pay.setPayCorp(request.getParameter("payment_method"));
+              StringBuffer temp = new StringBuffer();
+              Random rnd = new Random();
+              for (int i = 0; i < 10; i++) {
+                  int rIndex = rnd.nextInt(2);
+                  switch (rIndex) {
+                  case 0:
+                      // 0-9
+                	  temp.append((rnd.nextInt(10)));
+                	  break;
+                  case 1:
+                      // A-Z
+                      temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+                      break;
+                  }
+              }
+              pay.setPayCode(str1.substring(1,5)+temp);
+              s_service.addPay(pay);
              }
           }
           return "orderList";

@@ -11,6 +11,7 @@ import me.cloverclub.vo.CartVO;
 import me.cloverclub.vo.OrderDetailVO;
 import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.OrderVO;
+import me.cloverclub.vo.PayVO;
 import me.cloverclub.vo.ShopVO;
 
 @Log4j
@@ -99,5 +100,10 @@ public void orderInsert(String orderId) throws Exception {
 @Override
 public void cartAllDelete(String userId) throws Exception {
 	mapper.cartAllDelete(userId);
+}
+
+@Override
+public void addPay(PayVO pay) throws Exception {
+	mapper.addPay(pay);
 }
 }
