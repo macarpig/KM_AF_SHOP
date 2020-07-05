@@ -18,8 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.JsonObject;
 
@@ -35,6 +37,7 @@ import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.MemberVO;
 import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.PickingVO;
+import me.cloverclub.vo.ProcessVO;
 import me.cloverclub.vo.ShopVO;
 import net.sf.json.JSONArray;
 
@@ -258,4 +261,12 @@ public class AdminController {
           
           return "/admin/goods/picking";
     }
+    
+    //complete picking
+    @RequestMapping(value = "/goods/pickingUpdate", method = RequestMethod.POST)
+    public String pickingUpdate(ProcessVO vo) throws Exception {
+    	a_service.pickingUpdate(vo);
+
+		return "redirect:/admin/goods/picking";
+	}
 }
