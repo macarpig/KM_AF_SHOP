@@ -4,7 +4,15 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp"%>
-
+<script>
+//피킹 완료
+$(document).ready(function() {
+	$("#btnUpdate").click(function() {
+	location.href="${pageContext.request.contextPath}/admin/goods/picking?process=2"
+			+"&orderId="+$(this).attr("data-rno");
+	});
+});
+</script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -223,6 +231,7 @@
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">피킹 목록</h6>
 						</div>
+						<form role="form" method="post" action="/admin/goods/pickingUpdate" autocomplete="off" >
 						<div class="card-body">
 							<div class="row mb-2 font-weight-bold">
 								<div class="col">주문번호</div>
@@ -233,23 +242,28 @@
 							</div>
 							<c:forEach items="${list}" var="list">
 								<div class="row">
-									<div class="col">${list.orderId}</div>
+									<input class="input100" type="text" name="orderId" value = "${list.orderId}" readonly="readonly">
 									<div class="col"><img style="width: 150px; height: auto;" src="${list.gdsThumbImg}"></div>
 									<div class="col">${list.gdsCode}</div>
 									<div class="col">${list.cartStock}</div>
 									<div class="col">
-									<button type="button" class="btn btn-warning">피킹 완료</button>
+									<input class="input100" type="text" name="process" value="${list.process}">
 									</div>
 								</div>
 							</c:forEach>
-						</div>
+							<button class="login100-form-btn" type="submit" id="submit">
+								피킹 완료
+							</button>
+						</div>	
+							</form>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 		<!-- /.container-fluid -->
 
-	</div>
+</div>
 	<!-- End of Main Content -->
 
 	<%@include file="../includes/footer.jsp"%>

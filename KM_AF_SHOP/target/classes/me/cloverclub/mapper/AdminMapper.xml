@@ -59,9 +59,9 @@
    where process = 1
    </select>
    <!-- picking complete -->
-   <update id = "pickingComplete">
+   <update id = "pickingUpdate">
    	update process
-   	set process = '2'
+   	set process = process + 1
    	where orderId = #{orderId}
    </update>
 </mapper>

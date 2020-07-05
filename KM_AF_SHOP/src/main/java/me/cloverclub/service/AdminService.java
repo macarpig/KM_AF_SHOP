@@ -7,6 +7,7 @@ import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.PickingVO;
+import me.cloverclub.vo.ProcessVO;
 import me.cloverclub.vo.ShopVO;
 
 public interface AdminService {
@@ -30,4 +31,8 @@ public interface AdminService {
 	
 	//picking list
 	public List<PickingVO> pickingView() throws Exception;
+	
+	//complete picking
+	public void pickingUpdate(ProcessVO vo) throws Exception;
+
 }

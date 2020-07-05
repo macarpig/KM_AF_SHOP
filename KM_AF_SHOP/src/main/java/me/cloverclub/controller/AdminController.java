@@ -264,8 +264,9 @@ public class AdminController {
     
 
     //complete picking
-    @RequestMapping(value = "/goods/pickingUpdate", method = RequestMethod.POST)
+    @PostMapping(value = "/goods/pickingUpdate")
     public String pickingUpdate(ProcessVO vo) throws Exception {
+    	log.info("AdminController: getPickingUpdate()"); 
     	a_service.pickingUpdate(vo);
 
 		return "redirect:/admin/goods/picking";

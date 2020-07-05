@@ -12,6 +12,7 @@ import me.cloverclub.vo.AdminorderVO;
 import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.OrderVO;
 import me.cloverclub.vo.PickingVO;
+import me.cloverclub.vo.ProcessVO;
 import me.cloverclub.vo.ShopVO;
 
 @Log4j
@@ -75,5 +76,13 @@ public class AdminServiceImpl implements AdminService {
 		log.info("AdminService: pickingList()");
 		
 		return mapper.pickingView();
+	}
+	
+	//picking complete
+	@Override
+	public void pickingUpdate(ProcessVO vo) throws Exception {
+		log.info("AdminService: pickingComplete()");
+		
+		mapper.pickingUpdate(vo);
 	}
 }

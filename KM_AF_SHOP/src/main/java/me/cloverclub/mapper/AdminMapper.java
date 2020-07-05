@@ -6,6 +6,7 @@ import me.cloverclub.vo.AdminorderVO;
 import me.cloverclub.vo.GoodsVO;
 import me.cloverclub.vo.OrderListVO;
 import me.cloverclub.vo.PickingVO;
+import me.cloverclub.vo.ProcessVO;
 import me.cloverclub.vo.ShopVO;
 
 public interface AdminMapper {
@@ -29,4 +30,7 @@ public interface AdminMapper {
 	
 	//picking list
 	public List<PickingVO> pickingView() throws Exception;
+	
+	//picking complete
+	public void pickingUpdate(ProcessVO vo) throws Exception;
 }
