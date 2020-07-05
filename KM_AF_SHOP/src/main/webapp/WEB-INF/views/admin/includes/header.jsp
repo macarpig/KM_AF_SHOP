@@ -133,7 +133,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" href="/admin/manage/category">
         <i class="fas fa-fw fa-folder-open"></i>
         <span>카테고리</span></a>
     </li>

@@ -262,6 +262,7 @@ public class AdminController {
           return "/admin/goods/picking";
     }
     
+
     //complete picking
     @RequestMapping(value = "/goods/pickingUpdate", method = RequestMethod.POST)
     public String pickingUpdate(ProcessVO vo) throws Exception {
@@ -269,4 +270,12 @@ public class AdminController {
 
 		return "redirect:/admin/goods/picking";
 	}
+
+    //get category
+    @GetMapping("/manage/category")
+    public String getCategory(Model model) throws Exception {
+    	List<CategoryVO> category = c_service.category();
+    	model.addAttribute("category", JSONArray.fromObject(category));
+    	return "/admin/manage/category";
+    }
 }
