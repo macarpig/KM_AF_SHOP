@@ -13,6 +13,29 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style>
+.box-radio-input input[type="radio"]{
+    display:none;
+}
+
+.box-radio-input input[type="radio"] + span{
+    display:inline-block;
+    background:none;
+    border:1px solid #dfdfdf;    
+    padding:0px 10px;
+    text-align:center;
+    height:35px;
+    line-height:33px;
+    font-weight:500;
+    cursor:pointer;
+}
+
+.box-radio-input input[type="radio"]:checked + span{
+    border:1px solid #4e73df;
+    background:#4e73df;
+    color:#fff;
+}
+</style>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -230,8 +253,19 @@ $(document).ready(function() {
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">피킹 목록</h6>
+							<label class="box-radio-input"><input type="radio" name="btnProcess" value="주문완료 목록" <%if((String)request.getParameter("l")=="0"){%>checked="checked"<%}%> onchange=""><span>주문완료 목록</span></label>
+							<label class="box-radio-input"><input type="radio" name="btnProcess" value="피킹완료 목록" <%if((String)request.getParameter("l")=="1"){%>checked="checked"<%}%>><span>피킹완료 목록</span></label>
+						<script type="text/javascript">
+						$("input:radio[name='btnProcess']").change(function() {
+							if($("input:radio[name='btnProcess']:checked").val() == "주문완료 목록"){
+								location.href = '/admin/goods/picking?l=0';
+							} else{
+								location.href = '/admin/goods/picking?l=1';
+							}
+						})
+						</script>
 						</div>
-						<form role="form" method="post" action="/admin/goods/pickingUpdate" autocomplete="off" >
+						<form role="form" method="post" <%if((String)request.getParameter("l")=="0"){%>action="/admin/goods/pickingUpdate?l=0"<%}else{%>action="/admin/goods/pickingUpdate?l=1"<%}%> autocomplete="off" >
 						<div class="card-body">
 							<div class="row mb-2 font-weight-bold">
 								<div class="col">주문번호</div>
@@ -247,12 +281,13 @@ $(document).ready(function() {
 									<div class="col">${list.gdsCode}</div>
 									<div class="col">${list.cartStock}</div>
 									<div class="col">
-									<input class="input100" type="text" name="process" value="${list.process}">
+									<input class="input100" type="text" name="process" <%if((String)request.getParameter("l")=="0"){%>value="피킹 미완료"<%}else{%>value="피킹 완료"<%}%>>
+									<input type="checkbox" name="chProcess" id="${list.orderId}">
 									</div>
 								</div>
 							</c:forEach>
 							<button class="login100-form-btn" type="submit" id="submit">
-								피킹 완료
+								<%if((String)request.getParameter("l")=="0"){%>체크된 항목 피킹 완료<%}else{%>체크된 항목 피킹 취소<%}%>
 							</button>
 						</div>	
 							</form>
@@ -260,7 +295,6 @@ $(document).ready(function() {
 				</div>
 			</div>
 		</div>
-	</div>
 		<!-- /.container-fluid -->
 
 </div>

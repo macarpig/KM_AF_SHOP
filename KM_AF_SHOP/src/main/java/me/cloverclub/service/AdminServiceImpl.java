@@ -70,19 +70,35 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.orderView();
 	}
 	
-	//picking list
+	//picking list0
 	@Override
-	public List<PickingVO> pickingView() throws Exception {
+	public List<PickingVO> pickingView0() throws Exception {
 		log.info("AdminService: pickingList()");
 		
-		return mapper.pickingView();
+		return mapper.pickingView0();
 	}
+	
+	//picking list1
+		@Override
+		public List<PickingVO> pickingView1() throws Exception {
+			log.info("AdminService: pickingList()");
+			
+			return mapper.pickingView1();
+		}
 	
 	//picking complete
 	@Override
-	public void pickingUpdate(ProcessVO vo) throws Exception {
+	public void pickingUpdate(ProcessVO process) throws Exception {
 		log.info("AdminService: pickingComplete()");
 		
-		mapper.pickingUpdate(vo);
+		mapper.pickingUpdate(process);
 	}
+	
+	//picking delete
+		@Override
+		public void pickingDelete(ProcessVO process) throws Exception {
+			log.info("AdminService: pickingDelte()");
+			
+			mapper.pickingDelete(process);
+		}
 }

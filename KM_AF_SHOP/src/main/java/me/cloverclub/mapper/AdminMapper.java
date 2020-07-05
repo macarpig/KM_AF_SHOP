@@ -28,9 +28,15 @@ public interface AdminMapper {
 	//order list
 	public List<AdminorderVO> orderView() throws Exception;
 	
-	//picking list
-	public List<PickingVO> pickingView() throws Exception;
+	//picking list0
+	public List<PickingVO> pickingView0() throws Exception;
+	
+	//picking list1
+	public List<PickingVO> pickingView1() throws Exception;
 	
 	//picking complete
-	public void pickingUpdate(ProcessVO vo) throws Exception;
+	public void pickingUpdate(ProcessVO process) throws Exception;
+	
+	//picking delete
+	public void pickingDelete(ProcessVO process) throws Exception;
 }

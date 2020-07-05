@@ -253,22 +253,38 @@ public class AdminController {
     
   //get picking list
     @GetMapping(value = "/goods/picking")
-    public String getPickinglist(Model model) throws Exception {
-       log.info("AdminController: getPickingList()");  
+    public String getPickinglist(Model model, @RequestParam("l") int listCode) throws Exception {
+       log.info("AdminController: getPickingList()");
        
-          List<PickingVO> pickingView  = a_service.pickingView();
+       List<PickingVO> pickingView = null;
+       if(listCode == 0) {
+           pickingView = a_service.pickingView0();
+       }else {
+    	   pickingView = a_service.pickingView1();
+       }
           model.addAttribute("list", pickingView);
-          
+
           return "/admin/goods/picking";
     }
     
 
     //complete picking
     @PostMapping(value = "/goods/pickingUpdate")
-    public String pickingUpdate(ProcessVO vo) throws Exception {
-    	log.info("AdminController: getPickingUpdate()"); 
-    	a_service.pickingUpdate(vo);
-
+    public String pickingUpdate(ProcessVO process, @RequestParam("l") int listCode, HttpServletRequest request, RedirectAttributes attributes) throws Exception {
+    	log.info("AdminController: getPickingUpdate()");
+    	
+    	String [] orderIds = request.getParameterValues("chProcess");
+    	
+    	for(int i=0; i<orderIds.length; i++) {
+    		process.setOrderId(orderIds[i]);
+    		if(listCode == 0) {
+            	a_service.pickingUpdate(process);
+        	}else {
+        		a_service.pickingDelete(process);
+        	}
+    	}
+    	
+    	attributes.addAttribute("l", listCode);
 		return "redirect:/admin/goods/picking";
 	}
 
