@@ -76,8 +76,8 @@
    	set process = 1
    	where orderId = #{orderId}
    </update>
-   <!-- picking complete -->
-   <update id = "pickingUpdate">
+   <!-- picking Delete -->
+   <update id = "pickingDelete">
    	update process
    	set process = 0
    	where orderId = #{orderId}

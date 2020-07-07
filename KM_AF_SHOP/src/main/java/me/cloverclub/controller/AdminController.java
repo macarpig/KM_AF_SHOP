@@ -270,11 +270,15 @@ public class AdminController {
 
     //complete picking
     @PostMapping(value = "/goods/pickingUpdate")
-    public String pickingUpdate(ProcessVO process, @RequestParam("l") int listCode, HttpServletRequest request, RedirectAttributes attributes) throws Exception {
-    	log.info("AdminController: getPickingUpdate()");
-    	
+    public String pickingUpdate(ProcessVO process, @RequestParam("l") int listCode, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) throws Exception {
     	String [] orderIds = request.getParameterValues("chProcess");
-    	
+    	log.info("AdminController: getPickingUpdate() :"+orderIds);
+    	if(orderIds == null) {
+    		response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('선택한 항목이 없습니다.'); history.go(-1);</script>");
+            out.flush();
+    	}else {
     	for(int i=0; i<orderIds.length; i++) {
     		process.setOrderId(orderIds[i]);
     		if(listCode == 0) {
@@ -282,6 +286,7 @@ public class AdminController {
         	}else {
         		a_service.pickingDelete(process);
         	}
+    	}
     	}
     	
     	attributes.addAttribute("l", listCode);

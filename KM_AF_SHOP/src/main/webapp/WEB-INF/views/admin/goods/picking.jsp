@@ -253,8 +253,8 @@ $(document).ready(function() {
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">피킹 목록</h6>
-							<label class="box-radio-input"><input type="radio" name="btnProcess" value="주문완료 목록" <%if((String)request.getParameter("l")=="0"){%>checked="checked"<%}%> onchange=""><span>주문완료 목록</span></label>
-							<label class="box-radio-input"><input type="radio" name="btnProcess" value="피킹완료 목록" <%if((String)request.getParameter("l")=="1"){%>checked="checked"<%}%>><span>피킹완료 목록</span></label>
+							<label class="box-radio-input"><input type="radio" name="btnProcess" value="주문완료 목록" <%if(Integer.parseInt(request.getParameter("l"))==0){%>checked="checked"<%}%>><span>주문완료 목록</span></label>
+							<label class="box-radio-input"><input type="radio" name="btnProcess" value="피킹완료 목록" <%if(Integer.parseInt(request.getParameter("l"))==1){%>checked="checked"<%}%>><span>피킹완료 목록</span></label>
 						<script type="text/javascript">
 						$("input:radio[name='btnProcess']").change(function() {
 							if($("input:radio[name='btnProcess']:checked").val() == "주문완료 목록"){
@@ -265,7 +265,7 @@ $(document).ready(function() {
 						})
 						</script>
 						</div>
-						<form role="form" method="post" <%if((String)request.getParameter("l")=="0"){%>action="/admin/goods/pickingUpdate?l=0"<%}else{%>action="/admin/goods/pickingUpdate?l=1"<%}%> autocomplete="off" >
+						<form role="form" method="post" <%if(Integer.parseInt(request.getParameter("l"))==0){%>action="/admin/goods/pickingUpdate?l=0"<%}else{%>action="/admin/goods/pickingUpdate?l=1"<%}%> autocomplete="off" >
 						<div class="card-body">
 							<div class="row mb-2 font-weight-bold">
 								<div class="col">주문번호</div>
@@ -276,18 +276,18 @@ $(document).ready(function() {
 							</div>
 							<c:forEach items="${list}" var="list">
 								<div class="row">
-									<input class="input100" type="text" name="orderId" value = "${list.orderId}" readonly="readonly">
+									<input class="input100" type="text" value = "${list.orderId}" readonly="readonly">
 									<div class="col"><img style="width: 150px; height: auto;" src="${list.gdsThumbImg}"></div>
 									<div class="col">${list.gdsCode}</div>
 									<div class="col">${list.cartStock}</div>
 									<div class="col">
-									<input class="input100" type="text" name="process" <%if((String)request.getParameter("l")=="0"){%>value="피킹 미완료"<%}else{%>value="피킹 완료"<%}%>>
-									<input type="checkbox" name="chProcess" id="${list.orderId}">
+									<input class="input100" type="text" <%if((String)request.getParameter("l")=="0"){%>value="피킹 미완료"<%}else{%>value="피킹 완료"<%}%>>
+									<input type="checkbox" name="chProcess" id="${list.orderId}" value="${list.orderId}">
 									</div>
 								</div>
 							</c:forEach>
 							<button class="login100-form-btn" type="submit" id="submit">
-								<%if((String)request.getParameter("l")=="0"){%>체크된 항목 피킹 완료<%}else{%>체크된 항목 피킹 취소<%}%>
+								<%if(Integer.parseInt(request.getParameter("l"))==0){%>체크된 항목 피킹 완료<%}else{%>체크된 항목 피킹 취소<%}%>
 							</button>
 						</div>	
 							</form>
