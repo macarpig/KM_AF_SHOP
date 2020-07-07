@@ -101,4 +101,34 @@ public class AdminServiceImpl implements AdminService {
 			
 			mapper.pickingDelete(process);
 		}
+
+		@Override
+		public void deliveryUpdate(AdminorderVO order) throws Exception {
+			mapper.deliveryUpdate(order);
+		}
+
+		@Override
+		public void deliveryComplete(AdminorderVO order) throws Exception {
+			mapper.deliveryComplete(order);
+		}
+
+		@Override
+		public List<AdminorderVO> deliveryView0() throws Exception {
+			return mapper.deliveryView0();
+		}
+
+		@Override
+		public List<AdminorderVO> deliveryView1() throws Exception {
+			return mapper.deliveryView1();
+		}
+
+		@Override
+		public void stockDown(ProcessVO process) throws Exception {
+			mapper.stockDown(process);
+		}
+
+		@Override
+		public void stockUp(ProcessVO process) throws Exception {
+			mapper.stockUp(process);
+		}
 }

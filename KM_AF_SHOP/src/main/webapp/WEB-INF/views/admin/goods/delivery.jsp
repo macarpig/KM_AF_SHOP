@@ -4,27 +4,38 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp"%>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+function rowclick(str) {
+	var p = document.getElementById(str);
+	if(p.style.display=='none'){
+		p.style.display='block';
+	}else{
+		p.style.display = 'none';
+	}
+}
+</script>
 <style>
-.box-radio-input input[type="radio"]{
-    display:none;
+.box-radio-input input[type="radio"] {
+	display: none;
 }
 
-.box-radio-input input[type="radio"] + span{
-    display:inline-block;
-    background:none;
-    border:1px solid #dfdfdf;    
-    padding:0px 10px;
-    text-align:center;
-    height:35px;
-    line-height:33px;
-    font-weight:500;
-    cursor:pointer;
+.box-radio-input input[type="radio"]+span {
+	display: inline-block;
+	background: none;
+	border: 1px solid #dfdfdf;
+	padding: 0px 10px;
+	text-align: center;
+	height: 35px;
+	line-height: 33px;
+	font-weight: 500;
+	cursor: pointer;
 }
 
-.box-radio-input input[type="radio"]:checked + span{
-    border:1px solid #4e73df;
-    background:#4e73df;
-    color:#fff;
+.box-radio-input input[type="radio"]:checked+span {
+	border: 1px solid #4e73df;
+	background: #4e73df;
+	color: #fff;
 }
 </style>
 <!-- Content Wrapper -->
@@ -244,51 +255,115 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">피킹 목록</h6>
-							<label class="box-radio-input"><input type="radio" name="btnProcess" value="주문완료 목록" <%if(Integer.parseInt(request.getParameter("l"))==0){%>checked="checked"<%}%>><span>주문완료 목록</span></label>
-							<label class="box-radio-input"><input type="radio" name="btnProcess" value="피킹완료 목록" <%if(Integer.parseInt(request.getParameter("l"))==1){%>checked="checked"<%}%>><span>피킹완료 목록</span></label>
-						<script type="text/javascript">
-						$("input:radio[name='btnProcess']").change(function() {
-							if($("input:radio[name='btnProcess']:checked").val() == "주문완료 목록"){
-								location.href = '/admin/goods/picking?l=0';
-							} else{
-								location.href = '/admin/goods/picking?l=1';
-							}
-						})
-						</script>
+							<label class="box-radio-input"><input type="radio"
+								name="btnDelivery" value="피킹완료 목록"
+								<%if (Integer.parseInt(request.getParameter("l")) == 0) {%>
+								checked="checked" <%}%>><span>피킹완료 목록</span></label> <label
+								class="box-radio-input"><input type="radio"
+								name="btnDelivery" value="배송완료 목록"
+								<%if (Integer.parseInt(request.getParameter("l")) == 1) {%>
+								checked="checked" <%}%>><span>배송완료 목록</span></label>
+							<script type="text/javascript">
+								$("input:radio[name='btnDelivery']")
+										.change(
+												function() {
+													if ($(
+															"input:radio[name='btnDelivery']:checked")
+															.val() == "피킹완료 목록") {
+														location.href = '/admin/goods/delivery?l=0';
+													} else {
+														location.href = '/admin/goods/delivery?l=1';
+													}
+												})
+							</script>
 						</div>
-						<form role="form" method="post" <%if(Integer.parseInt(request.getParameter("l"))==0){%>action="/admin/goods/pickingUpdate?l=0"<%}else{%>action="/admin/goods/pickingUpdate?l=1"<%}%> autocomplete="off" >
-						<div class="card-body">
-							<div class="row mb-2 font-weight-bold">
-								<div class="col">주문번호</div>
-								<div class="col">이미지</div>
-								<div class="col">상품코드</div>
-								<div class="col">수량</div>
-								<div class="col">상태</div>
-							</div>
-							<c:forEach items="${list}" var="list">
-								<div class="row">
-									<input class="input100" type="text" value = "${list.orderId}" readonly="readonly">
-									<div class="col"><img style="width: 150px; height: auto;" src="${list.gdsThumbImg}"></div>
-									<div class="col">${list.gdsCode}</div>
-									<div class="col">${list.cartStock}</div>
-									<div class="col">
-									<input class="input100" type="text" <%if(Integer.parseInt(request.getParameter("l"))==0){%>value="피킹 미완료"<%}else{%>value="피킹 완료"<%}%>>
-									<input type="checkbox" name="chProcess" id="${list.orderId}" value="${list.orderId}">
-									</div>
+						<form role="form" method="post"
+							<%if (Integer.parseInt(request.getParameter("l")) == 0) {%>
+							action="/admin/goods/deliveryUpdate?l=0" <%} else {%>
+							action="/admin/goods/deliveryUpdate?l=1" <%}%> autocomplete="off">
+							<div class="card-body">
+								<div class="row mb-2 font-weight-bold">
+									<div class="col">주문번호</div>
+									<div class="col">상품코드</div>
+									<div class="col">수량</div>
+									<div class="col">상태</div>
 								</div>
-							</c:forEach>
+								<c:forEach items="${list}" var="list">
+									<div class="row" style="cursor: pointer; padding-top:15px;background-color:#EBF7FF;" onclick="rowclick('plain'+'${list.orderId}')">
+											<!-- <div class="col">
+												<input class="input100" type="text" value="${list.orderId}"
+													readonly="readonly">
+											</div>
+											<div class="col">${list.gdsCode}</div>
+											<div class="col">${list.cartStock}</div>
+											<div class="col">
+												<input class="input100" type="text"
+													<%if (Integer.parseInt(request.getParameter("l"))==0) {%>
+													value="피킹 완료" <%} else {%> value="배송 중" <%}%>> <input
+													type="checkbox" name="chProcess" id="${list.orderId}"
+													value="${list.orderId}">
+											</div>  -->
+											<table>
+											<tr>
+											<td width="25%">
+											<input class="input100" type="text" value="${list.orderId}"
+													readonly="readonly">
+											</td>
+											<td width="25%">
+											${list.gdsCode}
+											</td>
+											<td width="25%">
+											${list.cartStock}
+											</td>
+											<td width="25%">
+											<input class="input100" type="text"
+													<%if (Integer.parseInt(request.getParameter("l"))==0) {%>
+													value="피킹 완료" <%} else {%> value="배송 중" <%}%>> <input
+													type="checkbox" name="chProcess" id="${list.orderId}"
+													value="${list.orderId}">
+											</td>
+											</tr>
+											</table>
+										<span id="plain${list.orderId}" style="display:none;">
+											<div class="row mb-2 font-weight-bold">
+												<table width="85%">
+													<tr>
+														<td>아이디 : ${list.userId}</td>
+														<td>수신자 : ${list.orderRecvr}</td>
+														<td>우편번호 : ${list.orderZipCode}</td>
+													</tr>
+													<tr>
+														<td>주소 : ${list.orderAddr1} ${list.orderAddr2}</td>
+													</tr>
+													<tr>
+														<td>전화번호 :
+															${list.orderTel1}-${list.orderTel2}-${list.orderTel3}</td>
+														<td>주문일자 : ${list.orderDate}</td>
+													</tr>
+												</table>
+											</div>
+										</span>
+									</div>
+								</c:forEach>
+							</div>
 							<button class="login100-form-btn" type="submit" id="submit">
-								<%if(Integer.parseInt(request.getParameter("l"))==0){%>체크된 항목 피킹 완료<%}else{%>체크된 항목 피킹 취소<%}%>
+								<%
+									if (Integer.parseInt(request.getParameter("l")) == 0) {
+								%>체크된 항목 배송
+								중인 상태로 변경<%
+									} else {
+								%>체크된 항목 배송 완료 상태로 변경<%
+									}
+								%>
 							</button>
-						</div>	
-							</form>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- /.container-fluid -->
 
-</div>
+	</div>
 	<!-- End of Main Content -->
 
 	<%@include file="../includes/footer.jsp"%>

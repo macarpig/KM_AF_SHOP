@@ -70,6 +70,26 @@
    inner join goods g on d.gdsCode = g.gdsCode
    where process = 1
    </select>
+   <!-- delivery view -->
+   <select id="deliveryView0" resultType="me.cloverclub.vo.AdminorderVO">
+   select o.orderId, o.userId, o.orderRecvr, o.orderZipCode, o.orderAddr1, o.orderAddr2, o.orderTel1, o.orderTel2, o.orderTel3, o.orderDate,
+   d.gdsCode,d.cartStock,
+   p.process
+   from ordertbl o
+   inner join orderDetail d on o.orderId = d.orderId
+   inner join process p on o.orderId = p.orderId
+   where p.process = 1
+   </select>
+    <!-- delivery view -->
+   <select id="deliveryView1" resultType="me.cloverclub.vo.AdminorderVO">
+   select o.orderId, o.userId, o.orderRecvr, o.orderZipCode, o.orderAddr1, o.orderAddr2, o.orderTel1, o.orderTel2, o.orderTel3, o.orderDate,
+   d.gdsCode,d.cartStock,
+   p.process
+   from ordertbl o
+   inner join orderDetail d on o.orderId = d.orderId
+   inner join process p on o.orderId = p.orderId
+   where p.process = 2
+   </select>
    <!-- picking complete -->
    <update id = "pickingUpdate">
    	update process
@@ -81,5 +101,29 @@
    	update process
    	set process = 0
    	where orderId = #{orderId}
+   </update>
+   <!-- delivery update -->
+   <update id="deliveryUpdate">
+   update process
+   	set process = 2
+   	where orderId = #{orderId}
+   </update>
+   <!-- delivery complete -->
+   <update id="deliveryComplete">
+   update process
+   	set process = 3
+   	where orderId = #{orderId}
+   </update>
+   <!-- stock down cuz picking complete -->
+   <update id="stockDown">
+   update inventory i
+	set i.gdsStock = i.gdsStock - (select o.cartStock from orderDetail o where o.orderId = #{orderId})
+	where i.gdsCode = (select o.gdsCode from orderDetail o where o.orderId = #{orderId})
+   </update>
+   <!-- stock up cuz picking delete -->
+   <update id="stockUp">
+   update inventory i
+	set i.gdsStock = i.gdsStock + (select o.cartStock from orderDetail o where o.orderId = #{orderId})
+	where i.gdsCode = (select o.gdsCode from orderDetail o where o.orderId = #{orderId})
    </update>
 </mapper>
