@@ -58,4 +58,8 @@ public interface AdminService {
 		
 	//stock up
 	public void stockUp(ProcessVO process) throws Exception;
+	
+	public void authUp(String userId) throws Exception;
+	
+	public void authDown(String userId) throws Exception;
 }

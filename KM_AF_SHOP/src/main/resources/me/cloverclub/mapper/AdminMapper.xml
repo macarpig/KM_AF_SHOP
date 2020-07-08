@@ -126,4 +126,18 @@
 	set i.gdsStock = i.gdsStock + (select o.cartStock from orderDetail o where o.orderId = #{orderId})
 	where i.gdsCode = (select o.gdsCode from orderDetail o where o.orderId = #{orderId})
    </update>
+   
+   <!-- auth Up -->
+   <update id="authUp">
+   update member
+   set userAuth = 1
+   where userId = #{userId}
+   </update>
+   
+    <!-- auth Down -->
+   <update id="authDown">
+   update member
+   set userAuth = 0
+   where userId = #{userId}
+   </update>
 </mapper>

@@ -181,6 +181,7 @@ alert(cate1Div.html());
     <c:out value="</div><div class='row'>" />
    </c:if>
    <c:set var="i" value="${i + 1}"/>
+   </div>
 </c:forEach>
 </div>
 </div>

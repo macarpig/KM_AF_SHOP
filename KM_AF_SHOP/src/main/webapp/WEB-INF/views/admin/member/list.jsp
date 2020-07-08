@@ -4,7 +4,15 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp"%>
-
+<script type="text/javascript">
+function authUser(userId) {
+	alert('관리자권한을 부여합니다.');
+	location.href = "${pageContext.request.contextPath}/admin/member/authUp?u="+userId;
+}
+function authAdmin(userId) {
+	location.href = "${pageContext.request.contextPath}/admin/member/authDown?u="+userId;
+}
+</script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -239,10 +247,10 @@
 									<div class="col align-self-center">${list.userTel}</div>
 									<div class="col align-self-center">
 										<c:if test="${list.userAuth == 0}">
-											<button type="button" class="btn btn-secondary">사용자 권한</button>
+											<button type="button" class="btn btn-secondary" onclick="authUser('${list.userId}')">사용자 권한</button>
 										</c:if>
 										<c:if test="${list.userAuth == 1}">
-											<button type="button" class="btn btn-warning">관리자 권한</button>
+											<button type="button" class="btn btn-warning" onclick="authAdmin('${list.userId}')">관리자 권한</button>
 										</c:if>
 									</div>
 								</div>

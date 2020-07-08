@@ -4,7 +4,28 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp"%>
-
+<script type="text/javascript">
+function cate1(e) {
+	  var add = document.getElementById("addDivision1");
+	  var mod = document.getElementById("modifyDivision2");
+	  if(e.value == "a"){add.style.display='block';
+	  mod.style.display='none';}
+	  else{add.style.display='none';
+	  mod.style.display='none';
+	  }
+	}
+function cate2(e) {
+	  var add = document.getElementById("addDivision2");
+	  var mod = document.getElementById("modifyDivision2");
+	  if(e.value == "b"){
+		  add.style.display='block';
+		  mod.style.display='none';
+	  }else{
+		  add.style.display='none';
+		  mod.style.display='block';
+	  }
+	}
+</script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -226,14 +247,14 @@
 						<div class="card-body">
 							<form method="post" autocomplete="off" enctype="multipart/form-data">
 								<div>
-									<label>1차 분류</label> <select class="category1">
-										<option value="">전체</option>
+									<label>1차 분류</label> <select class="category1" onchange="cate1(this)">
+										<option value="a">전체</option>
 									</select>
-									<div id="addDivision1" style="display:none;"><input type="text" placeholder="1차분류 추가"><input type="button" value="추가"></div>
+									<div id="addDivision1"><input type="text" placeholder="1차분류 추가"><input type="button" value="추가"></div>
 									<div id="modifyDivision1" style="display:none;"><input type="button" value="삭제"></div><p>
 									
-									 <label>2차 분류</label> <select class="category2" name="cateCode">
-										<option value="">전체</option>
+									 <label>2차 분류</label> <select class="category2" name="cateCode" onchange="cate2(this)">
+										<option value="b">전체</option>
 									</select>
 									<div id="addDivision2" style="display:none;"><input type="text" placeholder="2차분류 추가"><input type="button" value="추가"></div>
 									<div id="modifyDivision2" style="display:none;"><input type="button" value="삭제"></div><p>

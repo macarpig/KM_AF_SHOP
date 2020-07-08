@@ -354,4 +354,17 @@ public class AdminController {
     	attributes.addAttribute("l", listCode);
 		return "redirect:/admin/goods/delivery";
 	}
+    
+    @GetMapping("member/authUp")
+    public String getAuthUp(@RequestParam("u") String userId) throws Exception {
+    	log.info(userId);
+    	a_service.authUp(userId);
+    	return "redirect:/admin/member/list";
+    }
+    
+    @GetMapping("member/authDown")
+    public String getAuthDown(@RequestParam("u") String userId) throws Exception {
+    	a_service.authDown(userId);
+    	return "redirect:/admin/member/list";
+    }
 }

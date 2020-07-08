@@ -131,4 +131,14 @@ public class AdminServiceImpl implements AdminService {
 		public void stockUp(ProcessVO process) throws Exception {
 			mapper.stockUp(process);
 		}
+
+		@Override
+		public void authUp(String userId) throws Exception {
+			mapper.authUp(userId);
+		}
+
+		@Override
+		public void authDown(String userId) throws Exception {
+			mapper.authDown(userId);
+		}
 }
