@@ -91,8 +91,8 @@
           <div class="collapse-divider"></div>
           <h6 class="collapse-header">주문 관리</h6>
           <a class="collapse-item" href="/admin/goods/order">주문 목록</a>
-          <a class="collapse-item" href="/admin/goods/picking">주문 피킹</a>
-          <a class="collapse-item" href="blank.html">주문 배송</a>
+          <a class="collapse-item" href="/admin/goods/picking?l=0">주문 피킹</a>
+          <a class="collapse-item" href="/admin/goods/delivery?l=0">주문 배송</a>
           <div class="collapse-divider"></div>
           <h6 class="collapse-header">재고 관리</h6>
           <a class="collapse-item" href="404.html">입고</a>

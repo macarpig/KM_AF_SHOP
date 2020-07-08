@@ -70,19 +70,75 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.orderView();
 	}
 	
-	//picking list
+	//picking list0
 	@Override
-	public List<PickingVO> pickingView() throws Exception {
+	public List<PickingVO> pickingView0() throws Exception {
 		log.info("AdminService: pickingList()");
 		
-		return mapper.pickingView();
+		return mapper.pickingView0();
 	}
+	
+	//picking list1
+		@Override
+		public List<PickingVO> pickingView1() throws Exception {
+			log.info("AdminService: pickingList()");
+			
+			return mapper.pickingView1();
+		}
 	
 	//picking complete
 	@Override
-	public void pickingUpdate(ProcessVO vo) throws Exception {
+	public void pickingUpdate(ProcessVO process) throws Exception {
 		log.info("AdminService: pickingComplete()");
 		
-		mapper.pickingUpdate(vo);
+		mapper.pickingUpdate(process);
 	}
+	
+	//picking delete
+		@Override
+		public void pickingDelete(ProcessVO process) throws Exception {
+			log.info("AdminService: pickingDelte()");
+			
+			mapper.pickingDelete(process);
+		}
+
+		@Override
+		public void deliveryUpdate(AdminorderVO order) throws Exception {
+			mapper.deliveryUpdate(order);
+		}
+
+		@Override
+		public void deliveryComplete(AdminorderVO order) throws Exception {
+			mapper.deliveryComplete(order);
+		}
+
+		@Override
+		public List<AdminorderVO> deliveryView0() throws Exception {
+			return mapper.deliveryView0();
+		}
+
+		@Override
+		public List<AdminorderVO> deliveryView1() throws Exception {
+			return mapper.deliveryView1();
+		}
+
+		@Override
+		public void stockDown(ProcessVO process) throws Exception {
+			mapper.stockDown(process);
+		}
+
+		@Override
+		public void stockUp(ProcessVO process) throws Exception {
+			mapper.stockUp(process);
+		}
+
+		@Override
+		public void authUp(String userId) throws Exception {
+			mapper.authUp(userId);
+		}
+
+		@Override
+		public void authDown(String userId) throws Exception {
+			mapper.authDown(userId);
+		}
 }

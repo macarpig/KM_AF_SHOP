@@ -10,10 +10,10 @@
 			<div class="col-md-12 text-center">
 				<div class="text-homeimage">
 					<div class="maintext-image" data-scrollreveal="enter top over 1.5s after 0.1s">
-						 Increase Digital Sales
+						 macapig
 					</div>
 					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.3s">
-						 Boost revenue with Scorilo
+						 마카픽 사이트에 오신 것을 환영합니다
 					</div>
 				</div>
 			</div>

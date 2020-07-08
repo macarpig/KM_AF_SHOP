@@ -30,9 +30,36 @@ public interface AdminService {
 	public List<AdminorderVO> orderView() throws Exception;
 	
 	//picking list
-	public List<PickingVO> pickingView() throws Exception;
+	public List<PickingVO> pickingView0() throws Exception;
+	
+	//picking list
+	public List<PickingVO> pickingView1() throws Exception;
 	
 	//complete picking
-	public void pickingUpdate(ProcessVO vo) throws Exception;
+	public void pickingUpdate(ProcessVO process) throws Exception;
+	
+	//picking delete
+	public void pickingDelete(ProcessVO process) throws Exception;
 
+	//delivery update
+	public void deliveryUpdate(AdminorderVO order) throws Exception;
+		
+	//delivery complete
+	public void deliveryComplete(AdminorderVO order) throws Exception;
+	
+	//delivery view0
+	public List<AdminorderVO> deliveryView0() throws Exception;
+		
+	//delivery view0
+	public List<AdminorderVO> deliveryView1() throws Exception;
+	
+	//stock down
+	public void stockDown(ProcessVO process) throws Exception;
+		
+	//stock up
+	public void stockUp(ProcessVO process) throws Exception;
+	
+	public void authUp(String userId) throws Exception;
+	
+	public void authDown(String userId) throws Exception;
 }

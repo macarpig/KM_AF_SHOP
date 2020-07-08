@@ -253,22 +253,45 @@ public class AdminController {
     
   //get picking list
     @GetMapping(value = "/goods/picking")
-    public String getPickinglist(Model model) throws Exception {
-       log.info("AdminController: getPickingList()");  
+    public String getPickinglist(Model model, @RequestParam("l") int listCode) throws Exception {
+       log.info("AdminController: getPickingList()");
        
-          List<PickingVO> pickingView  = a_service.pickingView();
+       List<PickingVO> pickingView = null;
+       if(listCode == 0) {
+           pickingView = a_service.pickingView0();
+       }else {
+    	   pickingView = a_service.pickingView1();
+       }
           model.addAttribute("list", pickingView);
-          
+
           return "/admin/goods/picking";
     }
     
 
     //complete picking
     @PostMapping(value = "/goods/pickingUpdate")
-    public String pickingUpdate(ProcessVO vo) throws Exception {
-    	log.info("AdminController: getPickingUpdate()"); 
-    	a_service.pickingUpdate(vo);
-
+    public String postPickingUpdate(ProcessVO process, @RequestParam("l") int listCode, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) throws Exception {
+    	String [] orderIds = request.getParameterValues("chProcess");
+    	log.info("AdminController: getPickingUpdate() :"+orderIds);
+    	if(orderIds == null) {
+    		response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('선택한 항목이 없습니다.'); history.go(-1);</script>");
+            out.flush();
+    	}else {
+    	for(int i=0; i<orderIds.length; i++) {
+    		process.setOrderId(orderIds[i]);
+    		if(listCode == 0) {
+    			a_service.stockDown(process);
+            	a_service.pickingUpdate(process);
+        	}else {
+        		a_service.stockUp(process);
+        		a_service.pickingDelete(process);
+        	}
+    	}
+    	}
+    	
+    	attributes.addAttribute("l", listCode);
 		return "redirect:/admin/goods/picking";
 	}
 
@@ -278,5 +301,70 @@ public class AdminController {
     	List<CategoryVO> category = c_service.category();
     	model.addAttribute("category", JSONArray.fromObject(category));
     	return "/admin/manage/category";
+    }
+    
+    @GetMapping("/goods/delivery")
+    public String getDelivery(Model model, @RequestParam("l") int listCode) throws Exception {
+    	List<AdminorderVO> order = null;
+    	if(listCode == 0) {
+    		order = a_service.deliveryView0();
+        }else {
+     	   order = a_service.deliveryView1();
+        }
+    	model.addAttribute("list", order);
+    	return "/admin/goods/delivery";
+    }
+    
+    @PostMapping("/goods/deliveryUpdate")
+    public String postDeliveryUpdate(AdminorderVO order, @RequestParam("l") int listCode, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) throws Exception {
+    	String [] orderIds = request.getParameterValues("chProcess");
+    	log.info("AdminController: getDeliveryUpdate() :"+orderIds);
+    	if(orderIds == null) {
+    		response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('선택한 항목이 없습니다.'); history.go(-1);</script>");
+            out.flush();
+    	}else {
+    		if(listCode == 0) {
+    			/*response.setContentType("text/html; charset=UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>var con_test = confirm(\"정말 배송 중으로 변경하시겠습니까?\"); " + 
+                      "if(con_test == false){" + 
+                      "  history.go(-1);}</script>");
+                out.flush();*/
+                log.info(orderIds);
+    			for(int i=0; i<orderIds.length; i++) {
+    	    		order.setOrderId(orderIds[i]);
+    	    		a_service.deliveryUpdate(order);
+    			}
+        	}else {
+        		/*response.setContentType("text/html; charset=UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>var con_test = confirm(\"정말 배송 완료로 변경하시겠습니까?\"); " + 
+                      "if(con_test == false){" + 
+                      "  history.go(-1);}</script>");
+                out.flush();*/
+        		for(int i=0; i<orderIds.length; i++) {
+        			order.setOrderId(orderIds[i]);
+        			a_service.deliveryComplete(order);
+        		}
+        	}
+    	}
+    	
+    	attributes.addAttribute("l", listCode);
+		return "redirect:/admin/goods/delivery";
+	}
+    
+    @GetMapping("member/authUp")
+    public String getAuthUp(@RequestParam("u") String userId) throws Exception {
+    	log.info(userId);
+    	a_service.authUp(userId);
+    	return "redirect:/admin/member/list";
+    }
+    
+    @GetMapping("member/authDown")
+    public String getAuthDown(@RequestParam("u") String userId) throws Exception {
+    	a_service.authDown(userId);
+    	return "redirect:/admin/member/list";
     }
 }
