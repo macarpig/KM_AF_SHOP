@@ -242,7 +242,9 @@ $(document).ready(function() {
 							</div>
 							<c:forEach items="${list}" var="list">
 								<div class="row">
+									<div class="col">
 									<input class="input100" type="text" name="orderId" value = "${list.orderId}" readonly="readonly">
+									</div>
 									<div class="col"><img style="width: 150px; height: auto;" src="${list.gdsThumbImg}"></div>
 									<div class="col">${list.gdsCode}</div>
 									<div class="col">${list.cartStock}</div>
