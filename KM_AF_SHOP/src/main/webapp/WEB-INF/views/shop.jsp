@@ -179,8 +179,9 @@ alert(cate1Div.html());
       </div>
       <c:if test="${i eq 3}">
     <c:out value="</div><div class='row'>" />
-   </c:if>
+   	</c:if>
    <c:set var="i" value="${i + 1}"/>
+   </div>
 </c:forEach>
 </div>
 </div>
