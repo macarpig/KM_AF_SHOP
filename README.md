@@ -1,5 +1,5 @@
-# KM_AF_SHOP
-온라인 쇼핑몰과 관리자 모드인 온라인 쇼핑몰 erp가 결합된 사이트
+# MAKAPIG
+쇼핑몰의 전반적 기능과 관리자의 관리기능 뿐 아니라 물건의 재고상태와 처리기능이 들어간 쇼핑몰 erp 웹사이트
 
 # Data Diagrams
 ![image](https://user-images.githubusercontent.com/65270992/107244300-36501a00-6a71-11eb-91b5-f1770e0b17f4.png)
