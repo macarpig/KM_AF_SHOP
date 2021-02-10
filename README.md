@@ -2,7 +2,7 @@
 쇼핑몰의 전반적 기능과 관리자의 관리기능 뿐 아니라 물건의 재고상태와 처리기능이 들어간 쇼핑몰 erp 웹사이트
 
 # Data Diagrams
-![image](https://user-images.githubusercontent.com/65270992/107244300-36501a00-6a71-11eb-91b5-f1770e0b17f4.png)
+![image](https://user-images.githubusercontent.com/65270992/107532770-94ac0280-6c01-11eb-9c28-f38dd66579cd.png)
 
 ---
 # description
