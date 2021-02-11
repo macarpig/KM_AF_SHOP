@@ -18,3 +18,14 @@ It is a site that combines online shopping malls and online shopping mall erp, w
 * java version : 1.8
 * security : spring-security
 * language : java, jsp, jquery, javascript
+
+---
+# Run Video
+↓click!  
+[![Watch the video](https://img.youtube.com/vi/k0KU1AfX8Lw/0.jpg)](https://youtu.be/k0KU1AfX8Lw)
+
+---
+# authors
+* Yang Chan jin - github : <https://github.com/ystepanie> portfolio : <https://ystepanie.github.io/portfolio/>
+* Yu Da Yeon - github : <https://github.com/ydy2128> portfolio : <https://ydy2128.github.io/portfolio/>
+* Kwon Tae Hoon
