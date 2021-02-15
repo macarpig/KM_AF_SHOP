@@ -24,8 +24,8 @@ It is a site that combines online shopping malls and online shopping mall erp, w
 ↓click!  
 [![Watch the video](https://img.youtube.com/vi/k0KU1AfX8Lw/0.jpg)](https://youtu.be/k0KU1AfX8Lw)  
 ↓click!  
-[![Watch the video](https://img.youtube.com/vi/PzMemJM4b_4/0.jpg)](https://youtu.be/PzMemJM4b_4)  
-↓click! 
+[![Watch the video](https://img.youtube.com/vi/PzMemJM4b_4/0.jpg)](https://youtu.be/PzMemJM4b_4)
+↓click!  
 [![Watch the video](https://img.youtube.com/vi/1KVjb6pE62A/0.jpg)](https://youtu.be/1KVjb6pE62A)  
 
 ---
