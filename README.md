@@ -2,7 +2,7 @@
 쇼핑몰의 전반적 기능과 관리자의 관리기능 뿐 아니라 물건의 재고상태와 처리기능이 들어간 쇼핑몰 erp 웹사이트
 
 # Data Diagrams
-![image](https://user-images.githubusercontent.com/65270992/107532770-94ac0280-6c01-11eb-9c28-f38dd66579cd.png)
+![image](https://user-images.githubusercontent.com/65270992/107955729-7703e200-6fe1-11eb-9684-630cbd241ffb.png)
 
 ---
 # description
@@ -23,6 +23,8 @@ It is a site that combines online shopping malls and online shopping mall erp, w
 # Run Video
 ↓click!  
 [![Watch the video](https://img.youtube.com/vi/k0KU1AfX8Lw/0.jpg)](https://youtu.be/k0KU1AfX8Lw)
+↓click!  
+[![Watch the video](https://img.youtube.com/vi/PzMemJM4b_4/0.jpg)](https://youtu.be/PzMemJM4b_4)
 
 ---
 # authors
