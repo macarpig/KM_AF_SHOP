@@ -15,7 +15,7 @@ It is a site that combines online shopping malls and online shopping mall erp, w
 * server : apache tomcat 9.0
 * api : ckeditor, chartjs, gson, lombok
 * Development program : eclipse, datagrip
-* java version : 1.8
+* jdk version : 1.8
 * security : spring-security
 * language : java, jsp, jquery, javascript
 
