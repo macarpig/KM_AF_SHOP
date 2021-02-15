@@ -12,5 +12,17 @@
             inner join cte on p.cateCodeRef = cte.cateCode
         )
 	select cateName, cateCode, cateCodeRef, level from cte
-	</select>	
+	</select>
+	
+	<!-- 카테고리 1차분류 추가 -->
+	<insert id="addCate1">
+	insert into category 
+	VALUES(#{cateName}, (select max(cateCode)+100 from category as c where cateCodeRef is null), null)
+	</insert>
+	
+	<!-- 카테고리 2차분류 추가 -->
+	<insert id="addCate2">
+	insert into category
+	VALUES(#{cateName}, (select max(cateCode)+1 as cateCode from category as c where cateCode like #{cateCodeRef}), #{cateCode})
+	</insert>
 </mapper>

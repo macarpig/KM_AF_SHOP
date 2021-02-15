@@ -8,23 +8,34 @@
 function cate1(e) {
 	  var add = document.getElementById("addDivision1");
 	  var mod = document.getElementById("modifyDivision2");
+	  var add2 = document.getElementById("addDivision2");
 	  if(e.value == "a"){add.style.display='block';
-	  mod.style.display='none';}
+	  mod.style.display='none';
+	  add2.style.display='none';}
 	  else{add.style.display='none';
 	  mod.style.display='none';
+	  add2.style.display='block';
 	  }
 	}
 function cate2(e) {
-	  var add = document.getElementById("addDivision2");
+	  var add2 = document.getElementById("addDivision2");
 	  var mod = document.getElementById("modifyDivision2");
-	  if(e.value == "b"){
-		  add.style.display='block';
+	  if(e.value == "b" || !e.value > 0){
 		  mod.style.display='none';
+		  add2.style.display='block';
 	  }else{
-		  add.style.display='none';
+		  add2.style.display='none';
 		  mod.style.display='block';
 	  }
 	}
+function submitCheck() {
+	if($('#cateName').val() == null || $('#cateName').val() == ''){
+		return false;
+	}else{
+		alert($('#cateName').val()+' 추가합니다.');
+		return true;
+	}
+}
 </script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -245,20 +256,22 @@ function cate2(e) {
 							<h6 class="m-0 font-weight-bold text-primary">카테고리 수정</h6>
 						</div>
 						<div class="card-body">
-							<form method="post" autocomplete="off" enctype="multipart/form-data">
+							<form method="post" autocomplete="off" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/category/AddCate" onsubmit="return submitCheck()">
 								<div>
 									<label>1차 분류</label> <select class="category1" onchange="cate1(this)">
 										<option value="a">전체</option>
 									</select>
-									<div id="addDivision1"><input type="text" placeholder="1차분류 추가"><input type="button" value="추가"></div>
+									<div id="addDivision1"><input type="text" placeholder="1차분류 추가" id="txtCate1"><input type="button" value="추가" onclick="$('#cateName').val($('#txtCate1').val());$('#cateClassify').val(1);$('#modifyInstruction').html($('#txtCate1').val() +' 1차분류 추가');"></div>
 									<div id="modifyDivision1" style="display:none;"><input type="button" value="삭제"></div><p>
 									
-									 <label>2차 분류</label> <select class="category2" name="cateCode" onchange="cate2(this)">
+									 <label>2차 분류</label> <select class="category2" onchange="cate2(this)">
 										<option value="b">전체</option>
 									</select>
-									<div id="addDivision2" style="display:none;"><input type="text" placeholder="2차분류 추가"><input type="button" value="추가"></div>
-									<div id="modifyDivision2" style="display:none;"><input type="button" value="삭제"></div><p>
-								
+									<div id="addDivision2" style="display:none;"><input type="text" placeholder="2차분류 추가" id="txtCate2"><input type="button" value="추가" onclick="$('#cateCode').val($('select.category1').val());$('#cateName').val($('#txtCate2').val());$('#cateClassify').val(2);$('#modifyInstruction').html($('select.category1').val() + ' 하위 카테고리 : ' + $('#txtCate2').val() +' 2차분류 추가');"></div>
+									<div id="modifyDivision2" style="display:none;"><input type="button" value="삭제" onclick=""></div><p>
+									<input type="hidden" name="cateName" id="cateName">
+									<input type="hidden" name="cateClassify" id="cateClassify">
+									<input type="hidden" name="cateCode" id="cateCode">
 									<script>
 										var jsonData = JSON.parse('${category}');
 										console.log(jsonData);
@@ -313,8 +326,9 @@ function cate2(e) {
 										});
 										
                       				</script>
-
 								</div>
+								<div id="modifyInstruction"></div>
+								<br>
 								<button type="submit" class="btn btn-primary">저장</button>
 							</form>
 						</div>

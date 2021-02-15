@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -276,7 +277,7 @@ public class AdminController {
     	if(orderIds == null) {
     		response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('¼±ÅÃÇÑ Ç×¸ñÀÌ ¾ø½À´Ï´Ù.'); history.go(-1);</script>");
+            out.println("<script>alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.'); history.go(-1);</script>");
             out.flush();
     	}else {
     	for(int i=0; i<orderIds.length; i++) {
@@ -322,13 +323,13 @@ public class AdminController {
     	if(orderIds == null) {
     		response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('¼±ÅÃÇÑ Ç×¸ñÀÌ ¾ø½À´Ï´Ù.'); history.go(-1);</script>");
+            out.println("<script>alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.'); history.go(-1);</script>");
             out.flush();
     	}else {
     		if(listCode == 0) {
     			/*response.setContentType("text/html; charset=UTF-8");
                 PrintWriter out = response.getWriter();
-                out.println("<script>var con_test = confirm(\"Á¤¸» ¹è¼Û ÁßÀ¸·Î º¯°æÇÏ½Ã°Ú½À´Ï±î?\"); " + 
+                out.println("<script>var con_test = confirm(\"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?\"); " + 
                       "if(con_test == false){" + 
                       "  history.go(-1);}</script>");
                 out.flush();*/
@@ -340,7 +341,7 @@ public class AdminController {
         	}else {
         		/*response.setContentType("text/html; charset=UTF-8");
                 PrintWriter out = response.getWriter();
-                out.println("<script>var con_test = confirm(\"Á¤¸» ¹è¼Û ¿Ï·á·Î º¯°æÇÏ½Ã°Ú½À´Ï±î?\"); " + 
+                out.println("<script>var con_test = confirm(\"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?\"); " + 
                       "if(con_test == false){" + 
                       "  history.go(-1);}</script>");
                 out.flush();*/
@@ -366,5 +367,20 @@ public class AdminController {
     public String getAuthDown(@RequestParam("u") String userId) throws Exception {
     	a_service.authDown(userId);
     	return "redirect:/admin/member/list";
+    }
+    
+    @PostMapping("category/AddCate")
+    public String postAddCate(@RequestParam String cateName, @RequestParam int cateClassify, @RequestParam(required = false) String cateCode) throws Exception {
+		CategoryVO category = new CategoryVO();
+		category.setCateName(cateName);
+    	if(cateClassify == 1) {
+    		c_service.addCate1(category);
+    	}else {
+    		String initCode = Integer.toString((int)(Integer.parseInt(cateCode)/100)) + "__";
+    		category.setCateCode(cateCode);
+    		category.setCateCodeRef(initCode);
+    		c_service.addCate2(category);
+    	}
+    	return "redirect:/admin/manage/category";
     }
 }

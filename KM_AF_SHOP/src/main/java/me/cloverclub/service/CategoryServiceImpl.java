@@ -21,4 +21,16 @@ public class CategoryServiceImpl implements CategoryService {
 
 		return mapper.category();
 	}
+
+
+	@Override
+	public void addCate1(CategoryVO category) throws Exception {
+		mapper.addCate1(category);
+	}
+
+
+	@Override
+	public void addCate2(CategoryVO category) throws Exception {
+		mapper.addCate2(category);
+	}
 }
