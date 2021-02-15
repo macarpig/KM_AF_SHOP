@@ -1,7 +1,7 @@
 # MAKAPIG
 쇼핑몰의 전반적 기능과 관리자 기능, 물류관리 프로그램까지 하나의 웹 형태로 구현한 erp 사이트
 
-# Data Diagrams
+# ERD
 ![image](https://user-images.githubusercontent.com/65270992/107955729-7703e200-6fe1-11eb-9684-630cbd241ffb.png)
 
 ---
