@@ -13,7 +13,7 @@ It is a site that combines online shopping malls and online shopping mall erp, w
 * dbms : mariadb
 * design : bootstrap
 * server : apache tomcat 9.0
-* api : ckeditor, chartjs, gson
+* api : ckeditor, chartjs, gson, lombok
 * Development program : eclipse, datagrip
 * java version : 1.8
 * security : spring-security
